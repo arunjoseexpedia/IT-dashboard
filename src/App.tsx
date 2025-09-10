@@ -3,7 +3,7 @@ import Topbar from './Topbar';
 import AppRat from './AppRat';
 import HalfCircleChart from './HalfCircleChart';
 import AIIndex from './AIIndex';
-import ThreeValueBarChart from './ThreeValueBarChart';
+import { VulnerabilitiesSection } from './VulnerabilitiesSection';
 
 function App() {
   return (
@@ -54,7 +54,7 @@ function App() {
           }}
         >
           <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-            
+          <VulnerabilitiesSection />
           </div>
           <div style={{ flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
             
