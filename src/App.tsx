@@ -1,5 +1,6 @@
 import React from 'react';
 import Topbar from './Topbar';
+import HalfCircleChart from './HalfCircleChart';
 
 function App() {
   return (
@@ -23,7 +24,11 @@ function App() {
           }}
         >
           <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-           
+          <h5><center>TechDebtReduction</center></h5>
+          <div style={{ height: '100px', position: 'relative' }}>
+          <HalfCircleChart percentage={75} />
+          </div>
+  
           </div>
           <div style={{ flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
             
