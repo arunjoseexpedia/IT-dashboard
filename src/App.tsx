@@ -2,7 +2,9 @@ import React from 'react';
 import Topbar from './Topbar';
 import AppRat from './AppRat';
 import HalfCircleChart from './HalfCircleChart';
+import ThreeValueTable from './ThreeValueTable';
 import AIIndex from './AIIndex';
+import ThreeValueBarChart from './ThreeValueBarChart';
 import { VulnerabilitiesSection } from './VulnerabilitiesSection';
 
 function App() {
@@ -76,11 +78,20 @@ function App() {
           }}
         >
           <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-            
+          <ThreeValueBarChart labels={['RICEFS', 'FloriApps', 'Retrofits','Live Compare (Exceutions)']}
+        values={[4000, 2000, 7000,8000]}
+        />
           </div>
 
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-            
+          <div style={{ flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <h3 style={{ textAlign: 'center' }}>Service Now Request</h3>
+          <ThreeValueTable
+        data={[
+          { label: 'Processed', value: 9873 },
+          { label: 'In Progress', value: 98 },
+          { label: '% Completed', value: 58 },
+        ]}
+      /> 
           </div>
         </div>
       </div>
