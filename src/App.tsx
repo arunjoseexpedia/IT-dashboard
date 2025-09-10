@@ -4,6 +4,7 @@ import AppRat from './AppRat';
 import HalfCircleChart from './HalfCircleChart';
 import ThreeValueTable from './ThreeValueTable';
 import AIIndex from './AIIndex';
+import {ExpensiveSqlOptimazation} from './ExpensiveSqlOptimazation';
 import ThreeValueBarChart from './ThreeValueBarChart';
 import { VulnerabilitiesSection } from './VulnerabilitiesSection';
 
@@ -58,8 +59,8 @@ function App() {
           <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <VulnerabilitiesSection />
           </div>
-          <div style={{ flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-            
+          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '7px' }}>
+            <ExpensiveSqlOptimazation/>
           </div>
           <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
             
