@@ -19,10 +19,10 @@ export const VulnerabilitiesSection = () => {
 
       {/* Two numbers side by side */}
       <div style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
-        <div style={{ flex: 1 }}>11000</div>
-        <div style={{ flex: 1 }}>2000</div>
-        <div style={{ flex: 1 }}>125</div>
-        <div style={{ flex: 1 }}>5</div>
+        <div style={{ flex: 1,background:'#fdf5e6' }}>11000</div>
+        <div style={{ flex: 1 ,background:'#FFE4E1'}}>2000</div>
+        <div style={{ flex: 1,background:'#FFB6C1' }}>125</div>
+        <div style={{ flex: 1, background:'#F08080' }}>5</div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
         <div style={{ flex: 1 , fontSize:'10px'}}>Analyzed</div>
