@@ -19,7 +19,7 @@ const Topbar = () => {
       }}
     >
       {/* Left side - contact info */}
-      <div className='topbarText'>IT Dash Board</div>
+      <div className='topbarText'>SAP Dash Board</div>
 
       {/* Right side - social icons or links */}
       <Box
