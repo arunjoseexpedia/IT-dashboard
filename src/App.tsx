@@ -5,7 +5,7 @@ function App() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
-      <header style={{ height: '10%' }}>
+      <header style={{ height: '12%' }}>
         <Topbar />
       </header>
 

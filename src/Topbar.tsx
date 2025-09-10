@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+ Box,
+} from '@mui/material';
 
 const Topbar = () => {
   return (
@@ -16,35 +19,15 @@ const Topbar = () => {
       }}
     >
       {/* Left side - contact info */}
-      <div>IT Dash Board</div>
+      <div className='topbarText'>IT Dash Board</div>
 
       {/* Right side - social icons or links */}
-      <div style={{ display: 'flex', gap: '15px' }}>
-        <a
-          href="https://twitter.com"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'white', textDecoration: 'none' }}
-        >
-          Twitter
-        </a>
-        <a
-          href="https://facebook.com"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'white', textDecoration: 'none' }}
-        >
-          Facebook
-        </a>
-        <a
-          href="https://linkedin.com"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'white', textDecoration: 'none' }}
-        >
-          LinkedIn
-        </a>
-      </div>
+      <Box
+          component="img"
+          src="pepsico-logo.jpg"
+          alt="120k"
+          sx={{ height: 50, objectFit: 'contain' }}
+        />
     </div>
   );
 };
