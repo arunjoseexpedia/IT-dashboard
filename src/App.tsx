@@ -1,6 +1,9 @@
 import React from 'react';
 import Topbar from './Topbar';
+import AppRat from './AppRat';
 import HalfCircleChart from './HalfCircleChart';
+import AIIndex from './AIIndex';
+import ThreeValueBarChart from './ThreeValueBarChart';
 
 function App() {
   return (
@@ -30,11 +33,12 @@ function App() {
           </div>
   
           </div>
-          <div style={{ flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-            
+          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white' }}>
+          <h5 style={{ marginBottom: '0', padding: '2px', textAlign: 'center' }}><center>App Rat</center></h5>
+          <AppRat />
           </div>
           <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-           
+          <AIIndex/>
           </div>
         </div>
 
