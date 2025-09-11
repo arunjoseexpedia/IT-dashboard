@@ -13,11 +13,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const ExpensiveSqlOptimazation = () => {
     const data = {
-        labels: ['Success', 'Warning', 'Error'],
+        labels: ['Queries Analyzed', 'Queries Dispositioned', 'In Progress','High Memory/time Intensive queries optimized'],
         datasets: [
           {
-            data: [50, 30, 20],
-            backgroundColor: ['#28a745', '#ffc107', '#dc3545'], // green, yellow, red
+            data: [50, 30, 20,10],
+            backgroundColor: ['#28a745', '#ffc107', '#dc3545', '#d4edda'], // green, yellow, red
             borderWidth: 2,
           },
         ],
@@ -26,7 +26,7 @@ export const ExpensiveSqlOptimazation = () => {
 	return (
 		<div style={{ textAlign: 'left',  margin: 'auto' }}>
       {/* Top text */}
-      <div style={{  fontSize: '10px', fontWeight: 'bold' }}>
+      <div style={{  fontSize: '14px', fontWeight: 'bold' }}>
       Expensive SQL Optimazation
       </div>
       <div style={{display: 'flex'}}>
@@ -65,13 +65,13 @@ export const ExpensiveSqlOptimazation = () => {
 			>
 				<Box>
 					<Typography  sx={{ color: '#00000066' }}>
-						39 K  Memory Usage Reduction/day
+						39 K - Memory Usage Reduction/day
 					</Typography>
 					
 				</Box>
 				<Box>
 					<Typography  sx={{ color: '#00000066' }}>
-						805 K Execution Time Reduction/day
+						805 K - Execution Time Reduction/day
 					</Typography>
 					
 				</Box>

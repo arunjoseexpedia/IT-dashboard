@@ -7,7 +7,7 @@ export const VulnerabilitiesSection = () => {
 	return (
 		<div style={{ textAlign: 'center',  margin: 'auto' }}>
       {/* Top text */}
-      <div style={{ marginBottom: '20px', fontSize: '20px', fontWeight: 'bold' }}>
+      <div style={{ marginBottom: '20px', fontSize: '15px', fontWeight: 'bold' }}>
       Vulnerabilities
       </div>
 
