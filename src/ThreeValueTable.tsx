@@ -30,8 +30,8 @@ export default function ThreeValueTable({
             padding: '8px 0',
           }}
         >
-          <div style={{ color: '#333' }}>{item.label}</div>
-          <div style={{ fontWeight: 'bold', color: '#800000' }}>{item.value}</div>
+          <div style={{ color: '#333',  padding:'10px', fontSize:'12px' }}>{item.label}</div>
+          <div style={{ fontWeight: 'bold',boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)',backgroundColor:'#FF1675', color: 'white',padding:'10px',fontSize:'12px', borderRadius:'70%' }}>{item.value}</div>
         </div>
       ))}
     </div>
