@@ -13,7 +13,7 @@ function App() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
-      <header style={{ height: '12%', borderRadius:'8px' }}>
+      <header style={{ height: '11%', borderRadius:'8px' }}>
         <Topbar />
       </header>
 
@@ -31,7 +31,7 @@ function App() {
           }}
         >
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-          <h5><center>TechDebtReduction</center></h5>
+          <h5><center>Tech Debt Reduction</center></h5>
           <div style={{ height: '100px', position: 'relative' }}>
           <HalfCircleChart percentage={75} />
           </div>

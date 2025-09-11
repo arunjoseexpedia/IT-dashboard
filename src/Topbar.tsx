@@ -26,7 +26,7 @@ const Topbar = () => {
           component="img"
           src="pepsico-logo.jpg"
           alt="120k"
-          sx={{ height: 50, objectFit: 'contain' }}
+          sx={{ height: 50, paddingBottom:'5px', objectFit: 'contain' }}
         />
     </div>
   );
