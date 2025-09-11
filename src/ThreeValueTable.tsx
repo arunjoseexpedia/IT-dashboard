@@ -31,7 +31,7 @@ export default function ThreeValueTable({
           }}
         >
           <div style={{ color: '#333' }}>{item.label}</div>
-          <div style={{ fontWeight: 'bold', color: '#333' }}>{item.value}</div>
+          <div style={{ fontWeight: 'bold', color: '#800000' }}>{item.value}</div>
         </div>
       ))}
     </div>

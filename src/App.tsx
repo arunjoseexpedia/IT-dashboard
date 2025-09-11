@@ -30,18 +30,18 @@ function App() {
             gap: '9px', // space between columns
           }}
         >
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <h5><center>TechDebtReduction</center></h5>
           <div style={{ height: '100px', position: 'relative' }}>
           <HalfCircleChart percentage={75} />
           </div>
   
           </div>
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white' }}>
+          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white' }}>
           <h5 style={{ marginBottom: '0', padding: '2px', textAlign: 'center' }}><center>App Rat</center></h5>
           <AppRat />
           </div>
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <AIIndex/>
           </div>
         </div>
@@ -57,13 +57,13 @@ function App() {
             gap: '9px',
           }}
         >
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{ boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)',flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <VulnerabilitiesSection />
           </div>
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '7px' }}>
+          <div style={{ boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '7px' }}>
             <ExpensiveSqlOptimazation/>
           </div>
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
             <ProductRoadMap/>
           </div>
         </div>
@@ -79,13 +79,13 @@ function App() {
             gap: '9px',
           }}
         >
-          <div style={{ flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{ boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <ThreeValueBarChart labels={['RICEFS', 'FloriApps', 'Retrofits','Live Compare (Exceutions)']}
         values={[4000, 2000, 7000,8000]}
         />
           </div>
 
-          <div style={{ flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <h4 style={{ textAlign: 'center' }}>Service Now Request</h4>
           <ThreeValueTable
         data={[

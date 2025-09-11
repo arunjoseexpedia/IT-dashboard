@@ -55,7 +55,7 @@ export const ExpensiveSqlOptimazation = () => {
               borderRadius: '50%',
               marginRight: '8px',
             }}></span>
-            <span>{label}</span>
+            <span style={{fontSize:'12px'}}>{label}</span>
           </div>
         ))}
       </div>
