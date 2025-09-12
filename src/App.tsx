@@ -76,16 +76,16 @@ function App() {
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '9px',
+            gap: '8px',
           }}
         >
-          <div style={{ boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{ boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '6px' }}>
           <ThreeValueBarChart labels={['RICEFS', 'FloriApps', 'Retrofits','Live Compare (Exceutions)']}
         values={[4000, 2000, 7000,8000]}
         />
           </div>
 
-          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 2,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
+          <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <h4 style={{ textAlign: 'center' }}>Service Now Request</h4>
           <ThreeValueTable
         data={[

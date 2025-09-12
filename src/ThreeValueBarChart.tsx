@@ -37,7 +37,7 @@ const ThreeValueBarChart = ({ values = [40, 60, 80,90], labels = ['A', 'B', 'C',
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return <Bar data={data} options={options} height={200} />;
 };
 
 export default ThreeValueBarChart;
