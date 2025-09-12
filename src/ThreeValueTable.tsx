@@ -60,7 +60,7 @@ const ThreeValueTable = () => {
         <p style={{fontSize:'12px'}}>Processed:<span> {processed.toLocaleString()}</span></p>
         <p style={{fontSize:'12px'}}>Completed: <span>{completed.toLocaleString()} ({completedPercent}%)</span></p>
         <p style={{fontSize:'12px'}}>Remaining: <span>{remaining.toLocaleString()}</span></p>
-        <p style={{fontSize:'12px'}}>In Progress:<span style={{backgroundColor:'#DC3545',fontWeight:600,color:'white',textAlign:'center', padding:'5px',paddingLeft:'2px', borderRadius:'50%'}}> {inProgress.toLocaleString()}</span></p>
+        <p style={{fontSize:'12px'}}>In Progress:<span style={{backgroundColor:'#ec5e95',fontWeight:600,color:'white',textAlign:'center', padding:'5px',paddingLeft:'2px', borderRadius:'50%'}}> {inProgress.toLocaleString()}</span></p>
       </div>
     </div>
   );
