@@ -1,6 +1,6 @@
 import React from 'react';
 import Topbar from './Topbar';
-import ProductRoadMap from './ProductRoadMap';
+import {ProductRoadMap} from './ProductRoadMap';
 import AppRat from './AppRat';
 import HalfCircleChart from './HalfCircleChart';
 import ThreeValueTable from './ThreeValueTable';
@@ -13,7 +13,7 @@ function App() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
-      <header style={{ height: '11%', borderRadius:'8px' }}>
+      <header style={{ height: '10%', borderRadius:'8px' }}>
         <Topbar />
       </header>
 

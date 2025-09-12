@@ -1,41 +1,57 @@
-import React from 'react';
+import React from "react";
 
-export default function ProductRoadMap() {
+const roadmapData = [
+  { portal: "Portal", year: 2027, action: "Re-platform", project: "WM" },
+  { portal: "Portal", year: 2027, action: "Re-platform", project: "SolMan" },
+  { portal: "Portal", year: 2027, action: "Re-platform", project: "SAP gateway/Fiori" },
+  { portal: "Portal", year: 2027, action: "Re-platform", project: "Live Compare" },
+  { portal: "Portal", year: 2026, action: "Upgrade", project: "Data Masking" },
+  { portal: "Portal", year: 2026, action: "Upgrade", project: "Data Masking" }, // you had “upgrade” twice for Data Masking, so I included once; you can remove duplicates.
+];
+
+export const ProductRoadMap = () => {
   return (
-    <div style={{ maxWidth: '800px', margin: '20px auto', textAlign: 'center', fontFamily: 'sans-serif' }}>
-      {/* Heading */}
-      <h4>Product EOL Road Map</h4>
-
-      {/* Text & Value side by side */}
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '10px' }}>
-        {/* First Column */}
-        <div>
-          <div style={{ fontSize: '14px', color: '#666',borderRight:'3px solid pink' }}>Portal</div>
-          <div style={{display:'flex'}}> <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffc107' }}>2027</div><div style={{fontSize:'8px',marginTop:'10px',height:'13px',backgroundColor:'#A8DCAB',padding:'2px'}}><i>Re-platform</i></div></div>
-        </div>
-
-        {/* Second Column */}
-        <div>
-          <div style={{ fontSize: '14px', color: '#666', borderRight:'3px solid pink' }}>WM</div>
-          <div style={{display:'flex'}}> <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffc107' }}>2027</div><div style={{fontSize:'8px',marginTop:'10px',height:'13px',backgroundColor:'#A8DCAB',padding:'2px'}}><i>Re-platform</i></div></div>
-        </div>
-        <div>
-          <div style={{ fontSize: '14px', color: '#666',borderRight:'3px solid pink' }}>SolMan</div>
-          <div style={{display:'flex'}}> <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffc107' }}>2027</div><div style={{fontSize:'8px',marginTop:'10px',height:'13px',backgroundColor:'#A8DCAB',padding:'2px'}}><i>Re-platform</i></div></div>
-        </div>
-        <div>
-          <div style={{ fontSize: '14px', color: '#666',borderRight:'3px solid pink',paddingRight:'2px' }}>SAP gateway/Fiori</div>
-          <div style={{display:'flex'}}> <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffc107' }}>2027</div><div style={{fontSize:'8px',marginTop:'10px',height:'13px',backgroundColor:'#A8DCAB',padding:'2px'}}><i>Re-platform</i></div></div>
-        </div>
-        <div>
-          <div style={{ fontSize: '14px', color: '#666',borderRight:'3px solid pink',paddingRight:'2px' }}>Live Compare</div>
-          <div style={{display:'flex'}}> <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffc107' }}>2026</div><div style={{fontSize:'8px',marginTop:'10px',height:'13px',backgroundColor:'#A8DCAB',padding:'2px'}}><i>upgrade</i></div></div>
-        </div>
-        <div>
-          <div style={{ fontSize: '14px', color: '#666' }}>Data Masking</div>
-         <div style={{display:'flex'}}> <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#ffc107' }}>2026</div><div style={{fontSize:'8px',marginTop:'10px',height:'13px',backgroundColor:'#A8DCAB',padding:'2px'}}><i>upgrade</i></div></div>
-        </div>
-      </div>
+    <div style={{ maxWidth: 700, margin: "auto", fontFamily: "Arial, sans-serif" }}>
+      <h6 style={{ textAlign: "center" }}>Product EOL/Roadmap</h6>
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          textAlign: "left",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+        }}
+      >
+        <thead>
+          <tr style={{ backgroundColor: "white" }}>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>Portal</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>WM</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>SolMan</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>SAP Gateway/Fiori</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>Live Compare</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>Data Masking</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr style={{ backgroundColor: "white" }}>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px", backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',padding: "9px 12px"}}></td>
+            <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
+          </tr>
+          <tr style={{ backgroundColor: "#f4f4f4" }}>
+            <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
+            <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
+            <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
+            <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#FFA700' }}>2026<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Upgrade</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#FFA700'}}>2026<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Upgrade</i></sub></td>
+          </tr>
+        </tbody>
+        
+      </table>
     </div>
   );
-}
+};
+
