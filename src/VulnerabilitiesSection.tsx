@@ -6,14 +6,17 @@ export const VulnerabilitiesSection = () => {
   const [remainingLow, setRemainingLow] = useState(5);
   const [medium, setMedium] = useState(125);
   const [disposition, setDisposition] = useState(2000);
+  const [analyzed, setAnalyzed] = useState(11000);
   useEffect(() => {
     const interval = setInterval(() => {
       const randomValue = Math.floor(Math.random() * (50 - 5 + 1)) + 5;
       const randomMedium = Math.floor(Math.random() * (300 - 125 + 1)) + 125;
       const dispositionMedium = Math.floor(Math.random() * (3300 - 2000 + 1)) + 2000;
+      const analyzedMedium = Math.floor(Math.random() * (66000 - 11000 + 1)) + 11000;
       setRemainingLow(randomValue);
       setMedium(randomMedium);
       setDisposition(dispositionMedium);
+      setAnalyzed(analyzedMedium);
     }, 3000); // update every 3 seconds
 
     return () => clearInterval(interval); // cleanup on unmount
@@ -35,7 +38,7 @@ export const VulnerabilitiesSection = () => {
 
       {/* Two numbers side by side */}
       <div style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
-        <div style={{ flex: 1,background:'#fdf5e6' }}>11000</div>
+        <div style={{ flex: 1,background:'#fdf5e6' }}>{analyzed}</div>
         <div style={{ flex: 1 ,background:'#FFE4E1'}}>{disposition}</div>
         <div style={{ flex: 1,background:'#FFB6C1' }}>{medium}</div>
         <div style={{ flex: 1, background:'#F08080' }}>{remainingLow}</div>
