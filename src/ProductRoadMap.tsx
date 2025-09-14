@@ -33,10 +33,10 @@ export const ProductRoadMap = () => {
         </thead>
         <tbody>
         <tr style={{ backgroundColor: "white" }}>
-            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
-            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
-            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px", backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
-            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5',borderTopRightRadius:'50%',borderBottomRightRadius:'50%'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5',borderTopRightRadius:'50%',borderBottomRightRadius:'50%'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px", backgroundColor:'#00A3B5', borderTopRightRadius:'50%',borderBottomRightRadius:'50%'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#00A3B5',borderTopRightRadius:'50%',borderBottomRightRadius:'50%'}}>2027<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Re-platform</i></sub></td>
             <td style={{ fontSize:'12px',padding: "9px 12px"}}></td>
             <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
           </tr>
@@ -45,8 +45,8 @@ export const ProductRoadMap = () => {
             <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
             <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
             <td style={{ fontSize:'12px',padding: "9px 12px" }}></td>
-            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#FFA700' }}>2026<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Upgrade</i></sub></td>
-            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#FFA700'}}>2026<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Upgrade</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#FFA700',borderTopRightRadius:'50%',borderBottomRightRadius:'50%' }}>2026<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Upgrade</i></sub></td>
+            <td style={{ fontSize:'12px',color:'white',padding: "9px 12px",backgroundColor:'#FFA700',borderTopRightRadius:'50%',borderBottomRightRadius:'50%'}}>2026<sub style={{fontSize:'8px',color:'#99EDC3'}}><i>Upgrade</i></sub></td>
           </tr>
         </tbody>
         
