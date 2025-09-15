@@ -88,11 +88,7 @@ function App() {
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <h4 style={{ textAlign: 'center' }}>Service Now Request</h4>
           <ThreeValueTable
-        data={[
-          { label: 'Processed', value: 9873 },
-          { label: 'In Progress', value: 98 },
-          { label: '% Completed', value: 58 },
-        ]}
+       
       /> 
           </div>
         </div>
