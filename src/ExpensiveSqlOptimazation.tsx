@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Box, Typography,Accordion, AccordionDetails, } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -15,6 +16,7 @@ export const ExpensiveSqlOptimazation = () => {
   const [dataValues, setDataValues] = useState([50, 30, 20, 10]);
   const [memoryUsage, setMemoryUsage] = useState(39000);
   const [execTime, setExecTime] = useState(805000);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Update values randomly every 3 seconds
@@ -67,6 +69,13 @@ export const ExpensiveSqlOptimazation = () => {
                 },
               },
               cutout: '60%',
+              onClick: (event, elements) => {
+               
+          
+                  // Navigate to a detail page for this query
+                  navigate(`/ExpensiveSqlOptimazationDetail`);
+                
+              },
             }}
           />
 
