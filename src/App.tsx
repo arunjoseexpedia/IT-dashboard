@@ -1,5 +1,6 @@
 import React from 'react';
 import Topbar from './Topbar';
+import { Typography } from '@mui/material';
 import {ProductRoadMap} from './ProductRoadMap';
 import AppRat from './AppRat';
 import HalfCircleChart from './HalfCircleChart';
@@ -31,14 +32,34 @@ function App() {
           }}
         >
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-          <h5><center>Tech Debt Reduction</center></h5>
+          <h6><center><Typography
+  sx={{
+    fontWeight: 'bold',
+    fontSize: '15px',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    '&:hover': {
+      color: '#0033a0',
+      transform: 'scale(1.1)',
+      cursor: 'pointer',
+    },
+  }}>Tech Debt Reduction</Typography></center></h6>
           <div style={{ height: '100px', position: 'relative' }}>
           <HalfCircleChart  />
           </div>
   
           </div>
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white' }}>
-          <h5 style={{ marginBottom: '0', padding: '2px', textAlign: 'center' }}><center>App Rat</center></h5>
+          <h5 style={{ marginBottom: '0', padding: '2px', textAlign: 'center' }}><center><Typography
+  sx={{
+    fontWeight: 'bold',
+    fontSize: '15px',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    '&:hover': {
+      color: '#0033a0',
+      transform: 'scale(1.1)',
+      cursor: 'pointer',
+    },
+  }}>App Rat</Typography></center></h5>
           <AppRat />
           </div>
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
@@ -86,7 +107,17 @@ function App() {
           </div>
 
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
-          <h4 style={{ textAlign: 'center' }}>Service Now Request</h4>
+          <h6 style={{ textAlign: 'center' }}><Typography
+  sx={{
+    fontWeight: 'bold',
+    fontSize: '14px',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    '&:hover': {
+      color: '#0033a0',
+      transform: 'scale(1.1)',
+      cursor: 'pointer',
+    },
+  }}>Service Now Request</Typography></h6>
           <ThreeValueTable
        
       /> 

@@ -51,6 +51,7 @@ export const ExpensiveSqlOptimazation = () => {
      
       <Typography sx={{ fontSize: '12px', fontWeight: 'bold', transition: 'transform 0.3s ease-in-out',
         '&:hover': {
+          color: '#0033a0',
           transform: 'scale(1.05) translateX(5px)',
           cursor:'pointer'
         }}}>  Expensive SQL Optimazation </Typography> 

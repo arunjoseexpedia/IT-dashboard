@@ -1,4 +1,5 @@
 import React from "react";
+import { Typography } from '@mui/material';
 
 const roadmapData = [
   { portal: "Portal", year: 2027, action: "Re-platform", project: "WM" },
@@ -12,7 +13,17 @@ const roadmapData = [
 export const ProductRoadMap = () => {
   return (
     <div style={{ maxWidth: 700, margin: "auto", fontFamily: "Arial, sans-serif" }}>
-      <h6 style={{ textAlign: "center" }}>Product EOL/Roadmap</h6>
+      <h6 style={{ textAlign: "center" }}><Typography
+  sx={{
+    fontWeight: 'bold',
+    fontSize: '14px',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    '&:hover': {
+      color: '#0033a0',
+      transform: 'scale(1.1)',
+      cursor: 'pointer',
+    },
+  }}>Product EOL/Roadmap</Typography></h6>
       <table
         style={{
           width: "100%",

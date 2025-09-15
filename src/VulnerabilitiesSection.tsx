@@ -30,6 +30,7 @@ export const VulnerabilitiesSection = () => {
       <Typography sx={{ fontSize: '15px', fontWeight: 'bold', cursor:'pointer',
          transition: 'transform 0.3s ease-in-out',
         '&:hover': {
+          color: '#0033a0',
           transform: 'scale(1.25)',
         }}}> Vulnerabilities</Typography>
      
@@ -39,11 +40,13 @@ export const VulnerabilitiesSection = () => {
       <Typography sx={{ fontSize: '12px', fontWeight: 'bold',flex: 2,  cursor:'pointer',
          transition: 'transform 0.3s ease-in-out',
         '&:hover': {
+          color: '#0033a0',
           transform: 'scale(1.05)',
         }}}>Custom Code Vulnerabilitie</Typography>
       <Typography sx={{ fontSize: '12px', fontWeight: 'bold',flex: 2,  cursor:'pointer',
          transition: 'transform 0.3s ease-in-out',
         '&:hover': {
+          color: '#0033a0',
           transform: 'scale(1.05)',
         } }}> SAP Portal Vulnerabilities</Typography>
       </div>
