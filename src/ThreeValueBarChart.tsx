@@ -30,7 +30,7 @@ const ThreeValueBarChart = ({ values = [40, 60, 80,90], labels = ['A', 'B', 'C',
     responsive: true,
     plugins: {
       legend: { display: false },
-      title: { display: true, text: 'Operation Metrics' },
+      
     },
     scales: {
       y: { beginAtZero: true },

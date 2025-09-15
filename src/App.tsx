@@ -101,6 +101,17 @@ function App() {
           }}
         >
           <div style={{ boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '6px' }}>
+          <h6 style={{ textAlign: 'center' }}><Typography
+  sx={{
+    fontWeight: 'bold',
+    fontSize: '14px',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    '&:hover': {
+      color: '#0033a0',
+      transform: 'scale(1.1)',
+      cursor: 'pointer',
+    },
+  }}>Operation Metrics</Typography></h6>
           <ThreeValueBarChart labels={['RICEFS', 'FloriApps', 'Retrofits','Live Compare (Exceutions)']}
         values={[4000, 2000, 7000,8000]}
         />
