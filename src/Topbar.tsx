@@ -1,8 +1,13 @@
-import React from "react";
-import { Box, IconButton, Tooltip } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, IconButton, Tooltip,Typography } from "@mui/material";
 import { DarkMode, LightMode } from "@mui/icons-material";
 
 const Topbar = () => {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    // Trigger the animation after component mounts
+    setLoaded(true);
+  }, []);
   return (
     <div
       style={{
@@ -18,7 +23,14 @@ const Topbar = () => {
       }}
     >
       {/* Left side - Title */}
-      <div className="topbarText" style={{ fontWeight: 'bold' }}>SAP Dashboard</div>
+      <div className="topbarText" style={{ fontWeight: 'bold',top: '20px',
+        left: loaded ? '20px' : '50%',
+        transform: loaded ? 'translateX(0)' : 'translateX(-50%)',
+        transition: 'all 0.8s ease-in-out' }}><Typography sx={{ transition: 'all 0.3s ease','&:hover': {
+          fontSize:'20px',
+          color:'white',
+          cursor:'pointer'
+        }}}>SAP Dashboard</Typography></div>
 
       {/* Right side - Toggle + Logo */}
       <Box display="flex" alignItems="center" gap={2}>

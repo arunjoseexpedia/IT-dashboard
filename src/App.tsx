@@ -33,7 +33,7 @@ function App() {
           <div style={{boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)', flex: 1,borderRadius:'8px', backgroundColor: 'white', padding: '8px' }}>
           <h5><center>Tech Debt Reduction</center></h5>
           <div style={{ height: '100px', position: 'relative' }}>
-          <HalfCircleChart percentage={75} />
+          <HalfCircleChart  />
           </div>
   
           </div>
