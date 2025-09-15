@@ -1,6 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
+import { Typography } from '@mui/material';
 
 export const VulnerabilitiesSection = () => {
   const [remainingLow, setRemainingLow] = useState(5);
@@ -26,14 +27,25 @@ export const VulnerabilitiesSection = () => {
 	return (
 		<div style={{ textAlign: 'center',  margin: 'auto' }}>
       {/* Top text */}
-      <div style={{ marginBottom: '20px', fontSize: '15px', fontWeight: 'bold' }}>
-      Vulnerabilities
-      </div>
+      <Typography sx={{ fontSize: '15px', fontWeight: 'bold', cursor:'pointer',
+         transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.25)',
+        }}}> Vulnerabilities</Typography>
+     
 
       {/* Two texts side by side */}
       <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '10px' }}>
-        <div style={{ flex: 2 }}>Custom Code Vulnerabilities</div>
-        <div style={{ flex: 2 }}> SAP Portal Vulnerabilities</div>
+      <Typography sx={{ fontSize: '12px', fontWeight: 'bold',flex: 2,  cursor:'pointer',
+         transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.05)',
+        }}}>Custom Code Vulnerabilitie</Typography>
+      <Typography sx={{ fontSize: '12px', fontWeight: 'bold',flex: 2,  cursor:'pointer',
+         transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.05)',
+        } }}> SAP Portal Vulnerabilities</Typography>
       </div>
 
       {/* Two numbers side by side */}

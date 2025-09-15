@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography,Accordion, AccordionDetails, } from '@mui/material';
 import { Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -46,11 +46,15 @@ export const ExpensiveSqlOptimazation = () => {
   };
 
   return (
-    <div style={{ textAlign: 'left', margin: 'auto' }}>
+    <div style={{ textAlign: 'center', margin: 'auto' }}>
       {/* Top text */}
-      <div style={{ fontSize: '14px', fontWeight: 'bold' }}>
-        Expensive SQL Optimazation
-      </div>
+     
+      <Typography sx={{ fontSize: '12px', fontWeight: 'bold', transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.05) translateX(5px)',
+          cursor:'pointer'
+        }}}>  Expensive SQL Optimazation </Typography> 
+     
       <div style={{ display: 'flex' }}>
         <div style={{ width: '200px', margin: '0 auto', textAlign: 'left' }}>
           <Doughnut
@@ -94,13 +98,25 @@ export const ExpensiveSqlOptimazation = () => {
         </div>
       </div>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Box>
-          <Typography sx={{ color: '#00000066' }}>
+        <Box sx={{ fontSize:'12px',
+        cursor:'pointer',
+         transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.05)',
+        },
+      }}>
+          <Typography sx={{ color: '#00000066',fontSize: '11px' }} >
             {(memoryUsage / 1000).toFixed(1)} K - Memory Usage Reduction/day
           </Typography>
         </Box>
-        <Box>
-          <Typography sx={{ color: '#00000066' }}>
+        <Box sx={{ fontSize:'12px',
+        cursor:'pointer',
+         transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.05)',
+        },
+      }}>
+          <Typography sx={{ color: '#00000066',fontSize: '11px' }}>
             {(execTime / 1000).toFixed(1)} K - Execution Time Reduction/day
           </Typography>
         </Box>
