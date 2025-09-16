@@ -46,7 +46,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
        <Stack direction="row" sx={{ width: '100%' }}>
       <Box sx={{ flexGrow: 1 }}>
       <div>
-              <div style={{ fontSize: '15px',padding:'10px', fontWeight: 'bold', color:'#ADD8E6' }}>Users</div>
+              <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Users</div>
               <div style={{ fontSize: '33px',padding:'10px' }}>144 K</div>
             </div>
       </Box>
@@ -66,7 +66,17 @@ export const ExpensiveSqlOptimazationDetail = () => {
           flex: '1',
         }}
       >
-        Card 2
+         <Stack direction="row" sx={{ width: '100%' }}>
+      <Box sx={{ flexGrow: 1 }}>
+      <div>
+              <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Conversions</div>
+              <div style={{ fontSize: '33px',padding:'10px' }}>325 K</div>
+            </div>
+      </Box>
+      <Box sx={{ flexGrow: 1, padding:'20px' }}>
+      <SparkLineChart data={[6, 8, 2, 5, 7, 2, 4, 6]} height={100} />
+      </Box>
+    </Stack>
       </div>
 
       {/* Card 3 */}
@@ -79,7 +89,17 @@ export const ExpensiveSqlOptimazationDetail = () => {
           flex: '1',
         }}
       >
-        Card 3
+        <Stack direction="row" sx={{ width: '100%' }}>
+      <Box sx={{ flexGrow: 1 }}>
+      <div>
+              <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Event count</div>
+              <div style={{ fontSize: '33px',padding:'10px' }}>200 K</div>
+            </div>
+      </Box>
+      <Box sx={{ flexGrow: 1, padding:'20px' }}>
+      <SparkLineChart data={[7, 4, 2, 8, 7, 3, 5, 6]} height={100} />
+      </Box>
+    </Stack>
       </div>
       </div>
     {/* Right section (main content) */}
