@@ -1,6 +1,8 @@
 import React from 'react';
 import Topbar from './Topbar';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
+import { Gauge } from '@mui/x-charts/Gauge';
+import { BarChart } from '@mui/x-charts/BarChart';
 import { useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
@@ -9,6 +11,11 @@ import { Link as RouterLink } from 'react-router-dom';
 
 export const ExpensiveSqlOptimazationDetail = () => {
   const navigate = useNavigate();
+  const data = [
+    { label: 'Users', value: 144 },
+    { label: 'Sales', value: 98 },
+    { label: 'Revenue', value: 180 },
+  ];
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column',backgroundColor:'#f0f0f0' }}>
@@ -129,8 +136,53 @@ export const ExpensiveSqlOptimazationDetail = () => {
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           flex: '1',
         }}
+      > <Gauge
+      width={200}
+      height={200}
+      value={11191}
+      startAngle={0}
+      endAngle={360}
+    />
+        </div>
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          padding: '10px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          flex: '1',
+        }}
       >
-        Card 1
+      <BarChart
+        layout="horizontal" // Make it horizontal
+        series={[
+          {
+            data: [144],
+            label: 'Users',
+            color: '#1976d2',
+          },
+        ]}
+        yAxis={[
+          {
+            data: [''], // No label needed
+            scaleType: 'band',
+          },
+        ]}
+        xAxis={[
+          {
+            min: 0,
+            max: 200, // Optional: sets full scale
+          },
+        ]}
+        height={100}
+        width={300} // You can also set this to "100%" using a wrapper Box
+        sx={{
+          '& .MuiBarElement-root': {
+            height: 40, // This controls bar thickness (height since horizontal layout)
+                // Rounded corners (optional)
+          },
+        }}
+      />
       </div>
       <div
         style={{
@@ -141,18 +193,36 @@ export const ExpensiveSqlOptimazationDetail = () => {
           flex: '1',
         }}
       >
-        Card 2
-      </div>
-      <div
-        style={{
-          backgroundColor: '#ffffff',
-          padding: '10px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          flex: '1',
+         <BarChart
+        layout="horizontal"
+        series={[
+          {
+            data: data.map((d) => d.value),
+            label: 'Metric Value',
+            color: '#1976d2',
+          },
+        ]}
+        yAxis={[
+          {
+            data: data.map((d) => d.label),
+            scaleType: 'band',
+          },
+        ]}
+        xAxis={[
+          {
+            min: 0,
+            max: 200, // Optional: adjust based on your highest value
+          },
+        ]}
+        height={data.length * 50} // Controls spacing between bars
+        width={300}
+        sx={{
+          '& .MuiBarElement-root': {
+            height: 30, // Thickness of each bar
+            // Rounded corners (optional)
+          },
         }}
-      >
-        Card 3
+      />
       </div>
           </div>
 
@@ -166,9 +236,10 @@ export const ExpensiveSqlOptimazationDetail = () => {
                 <Table size="small">
                   <TableHead>
                     <TableRow>
-                      <TableCell>ID</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Status</TableCell>
+                      <TableCell>Target Name</TableCell>
+                      <TableCell>Server_Name</TableCell>
+                      <TableCell>Server_Owner</TableCell>
+                      <TableCell>App_Id</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -176,6 +247,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
                       <TableRow key={id}>
                         <TableCell>{id}</TableCell>
                         <TableCell>User {id}</TableCell>
+                        <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                         <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                       </TableRow>
                     ))}
