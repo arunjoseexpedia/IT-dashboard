@@ -24,18 +24,14 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <header style={{ height: '10%', borderRadius:'8px' }}>
         <Topbar />
       </header>
-      <div style={{ padding: '5px', alignSelf: 'flex-start'}}>
-      <Link component={RouterLink} to="/" underline="hover" color="#ffff">
-  Back
-</Link>
-      </div>
+      
       <div style={{ display: 'flex', flex: 1 }}>
     {/* Left section (e.g., sidebar) */}
     <div
       style={{
         width: '20%',
         padding: '10px',
-        backgroundColor: '#3A4862',
+        backgroundColor: '#D3D3D3',
         display: 'flex',
         flexDirection: 'column',
         gap: '10px', // space between cards
@@ -82,7 +78,8 @@ export const ExpensiveSqlOptimazationDetail = () => {
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
-      <SparkLineChart data={[6, 8, 2, 5, 7, 2, 4, 6]} height={100} />
+      <SparkLineChart data={[3, -10, -2, 5, 7, -2, 4, 6]} height={100} curve="natural"
+    area/>
       </Box>
     </Stack>
       </div>
@@ -101,11 +98,11 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Event count</div>
-              <div style={{ fontSize: '33px',padding:'10px',color:'#F08080' }}>200 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#FFA500' }}>200 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
-      <SparkLineChart data={[7, 4, 2, 8, 7, 3, 5, 6]} height={100} />
+      <SparkLineChart data={[7, 4, 2, 8, 7, 3, 5, 6]} height={100} area/>
       </Box>
     </Stack>
       </div>
@@ -113,7 +110,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
     {/* Right section (main content) */}
     <div style={{ display: 'flex', flex: 1,width: '20%',
         padding: '10px',
-        backgroundColor: '#3A4862'
+        backgroundColor: '#D3D3D3'
        }}>
         {/* Left section with vertical cards */}
         
@@ -143,6 +140,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       value={11191}
       startAngle={0}
       endAngle={360}
+      
     /></center>
         </div>
       <div
@@ -160,7 +158,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           {
             data: [144],
             label: 'Users',
-            color: '#1976d2',
+            color: '#ff6600',
           },
         ]}
         yAxis={[
@@ -200,7 +198,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           {
             data: data.map((d) => d.value),
             label: 'Metric Value',
-            color: '#1976d2',
+            color: '#ffc107',
           },
         ]}
         yAxis={[
@@ -230,28 +228,43 @@ export const ExpensiveSqlOptimazationDetail = () => {
           {/* Bottom full-width card with table */}
           <Card style={{ flex: 1, overflow: 'auto' }}>
             <CardContent>
-             <center> <Typography variant="h6" gutterBottom>
+             <center> <Typography sx={{ fontWeight: 600 }} variant="h6" gutterBottom>
                 Detail Report
               </Typography></center>
               <TableContainer component={Paper}>
                 <Table size="small">
                   <TableHead>
-                    <TableRow>
-                      <TableCell>Target Name</TableCell>
-                      <TableCell>Server_Name</TableCell>
-                      <TableCell>Server_Owner</TableCell>
-                      <TableCell>App_Id</TableCell>
-                      <TableCell>App_Owner</TableCell>
+                    <TableRow sx={{backgroundColor:'#f0f0f0', fontWeight: 'bold'}}>
+                      <TableCell sx={{ fontWeight: 'bold'}}>Target Name</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold'}}>Server_Name</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold'}}>Server_Owner</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold'}}>App_Status</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold'}}>App_Name</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {[{id:1}, {id:2}, {id:3}, {id:4}].map((id) => (
+                    {[{id:1,name:'Rafale Silva',appName:'ISG SSO RPA AUTOMATION'}, {id:2,name:'John',appName:'AI and Machine Learning Platform'}, {id:3,name:'Troy Harrison',appName:'ISG SSO RPA AUTOMATION'}, {id:4, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'}].map((id,index) => (
                       <TableRow key={id.id}>
-                        <TableCell>{id.id}</TableCell>
-                        <TableCell>User {id.id}</TableCell>
-                        <TableCell>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
-                        <TableCell>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
-                        <TableCell>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
+                        <TableCell sx={{
+                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
+                  
+                }}>Master</TableCell>
+                        <TableCell sx={{
+                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
+                 
+                }}>User {id.id}</TableCell>
+                        <TableCell sx={{
+                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
+               
+                }}>{id.name}</TableCell>
+                        <TableCell sx={{
+                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
+                  
+                }}>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
+                        <TableCell sx={{
+                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
+                  
+                }}>{id.appName}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, IconButton, Tooltip,Typography } from "@mui/material";
 import { DarkMode, LightMode } from "@mui/icons-material";
+import { Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Topbar = () => {
   const [loaded, setLoaded] = useState(false);
@@ -29,7 +31,9 @@ const Topbar = () => {
         transition: 'all 0.8s ease-in-out' }}><Typography sx={{ '&:hover': {
           color:'white',
           cursor:'pointer'
-        }}}>SAP Dashboard</Typography></div>
+        }}}><Link component={RouterLink} to="/" underline="hover" color="#ffff">SAP Dashboard</Link></Typography></div>
+
+
 
       {/* Right side - Toggle + Logo */}
       <Box display="flex" alignItems="center" gap={2}>
