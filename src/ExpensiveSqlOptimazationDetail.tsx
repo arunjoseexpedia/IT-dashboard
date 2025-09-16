@@ -87,7 +87,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           }}
         >
           {/* Top horizontal 3 cards */}
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ display: 'flex',flex: 1, gap: '10px' }}>
           <div
         style={{
           backgroundColor: '#ffffff',
