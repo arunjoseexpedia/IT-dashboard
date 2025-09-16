@@ -12,9 +12,10 @@ import { Link as RouterLink } from 'react-router-dom';
 export const ExpensiveSqlOptimazationDetail = () => {
   const navigate = useNavigate();
   const data = [
-    { label: 'Users', value: 144 },
-    { label: 'Sales', value: 98 },
-    { label: 'Revenue', value: 180 },
+    { label: 'SQL SERVER', value: 3750 },
+    { label: 'ORACLE', value: 2708 },
+    { label: 'MONGODB', value: 1958 },
+    { label: 'POSTGRESQL', value: 1116 },
   ];
 
   return (
@@ -211,7 +212,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
         xAxis={[
           {
             min: 0,
-            max: 200, // Optional: adjust based on your highest value
+            max: 4000, // Optional: adjust based on your highest value
           },
         ]}
         height={data.length * 50} // Controls spacing between bars
@@ -229,9 +230,9 @@ export const ExpensiveSqlOptimazationDetail = () => {
           {/* Bottom full-width card with table */}
           <Card style={{ flex: 1, overflow: 'auto' }}>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Data Table
-              </Typography>
+             <center> <Typography variant="h6" gutterBottom>
+                Detail Report
+              </Typography></center>
               <TableContainer component={Paper}>
                 <Table size="small">
                   <TableHead>

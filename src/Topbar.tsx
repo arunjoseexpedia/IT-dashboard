@@ -26,8 +26,7 @@ const Topbar = () => {
       <div className="topbarText" style={{ fontWeight: 'bold',top: '20px',
         left: loaded ? '20px' : '50%',
         transform: loaded ? 'translateX(0)' : 'translateX(-50%)',
-        transition: 'all 0.8s ease-in-out' }}><Typography sx={{ transition: 'all 0.3s ease','&:hover': {
-          fontSize:'20px',
+        transition: 'all 0.8s ease-in-out' }}><Typography sx={{ '&:hover': {
           color:'white',
           cursor:'pointer'
         }}}>SAP Dashboard</Typography></div>

@@ -58,7 +58,7 @@ button:focus-visible {
   font-size: 17px; 
   font-family: Arial, Helvetica, sans-serif; 
   font-weight: 600;
-  background: linear-gradient(90deg, #7CFC00, #00FA9A, #ADD8E6);/* Customize your colors */
+  background: white;/* Customize your colors */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
