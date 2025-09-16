@@ -1,6 +1,9 @@
 import React from 'react';
 import Topbar from './Topbar';
+import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 import { useNavigate } from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import { Link,Card,CardContent,Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper  } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -30,7 +33,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
         gap: '10px', // space between cards
       }}
     >
-      {/* Card 1 */}
+    
       <div
         style={{
           backgroundColor: '#ffffff',
@@ -40,7 +43,17 @@ export const ExpensiveSqlOptimazationDetail = () => {
           flex: '1',
         }}
       >
-        Card 1
+       <Stack direction="row" sx={{ width: '100%' }}>
+      <Box sx={{ flexGrow: 1 }}>
+      <div>
+              <div style={{ fontSize: '15px',padding:'10px', fontWeight: 'bold', color:'#ADD8E6' }}>Users</div>
+              <div style={{ fontSize: '33px',padding:'10px' }}>144 K</div>
+            </div>
+      </Box>
+      <Box sx={{ flexGrow: 1, padding:'20px' }}>
+      <SparkLineChart data={[1, 4, 2, 5, 7, 2, 4, 6]} height={100} />
+      </Box>
+    </Stack>
       </div>
 
       {/* Card 2 */}
