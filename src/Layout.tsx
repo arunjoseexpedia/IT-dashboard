@@ -25,7 +25,7 @@ function Layout() {
         <div
           style={{
             flex: 1,
-            backgroundColor: '#dadada',
+            backgroundColor: '#3A4862',
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',
@@ -73,7 +73,7 @@ function Layout() {
         <div
           style={{
             flex: 3,
-            backgroundColor: '#dadada',
+            backgroundColor: '#3A4862',
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',
@@ -97,7 +97,7 @@ function Layout() {
         <div
           style={{
             flex: 1,
-            backgroundColor: '#dadada',
+            backgroundColor: '#3A4862',
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',

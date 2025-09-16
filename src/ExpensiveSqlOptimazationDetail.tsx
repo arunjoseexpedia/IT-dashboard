@@ -19,13 +19,13 @@ export const ExpensiveSqlOptimazationDetail = () => {
   ];
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column',backgroundColor:'#f0f0f0' }}>
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column',backgroundColor:'#3A4862' }}>
       {/* Header */}
       <header style={{ height: '10%', borderRadius:'8px' }}>
         <Topbar />
       </header>
       <div style={{ padding: '5px', alignSelf: 'flex-start'}}>
-      <Link component={RouterLink} to="/" underline="hover" color="primary">
+      <Link component={RouterLink} to="/" underline="hover" color="#ffff">
   Back
 </Link>
       </div>
@@ -35,7 +35,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       style={{
         width: '20%',
         padding: '10px',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#3A4862',
         display: 'flex',
         flexDirection: 'column',
         gap: '10px', // space between cards
@@ -47,7 +47,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           backgroundColor: '#ffffff',
           padding: '10px',
           borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)',
           flex: '1',
         }}
       >
@@ -55,7 +55,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Users</div>
-              <div style={{ fontSize: '33px',padding:'10px' }}>144 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#F08080' }}>144 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
@@ -70,7 +70,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           backgroundColor: '#ffffff',
           padding: '10px',
           borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)',
           flex: '1',
         }}
       >
@@ -78,7 +78,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Conversions</div>
-              <div style={{ fontSize: '33px',padding:'10px' }}>325 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#ADD8E6' }}>325 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
@@ -93,7 +93,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           backgroundColor: '#ffffff',
           padding: '10px',
           borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.25)',
           flex: '1',
         }}
       >
@@ -101,7 +101,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Event count</div>
-              <div style={{ fontSize: '33px',padding:'10px' }}>200 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#F08080' }}>200 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
@@ -113,7 +113,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
     {/* Right section (main content) */}
     <div style={{ display: 'flex', flex: 1,width: '20%',
         padding: '10px',
-        backgroundColor: '#f0f0f0'
+        backgroundColor: '#3A4862'
        }}>
         {/* Left section with vertical cards */}
         
@@ -241,6 +241,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
                       <TableCell>Server_Name</TableCell>
                       <TableCell>Server_Owner</TableCell>
                       <TableCell>App_Id</TableCell>
+                      <TableCell>App_Owner</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -248,6 +249,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
                       <TableRow key={id}>
                         <TableCell>{id}</TableCell>
                         <TableCell>User {id}</TableCell>
+                        <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                         <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                         <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                       </TableRow>
