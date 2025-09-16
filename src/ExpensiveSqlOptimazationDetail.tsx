@@ -70,7 +70,10 @@ export const ExpensiveSqlOptimazationDetail = () => {
       </div>
       </div>
     {/* Right section (main content) */}
-    <div style={{ display: 'flex', flex: 1 }}>
+    <div style={{ display: 'flex', flex: 1,width: '20%',
+        padding: '10px',
+        backgroundColor: '#f0f0f0'
+       }}>
         {/* Left section with vertical cards */}
         
         {/* Right section */}
@@ -85,13 +88,39 @@ export const ExpensiveSqlOptimazationDetail = () => {
         >
           {/* Top horizontal 3 cards */}
           <div style={{ display: 'flex', gap: '10px' }}>
-            {['Top Card 1', 'Top Card 2', 'Top Card 3'].map((label, i) => (
-              <Card key={i} style={{ flex: 1 }}>
-                <CardContent>
-                  <Typography>{label}</Typography>
-                </CardContent>
-              </Card>
-            ))}
+          <div
+        style={{
+          backgroundColor: '#ffffff',
+          padding: '10px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          flex: '1',
+        }}
+      >
+        Card 1
+      </div>
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          padding: '10px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          flex: '1',
+        }}
+      >
+        Card 2
+      </div>
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          padding: '10px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          flex: '1',
+        }}
+      >
+        Card 3
+      </div>
           </div>
 
           {/* Bottom full-width card with table */}
