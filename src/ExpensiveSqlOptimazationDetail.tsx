@@ -137,13 +137,13 @@ export const ExpensiveSqlOptimazationDetail = () => {
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           flex: '1',
         }}
-      > <Gauge
+      > <h6 style={{ textAlign: "center" }}># Servers By DB Info</h6><center><Gauge
       width={200}
       height={200}
       value={11191}
       startAngle={0}
       endAngle={360}
-    />
+    /></center>
         </div>
       <div
         style={{
@@ -153,7 +153,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           flex: '1',
         }}
-      >
+      > <h6 style={{ textAlign: "center" }}># Servers By APPL.5</h6>
       <BarChart
         layout="horizontal" // Make it horizontal
         series={[
@@ -193,7 +193,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           flex: '1',
         }}
-      >
+      > <h6 style={{ textAlign: "center" }}># Servers By DB Technology</h6>
          <BarChart
         layout="horizontal"
         series={[
@@ -245,13 +245,13 @@ export const ExpensiveSqlOptimazationDetail = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {[1, 2, 3, 4].map((id) => (
-                      <TableRow key={id}>
-                        <TableCell>{id}</TableCell>
-                        <TableCell>User {id}</TableCell>
-                        <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
-                        <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
-                        <TableCell>{id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
+                    {[{id:1}, {id:2}, {id:3}, {id:4}].map((id) => (
+                      <TableRow key={id.id}>
+                        <TableCell>{id.id}</TableCell>
+                        <TableCell>User {id.id}</TableCell>
+                        <TableCell>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
+                        <TableCell>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
+                        <TableCell>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
