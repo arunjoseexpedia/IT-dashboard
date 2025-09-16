@@ -8,7 +8,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column',backgroundColor:'#f0f0f0' }}>
       {/* Header */}
       <header style={{ height: '10%', borderRadius:'8px' }}>
         <Topbar />
