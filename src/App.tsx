@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
 import { ExpensiveSqlOptimazation } from './ExpensiveSqlOptimazation';
 import { ExpensiveSqlOptimazationDetail } from './ExpensiveSqlOptimazationDetail';
+import VulnerabilitiesSectionDetail from './VulnerabilitiesSectionDetail'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       
       </Route>
       <Route path="/ExpensiveSqlOptimazationDetail" element={<ExpensiveSqlOptimazationDetail />} />
+      <Route path="/VulnerabilitiesSectionDetail" element={<VulnerabilitiesSectionDetail />} />
     </Routes>
   </BrowserRouter>
   );

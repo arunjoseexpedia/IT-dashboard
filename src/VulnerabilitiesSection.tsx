@@ -2,12 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export const VulnerabilitiesSection = () => {
   const [remainingLow, setRemainingLow] = useState(5);
   const [medium, setMedium] = useState(125);
   const [disposition, setDisposition] = useState(2000);
   const [analyzed, setAnalyzed] = useState(11000);
+  const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
       const randomValue = Math.floor(Math.random() * (50 - 5 + 1)) + 5;
@@ -52,7 +54,7 @@ export const VulnerabilitiesSection = () => {
       </div>
 
       {/* Two numbers side by side */}
-      <div style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
+      <div onClick={() => navigate(`/VulnerabilitiesSectionDetail`)} style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
         <div style={{ flex: 1,background:'#fdf5e6' }}>{analyzed}</div>
         <div style={{ flex: 1 ,background:'#FFE4E1'}}>{disposition}</div>
         <div style={{ flex: 1,background:'#FFB6C1' }}>{medium}</div>
