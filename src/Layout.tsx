@@ -26,7 +26,7 @@ function Layout() {
           style={{
             flex: 1,
             backgroundColor: '#D3D3D3',
-            padding: '10px',
+            paddingTop: '10px',
             display: 'flex',
             flexDirection: 'column',
             gap: '9px', // space between columns
@@ -98,7 +98,7 @@ function Layout() {
           style={{
             flex: 1,
             backgroundColor: '#D3D3D3',
-            padding: '10px',
+            paddingTop: '10px',
             display: 'flex',
             flexDirection: 'column',
             gap: '8px',

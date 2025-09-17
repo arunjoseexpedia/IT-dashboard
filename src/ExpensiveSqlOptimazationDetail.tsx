@@ -54,7 +54,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Users</div>
-              <div style={{ fontSize: '33px',padding:'10px',color:'#F08080' }}>144 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#0d0d0d' }}>144 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
@@ -77,7 +77,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Conversions</div>
-              <div style={{ fontSize: '33px',padding:'10px',color:'#ADD8E6' }}>325 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#0d0d0d' }}>325 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
@@ -101,7 +101,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
       <Box sx={{ flexGrow: 1 }}>
       <div>
               <div style={{ fontSize: '15px',padding:'20px', fontWeight: 'bold'}}>Event count</div>
-              <div style={{ fontSize: '33px',padding:'10px',color:'#FFA500' }}>200 K</div>
+              <div style={{ fontSize: '33px',padding:'10px',color:'#0d0d0d' }}>200 K</div>
             </div>
       </Box>
       <Box sx={{ flexGrow: 1, padding:'20px' }}>
