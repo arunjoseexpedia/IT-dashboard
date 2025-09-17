@@ -250,10 +250,10 @@ export const ExpensiveSqlOptimazationDetail = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {[{id:1,name:'Rafale Silva',appName:'ISG SSO RPA AUTOMATION'}, {id:2,name:'John',appName:'AI and Machine Learning Platform'}, {id:3,name:'Troy Harrison',appName:'ISG SSO RPA AUTOMATION'}, {id:4, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'},{id:5, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'}].map((id,index) => (
+                    {[{id:1,name:'Rafale Silva',serverName:'ADPWSQAPRDL01',appName:'ISG SSO RPA AUTOMATION'}, {id:2,name:'John Mathew',serverName:'ADPWSQAPRDB01',appName:'AI and Machine Learning Platform'}, {id:3,name:'Troy Harrison',serverName:'ADPWSQAPRD206',appName:'ISG SSO RPA AUTOMATION'}, {id:4, name:'Johan Silva',serverName:'ADPWSQAPRDL02',appName:'ISG SSO RPA AUTOMATION'},{id:5, name:'Chris Mathew',serverName:'ADPWSQAPRD301',appName:'ISG SSO RPA AUTOMATION'}].map((id,index) => (
                       <TableRow key={id.id}>
                         <TableCell >Master</TableCell>
-                        <TableCell >User {id.id}</TableCell>
+                        <TableCell >{id.serverName}</TableCell>
                         <TableCell >{id.name}</TableCell>
                         <TableCell >{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
                         <TableCell >{id.appName}</TableCell>
