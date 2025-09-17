@@ -25,12 +25,15 @@ export const ExpensiveSqlOptimazationDetail = () => {
         <Topbar />
       </header>
       
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div style={{ display: 'flex', flex: 1,margin:0 }}>
     {/* Left section (e.g., sidebar) */}
     <div
       style={{
+        margin:0,
         width: '20%',
-        padding: '10px',
+        paddingTop:'10px',
+        paddingBottom:'10px',
+        paddingLeft:'8px',
         backgroundColor: '#D3D3D3',
         display: 'flex',
         flexDirection: 'column',
@@ -110,6 +113,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
     {/* Right section (main content) */}
     <div style={{ display: 'flex', flex: 1,width: '20%',
         padding: '0px',
+        margin: 0,
         backgroundColor: '#D3D3D3',
         
        }}>
@@ -119,6 +123,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
         <div
           style={{
             flex: 1,
+            
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',
@@ -245,7 +250,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {[{id:1,name:'Rafale Silva',appName:'ISG SSO RPA AUTOMATION'}, {id:2,name:'John',appName:'AI and Machine Learning Platform'}, {id:3,name:'Troy Harrison',appName:'ISG SSO RPA AUTOMATION'}, {id:4, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'}].map((id,index) => (
+                    {[{id:1,name:'Rafale Silva',appName:'ISG SSO RPA AUTOMATION'}, {id:2,name:'John',appName:'AI and Machine Learning Platform'}, {id:3,name:'Troy Harrison',appName:'ISG SSO RPA AUTOMATION'}, {id:4, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'},{id:5, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'}].map((id,index) => (
                       <TableRow key={id.id}>
                         <TableCell >Master</TableCell>
                         <TableCell >User {id.id}</TableCell>

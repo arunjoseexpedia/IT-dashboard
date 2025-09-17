@@ -28,6 +28,7 @@ const rows = [
   { code: 'tclprd:21', portal: 'S3BCT21', sector: 'CLT', planned: '22/10/2024', completed: '28/08/2025'},
   { code: 'tclprd:11', portal: 'PC1CT12', sector: 'DEN', planned: '28/11/2024', completed: '28/09/2025' },
   {  code: 'sqsprd:16', portal: 'PC1CT18', sector: 'HOU', planned: '22/10/2024', completed: '28/08/2025' },
+  { code: 'tclprd:21', portal: 'S3BCT21', sector: 'CLT', planned: '22/10/2024', completed: '28/08/2025'}
   
 ];
   return (
@@ -38,7 +39,9 @@ const rows = [
     <div className="dashboard-grid">
         
       <div className="left-cards">
-        <div className="card"> <LineChart
+        <div className="card"><center> <Typography variant="h6" >
+                DB Volume
+              </Typography></center> <LineChart
       width={300}
       height={200}
       series={[
@@ -46,20 +49,22 @@ const rows = [
       ]}
       xAxis={[{ scaleType: 'point', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May'] }]}
     /></div>
-        <div className="card"> <LineChart
+        <div className="card"><center> <Typography variant="h6" >
+                Server Volume
+              </Typography></center> <LineChart
     width={300}
     height={200}
     series={[
       {
         data: [100, 200, 150, 300, 250],
-        label: 'Desktop',
+        label: 'SAP',
         color: '#4caf50',
         area: true,
         stack: 'traffic',
       },
       {
         data: [80, 120, 100, 200, 180],
-        label: 'Mobile',
+        label: 'Legacy',
         color: '#ff9800',
         area: true,
         stack: 'traffic',

@@ -93,6 +93,7 @@ button:focus-visible {
 
 .left-cards {
   display: flex;
+  margin:0;
   flex-direction: column;
   gap: 10px;
   grid-column: 1 / 2;  /* Optional: makes positioning explicit */
@@ -100,6 +101,7 @@ button:focus-visible {
 }
 
 .right-table {
+  margin:0;
   grid-column: 2 / 3; /* Place it in the second column */
   grid-row: 1 / 2;
 }
