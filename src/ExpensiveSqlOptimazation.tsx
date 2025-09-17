@@ -59,7 +59,7 @@ export const ExpensiveSqlOptimazation = () => {
         }}}>  Expensive SQL Optimazation </Typography> 
      
       <div style={{ display: 'flex' }}>
-        <div style={{ width: '200px', margin: '0 auto', textAlign: 'left' }}>
+        <div style={{ width: '200px', margin: '0 auto', textAlign: 'left', cursor:'pointer' }}>
           <Doughnut
             data={data}
             options={{
