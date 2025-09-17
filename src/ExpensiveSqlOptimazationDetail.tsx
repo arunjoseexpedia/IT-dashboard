@@ -109,10 +109,11 @@ export const ExpensiveSqlOptimazationDetail = () => {
       </div>
     {/* Right section (main content) */}
     <div style={{ display: 'flex', flex: 1,width: '20%',
-        padding: '10px',
-        backgroundColor: '#D3D3D3'
+        padding: '0px',
+        backgroundColor: '#D3D3D3',
+        
        }}>
-        {/* Left section with vertical cards */}
+      
         
         {/* Right section */}
         <div
@@ -246,26 +247,11 @@ export const ExpensiveSqlOptimazationDetail = () => {
                   <TableBody>
                     {[{id:1,name:'Rafale Silva',appName:'ISG SSO RPA AUTOMATION'}, {id:2,name:'John',appName:'AI and Machine Learning Platform'}, {id:3,name:'Troy Harrison',appName:'ISG SSO RPA AUTOMATION'}, {id:4, name:'Chris Silva',appName:'ISG SSO RPA AUTOMATION'}].map((id,index) => (
                       <TableRow key={id.id}>
-                        <TableCell sx={{
-                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
-                  
-                }}>Master</TableCell>
-                        <TableCell sx={{
-                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
-                 
-                }}>User {id.id}</TableCell>
-                        <TableCell sx={{
-                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
-               
-                }}>{id.name}</TableCell>
-                        <TableCell sx={{
-                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
-                  
-                }}>{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
-                        <TableCell sx={{
-                  backgroundColor: index % 2 === 0 ? 'white' : '#f0f0f0', // white and light grey alternation
-                  
-                }}>{id.appName}</TableCell>
+                        <TableCell >Master</TableCell>
+                        <TableCell >User {id.id}</TableCell>
+                        <TableCell >{id.name}</TableCell>
+                        <TableCell >{id.id % 2 === 0 ? 'Active' : 'Inactive'}</TableCell>
+                        <TableCell >{id.appName}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
