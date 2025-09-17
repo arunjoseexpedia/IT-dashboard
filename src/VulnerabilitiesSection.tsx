@@ -27,7 +27,7 @@ export const VulnerabilitiesSection = () => {
  
   
 	return (
-		<div style={{ textAlign: 'center',  margin: 'auto' }}>
+		<div style={{ textAlign: 'center',  margin: 'auto',cursor:'pointer' }} onClick={() => navigate(`/VulnerabilitiesSectionDetail`)}>
       {/* Top text */}
       <Typography sx={{ fontSize: '15px', fontWeight: 'bold', cursor:'pointer',
          transition: 'transform 0.3s ease-in-out',
@@ -54,7 +54,7 @@ export const VulnerabilitiesSection = () => {
       </div>
 
       {/* Two numbers side by side */}
-      <div onClick={() => navigate(`/VulnerabilitiesSectionDetail`)} style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
+      <div  style={{ display: 'flex', justifyContent: 'space-around', fontWeight: 'bold', fontSize: '18px' }}>
         <div style={{ flex: 1,background:'#fdf5e6' }}>{analyzed}</div>
         <div style={{ flex: 1 ,background:'#FFE4E1'}}>{disposition}</div>
         <div style={{ flex: 1,background:'#FFB6C1' }}>{medium}</div>

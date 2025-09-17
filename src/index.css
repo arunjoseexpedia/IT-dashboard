@@ -104,6 +104,11 @@ button:focus-visible {
   grid-row: 1 / 2;
 }
 
+thead th {
+  background-color: #3A4862;
+  color: #ffff;  /* or #ffffff */
+}
+
 
 .card, .table {
   background-color: #f5f5f5;

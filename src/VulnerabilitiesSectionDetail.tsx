@@ -7,7 +7,8 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Paper
+    Paper,
+    Typography
   } from '@mui/material';
   import { LineChart } from '@mui/x-charts/LineChart';
   
@@ -16,17 +17,17 @@ import {
 import './index.css';
 
 const VulnerabilitiesSectionDetail = () => {
-    const columns = ['Name', 'Age', 'Position', 'Department', 'Location'];
+    const columns = ['Custom Code', 'Cluster', 'Sector', 'Planned Date', 'Completed Date'];
 
 const rows = [
-  { name: 'Alice', age: 30, position: 'Engineer', department: 'R&D', location: 'NY' },
-  { name: 'Bob', age: 28, position: 'Designer', department: 'UX', location: 'SF' },
-  { name: 'Charlie', age: 35, position: 'Manager', department: 'HR', location: 'LA' },
-  { name: 'Diana', age: 32, position: 'Developer', department: 'IT', location: 'Austin' },
-  { name: 'Ethan', age: 27, position: 'Analyst', department: 'Finance', location: 'Chicago' },
-  { name: 'Alice', age: 30, position: 'Engineer', department: 'R&D', location: 'NY' },
-  { name: 'Bob', age: 28, position: 'Designer', department: 'UX', location: 'SF' },
-  { name: 'Charlie', age: 35, position: 'Manager', department: 'HR', location: 'LA' },
+  { code: 'sqsprd:11', portal: 'PC1CT20', sector: 'NY', planned: '28/11/2024', completed: '28/09/2025' },
+  {  code: 'dtclprd:13', portal: 'S3BCT6', sector: 'ATL', planned: '22/10/2024', completed: '28/08/2025'},
+  {  code: 'isapprd:16', portal: 'PC1CT19', sector: 'PHX', planned: '09/11/2024', completed: '14/10/2025' },
+  {  code: 'tclprd:09', portal: 'S3BCT6', sector: 'SEA',planned: '22/10/2024', completed: '28/08/2025'},
+  { code: 'isapprd:19', portal: 'PC1CT09', sector: 'HOU', planned: '28/11/2024', completed: '28/09/2025'},
+  { code: 'tclprd:21', portal: 'S3BCT21', sector: 'CLT', planned: '22/10/2024', completed: '28/08/2025'},
+  { code: 'tclprd:11', portal: 'PC1CT12', sector: 'DEN', planned: '28/11/2024', completed: '28/09/2025' },
+  {  code: 'sqsprd:16', portal: 'PC1CT18', sector: 'HOU', planned: '22/10/2024', completed: '28/08/2025' },
   
 ];
   return (
@@ -69,12 +70,14 @@ const rows = [
         
       </div>
       <div className="right-table">
-        <div className="table"><TableContainer component={Paper} sx={{ maxWidth: '100%' }}>
+        <div className="table"><center> <Typography sx={{ fontWeight: 600 }} variant="h6" gutterBottom>
+                Detail Report
+              </Typography></center><TableContainer component={Paper} sx={{ maxWidth: '100%' }}>
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow >
             {columns.map((col, index) => (
-              <TableCell key={index} sx={{ fontWeight: 'bold' }}>
+              <TableCell  key={index} sx={{ fontWeight: 'bold',color:'white' }}>
                 {col}
               </TableCell>
             ))}
@@ -83,11 +86,11 @@ const rows = [
         <TableBody>
           {rows.map((row, rowIndex) => (
             <TableRow key={rowIndex}>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.age}</TableCell>
-              <TableCell>{row.position}</TableCell>
-              <TableCell>{row.department}</TableCell>
-              <TableCell>{row.location}</TableCell>
+              <TableCell>{row.code}</TableCell>
+              <TableCell>{row.portal}</TableCell>
+              <TableCell>{row.sector}</TableCell>
+              <TableCell>{row.planned}</TableCell>
+              <TableCell>{row.completed}</TableCell>
             </TableRow>
           ))}
         </TableBody>

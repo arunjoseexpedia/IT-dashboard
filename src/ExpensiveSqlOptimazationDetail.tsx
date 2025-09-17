@@ -136,6 +136,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
         }}
       > <h6 style={{ textAlign: "center" }}># Servers By DB Info</h6><center><Gauge
       width={200}
+      color="#3A4862"
       height={200}
       value={11191}
       startAngle={0}
@@ -158,7 +159,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           {
             data: [144],
             label: 'Users',
-            color: '#ff6600',
+            color: '#1976d2',
           },
         ]}
         yAxis={[
@@ -198,7 +199,7 @@ export const ExpensiveSqlOptimazationDetail = () => {
           {
             data: data.map((d) => d.value),
             label: 'Metric Value',
-            color: '#ffc107',
+            color: '#1976d2',
           },
         ]}
         yAxis={[
@@ -234,12 +235,12 @@ export const ExpensiveSqlOptimazationDetail = () => {
               <TableContainer component={Paper}>
                 <Table size="small">
                   <TableHead>
-                    <TableRow sx={{backgroundColor:'#f0f0f0', fontWeight: 'bold'}}>
-                      <TableCell sx={{ fontWeight: 'bold'}}>Target Name</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold'}}>Server_Name</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold'}}>Server_Owner</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold'}}>App_Status</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold'}}>App_Name</TableCell>
+                    <TableRow >
+                      <TableCell sx={{ fontWeight: 'bold',color:'white'}}>Target Name</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold',color:'white'}}>Server_Name</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold',color:'white'}}>Server_Owner</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold',color:'white'}}>App_Status</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold',color:'white'}}>App_Name</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
