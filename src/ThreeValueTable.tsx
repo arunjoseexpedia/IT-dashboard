@@ -83,7 +83,7 @@ const ThreeValueTable = () => {
           In Progress:
           <span
             style={{
-              backgroundColor: '#ec5e95',
+              backgroundColor: '#3A4862',
               fontWeight: 600,
               color: 'white',
               textAlign: 'center',

@@ -29,17 +29,17 @@ const AppRat = () => {
            
           
             <div>
-              <div style={{ fontSize: '20px',fontWeight: 'bold', color:'#F08080' }}> {data.savings}</div>
+              <div style={{ fontSize: '20px',fontWeight: 'bold', color:'black' }}> {data.savings}</div>
               <div style={{ fontSize: '10px' }}>Dollar Savings</div>
             </div>
           
             <div>
-              <div style={{ fontSize: '18px', fontWeight: 'bold', color:'#ADD8E6' }}>{data.mobilePlatform}</div>
+              <div style={{ fontSize: '18px', fontWeight: 'bold', color:'black' }}>{data.mobilePlatform}</div>
               <div style={{ fontSize: '10px' }}>SAP Mobile Platform</div>
             </div>
           
             <div>
-              <div style={{ fontSize: '15px', fontWeight: 'bold', color:'#FFA500' }}>{data.sapCE}</div>
+              <div style={{ fontSize: '15px', fontWeight: 'bold', color:'black' }}>{data.sapCE}</div>
               <div style={{ fontSize: '10px' }}>SAP CE</div>
             </div>
           </div>

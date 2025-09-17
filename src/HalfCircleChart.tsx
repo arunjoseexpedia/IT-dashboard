@@ -30,7 +30,7 @@ const HalfCircleChart = () => {
     datasets: [
       {
         data: [percentage, 100 - percentage],
-        backgroundColor: ['#ff1493', '#e0e0e0'],
+        backgroundColor: ['#3A4862', '#e0e0e0'],
         borderWidth: 0,
         cutout: '70%',
       },

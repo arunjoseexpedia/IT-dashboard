@@ -34,12 +34,12 @@ export const ProductRoadMap = () => {
       >
         <thead>
           <tr style={{ backgroundColor: "white" }}>
-            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>Portal</th>
-            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>WM</th>
-            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>SolMan</th>
-            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>SAP Gateway/Fiori</th>
-            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>Live Compare</th>
-            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#234F1E',color:'white', borderBottom: "1px solid white" }}>Data Masking</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#3A4862',color:'white', borderBottom: "1px solid white" }}>Portal</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#3A4862',color:'white', borderBottom: "1px solid white" }}>WM</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#3A4862',color:'white', borderBottom: "1px solid white" }}>SolMan</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#3A4862',color:'white', borderBottom: "1px solid white" }}>SAP Gateway/Fiori</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#3A4862',color:'white', borderBottom: "1px solid white" }}>Live Compare</th>
+            <th style={{ fontSize:'12px',padding: "9px 12px",backgroundColor:'#3A4862',color:'white', borderBottom: "1px solid white" }}>Data Masking</th>
           </tr>
         </thead>
         <tbody>
