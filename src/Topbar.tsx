@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Box, IconButton, Tooltip,Typography } from "@mui/material";
-import { DarkMode, LightMode } from "@mui/icons-material";
+import { Box, IconButton, Tooltip, Typography, Drawer } from "@mui/material";
+import { DarkMode, LightMode, Close } from "@mui/icons-material";
 import { Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 const Topbar = () => {
   const [loaded, setLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  
   useEffect(() => {
     // Trigger the animation after component mounts
     setLoaded(true);
@@ -13,7 +18,7 @@ const Topbar = () => {
   return (
     <div
       style={{
-        backgroundColor: '#0033A0',
+        backgroundColor: '#02355a',
         color: 'white',
         height: '60px',
         padding: '5px 15px',
@@ -24,34 +29,145 @@ const Topbar = () => {
         alignItems: 'center',
       }}
     >
-      {/* Left side - Title */}
-      <div className="topbarText" style={{ fontWeight: 'bold',top: '20px',
-        left: loaded ? '20px' : '50%',
-        transform: loaded ? 'translateX(0)' : 'translateX(-50%)',
-        transition: 'all 0.8s ease-in-out' }}><Typography sx={{ '&:hover': {
+      {/* Left side - Logo */}
+      <Box
+        component="img"
+        src="pepsico-logo.jpg"
+        alt="PepsiCo Logo"
+        sx={{ height: 50, objectFit: 'contain', marginRight: '15px' }}
+      />
+
+      {/* Center - Title */}
+      <div className="topbarText" style={{ fontWeight: 'bold', flex: 1, textAlign: 'left' }}>
+        <Typography sx={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-.01em', color: '#fff', '&:hover': {
           color:'white',
           cursor:'pointer'
-        }}}><Link component={RouterLink} to="/" underline="hover" color="#ffff">SAP Dashboard</Link></Typography></div>
+        }}}>
+          <Link component={RouterLink} to="/" underline="hover" color="#ffff">
+          <b>  {t('dashboard')} </b>
+          </Link>
+        </Typography>
+      </div>
 
-
-
-      {/* Right side - Toggle + Logo */}
+      {/* Right side - Menu Toggle Button */}
       <Box display="flex" alignItems="center" gap={2}>
-        {/* Theme Toggle Button */}
-        <Tooltip title="Toggle Theme">
-          <IconButton  sx={{ color: 'white' }}>
-              <LightMode />
+       
+          <IconButton sx={{ color: 'white', padding: 0, '&:hover': { backgroundColor: 'transparent' }, '&:active': { backgroundColor: 'transparent' }, '& .MuiTouchRipple-root': { display: 'none' } }} onFocus={(e) => (e.currentTarget.style.outline = "none")} onClick={() => setMenuOpen(true)}>
+            <Box
+              component="img"
+              src="MenuIcon.png"
+              alt="Menu Icon"
+              sx={{ width: 70, height: 55, cursor: 'pointer' }}
+            />
           </IconButton>
-        </Tooltip>
-
-        {/* Logo */}
-        <Box
-          component="img"
-          src="pepsico-logo.jpg"
-          alt="PepsiCo Logo"
-          sx={{ height: 40, objectFit: 'contain' }}
-        />
+        
       </Box>
+
+      {/* Sliding Menu Drawer */}
+      <Drawer
+        anchor="right"
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      >
+        <Box
+          sx={{
+            width: 300,
+            padding: '20px',
+            backgroundColor: '#f5f5f5',
+            height: '100%',
+          }}
+        >
+          {/* Close Button */}
+          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+            <Typography variant="h6" sx={{ fontWeight: 700, color: '#666' }}>
+              {t('menu')}
+            </Typography>
+            <IconButton size="small" onClick={() => setMenuOpen(false)}>
+              <Close />
+            </IconButton>
+          </Box>
+
+          <Box sx={{ borderBottom: '1px solid #ddd', mb: 2 }} />
+
+          {/* Appearance Section */}
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#999', mb: 2 }}>
+            {t('appearance')}
+          </Typography>
+
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+              padding: '10px',
+              cursor: 'pointer',
+              '&:hover': { backgroundColor: '#e0e0e0', borderRadius: '4px' },
+            }}
+          >
+            <LightMode sx={{ fontSize: 30, color: '#f0ad4e' }} />
+            <Typography sx={{ color: '#666', fontWeight: 500 }}>
+              {t('switchToDarkTheme')}
+            </Typography>
+          </Box>
+
+          <Box sx={{ borderBottom: '1px solid #ddd', my: 2 }} />
+
+          {/* Additional Menu Items */}
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#999', mb: 2 }}>
+            {t('data')}
+          </Typography>
+
+          <Box sx={{ borderBottom: '1px solid #ddd', my: 2 }} />
+
+          {/* Language Section */}
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#999', mb: 2 }}>
+            {t('language')}
+          </Typography>
+
+          {/* English Button */}
+          <Box
+            onClick={() => i18n.changeLanguage('en')}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              padding: '10px',
+              cursor: 'pointer',
+              borderRadius: '4px',
+              backgroundColor: i18n.language === 'en' ? '#e3f2fd' : 'transparent',
+              fontWeight: i18n.language === 'en' ? 600 : 500,
+              color: i18n.language === 'en' ? '#02355a' : '#666',
+              marginBottom: '8px',
+              '&:hover': { backgroundColor: '#f0f0f0' },
+            }}
+          >
+            <Typography sx={{ color: 'inherit', fontWeight: 'inherit' }}>
+              {t('english')}
+            </Typography>
+          </Box>
+
+          {/* Spanish Button */}
+          <Box
+            onClick={() => i18n.changeLanguage('es')}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              padding: '10px',
+              cursor: 'pointer',
+              borderRadius: '4px',
+              backgroundColor: i18n.language === 'es' ? '#e3f2fd' : 'transparent',
+              fontWeight: i18n.language === 'es' ? 600 : 500,
+              color: i18n.language === 'es' ? '#02355a' : '#666',
+              '&:hover': { backgroundColor: '#f0f0f0' },
+            }}
+          >
+            <Typography sx={{ color: 'inherit', fontWeight: 'inherit' }}>
+              {t('spanish')}
+            </Typography>
+          </Box>
+        </Box>
+      </Drawer>
     </div>
   );
 };
