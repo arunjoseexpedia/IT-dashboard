@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Box, IconButton, Tooltip, Typography, Drawer } from "@mui/material";
 import { DarkMode, LightMode, Close } from "@mui/icons-material";
-import { Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 
 const Topbar = () => {
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
   const { t, i18n } = useTranslation();
   
   useEffect(() => {
     // Trigger the animation after component mounts
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    // Apply theme to document background
+    if (isDarkTheme) {
+      document.body.style.backgroundColor = '#0d1117';
+      document.body.style.color = '#ffffff';
+    } else {
+      document.body.style.backgroundColor = '#ffffff';
+      document.body.style.color = '#000000';
+    }
+  }, [isDarkTheme]);
   return (
     <div
       style={{
@@ -43,21 +53,19 @@ const Topbar = () => {
           color:'white',
           cursor:'pointer'
         }}}>
-          <Link component={RouterLink} to="/" underline="hover" color="#ffff">
           <b>  {t('dashboard')} </b>
-          </Link>
         </Typography>
       </div>
 
       {/* Right side - Menu Toggle Button */}
       <Box display="flex" alignItems="center" gap={2}>
        
-          <IconButton sx={{ color: 'white', padding: 0, '&:hover': { backgroundColor: 'transparent' }, '&:active': { backgroundColor: 'transparent' }, '& .MuiTouchRipple-root': { display: 'none' } }} onFocus={(e) => (e.currentTarget.style.outline = "none")} onClick={() => setMenuOpen(true)}>
+          <IconButton sx={{ color: 'white', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': { backgroundColor: 'transparent' }, '&:active': { backgroundColor: 'transparent' }, '& .MuiTouchRipple-root': { display: 'none' } }} onFocus={(e) => (e.currentTarget.style.outline = "none")} onClick={() => setMenuOpen(true)}>
             <Box
               component="img"
               src="MenuIcon.png"
               alt="Menu Icon"
-              sx={{ width: 70, height: 55, cursor: 'pointer' }}
+              sx={{ width: 70, height: 50, cursor: 'pointer', display: 'block' }}
             />
           </IconButton>
         
@@ -95,18 +103,24 @@ const Topbar = () => {
           </Typography>
 
           <Box
+            onClick={() => setIsDarkTheme(!isDarkTheme)}
             sx={{
               display: 'flex',
               alignItems: 'center',
               gap: 2,
               padding: '10px',
               cursor: 'pointer',
-              '&:hover': { backgroundColor: '#e0e0e0', borderRadius: '4px' },
+              borderRadius: '4px',
+              '&:hover': { backgroundColor: '#e0e0e0' },
             }}
           >
-            <LightMode sx={{ fontSize: 30, color: '#f0ad4e' }} />
+            {isDarkTheme ? (
+              <LightMode sx={{ fontSize: 30, color: '#f0ad4e' }} />
+            ) : (
+              <DarkMode sx={{ fontSize: 30, color: '#5c6ac4' }} />
+            )}
             <Typography sx={{ color: '#666', fontWeight: 500 }}>
-              {t('switchToDarkTheme')}
+              {isDarkTheme ? t('switchToLightTheme') : t('switchToDarkTheme')}
             </Typography>
           </Box>
 
