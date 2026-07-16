@@ -4,10 +4,10 @@ import { DarkMode, LightMode, Close } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
 
 
-const Topbar = () => {
+const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const { t, i18n } = useTranslation();
   
   useEffect(() => {
@@ -53,7 +53,7 @@ const Topbar = () => {
           color:'white',
           cursor:'pointer'
         }}}>
-          <b>  {t('dashboard')} </b>
+          <b>  {t('dashboard')} {currentTab} </b>
         </Typography>
       </div>
 

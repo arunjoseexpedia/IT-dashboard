@@ -7,6 +7,8 @@ import SLAEventReport from './pages/SLAEventReport';
 
 function Layout() {
   const [tabValue, setTabValue] = useState(0);
+  
+  const tabNames = ['General', 'SLA Draft', 'E2E Template'];
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -16,7 +18,7 @@ function Layout() {
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <header style={{ height: '11%', borderRadius:'8px' }}>
-        <Topbar />
+        <Topbar currentTab={tabNames[tabValue]} />
       </header>
 
       {/* Tab Navigation */}
