@@ -1,13 +1,15 @@
 import { Box, Typography, Card, CardContent } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [templateCount, setTemplateCount] = useState(0);
   const [noTemplateCount, setNoTemplateCount] = useState(0);
   const [chartData, setChartData] = useState<Array<{ name: string; value: number; percentage: string }>>([]);
+  const [statusChartData, setStatusChartData] = useState<Array<{ name: string; [key: string]: any }>>([]);
+  const [requestingAreaData, setRequestingAreaData] = useState<Array<{ name: string; count: number }>>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,6 +68,54 @@ const AribaReport = () => {
         ];
         
         setChartData(chartData);
+        
+        // Process Contract Status data for stacked bar chart
+        const statusMap: { [key: string]: { [key: string]: number } } = {};
+        
+        excelData.forEach((row: any) => {
+          const status = row['Contract Status'];
+          const template = row['Pre-approved Standard Contract Template?'];
+          
+          if (status) {
+            if (!statusMap[status]) {
+              statusMap[status] = { 'FIRMADO': 0, 'NO FIRMADO': 0 };
+            }
+            
+            if (template === 'No') {
+              statusMap[status]['NO FIRMADO']++;
+            } else {
+              statusMap[status]['FIRMADO']++;
+            }
+          }
+        });
+        
+        // Convert status map to chart data format
+        const statusData = Object.keys(statusMap).map(status => ({
+          name: status,
+          'FIRMADO': statusMap[status]['FIRMADO'],
+          'NO FIRMADO': statusMap[status]['NO FIRMADO']
+        }));
+        
+        setStatusChartData(statusData);
+        
+        // Process Requesting Area / Department data
+        const departmentMap: { [key: string]: number } = {};
+        
+        excelData.forEach((row: any) => {
+          const department = row['Requesting Area / Department'];
+          
+          if (department) {
+            departmentMap[department] = (departmentMap[department] || 0) + 1;
+          }
+        });
+        
+        // Convert to array and sort in descending order by count
+        const departmentData = Object.entries(departmentMap)
+          .map(([name, count]) => ({ name, count }))
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 10); // Limit to top 10 departments for better visualization
+        
+        setRequestingAreaData(departmentData);
       } catch (error) {
         console.error('Error reading Excel file:', error);
         setTotalCount(0);
@@ -79,74 +129,96 @@ const AribaReport = () => {
 
   return (
     <Box sx={{ padding: '20px' }}>
-      {/* Total Solicitudes Card */}
-      <Box sx={{ marginBottom: '20px' }}>
-        <Card sx={{ textAlign: 'center', backgroundColor: '#fff', border: '1px solid #e0e0e0' }}>
-          <CardContent>
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                fontWeight: 700, 
-                color: '#02355a', 
-                textTransform: 'uppercase',
-                marginBottom: '10px',
-                letterSpacing: '0.05em',
-                borderBottom: '2px solid #02355a',
-                paddingBottom: '10px'
-              }}
-            >
-              Total Solicitudes
-            </Typography>
-            <Typography 
-              variant="h3" 
-              sx={{ 
-                fontWeight: 700, 
-                color: '#02355a',
-                fontSize: '3rem',
-                marginTop: '15px'
-              }}
-            >
-              {totalCount}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-
-      {/* Template and No Template Cards */}
+      {/* Top Row: Total Solicitudes Widget and Estatus Solicitudes */}
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
-        {/* Template Card */}
-        <Card sx={{ textAlign: 'center', backgroundColor: '#fff', border: '1px solid #e0e0e0' }}>
+        {/* Total Solicitudes Widget - Combined Card */}
+        <Card sx={{ backgroundColor: '#fff', border: '1px solid #e0e0e0' }}>
           <CardContent>
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                fontWeight: 700, 
-                color: '#02355a', 
-                textTransform: 'uppercase',
-                marginBottom: '10px',
-                letterSpacing: '0.05em',
-                borderBottom: '2px solid #02355a',
-                paddingBottom: '10px'
-              }}
-            >
-              Template
-            </Typography>
-            <Typography 
-              variant="h3" 
-              sx={{ 
-                fontWeight: 700, 
-                color: '#02355a',
-                fontSize: '3rem',
-                marginTop: '15px'
-              }}
-            >
-              {templateCount}
-            </Typography>
+            {/* Total Solicitudes Header and Count */}
+            <Box sx={{ textAlign: 'center', borderBottom: '2px solid #02355a', paddingBottom: '15px', marginBottom: '15px' }}>
+              <Typography 
+                variant="h6" 
+                sx={{ 
+                  fontWeight: 700, 
+                  color: '#02355a', 
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
+                }}
+              >
+                Total Solicitudes
+              </Typography>
+              <Typography 
+                variant="h3" 
+                sx={{ 
+                  fontWeight: 700, 
+                  color: '#02355a',
+                  fontSize: '3rem',
+                  marginTop: '10px'
+                }}
+              >
+                {totalCount}
+              </Typography>
+            </Box>
+
+            {/* Template and No Template Summary */}
+            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+              {/* Template Summary */}
+              <Box sx={{ textAlign: 'center', borderRight: '1px solid #e0e0e0' }}>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: '#02355a', 
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '8px'
+                  }}
+                >
+                  Template
+                </Typography>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: '#02355a',
+                    fontSize: '2rem'
+                  }}
+                >
+                  {templateCount}
+                </Typography>
+              </Box>
+
+              {/* No Template Summary */}
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: '#02355a', 
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    marginBottom: '8px'
+                  }}
+                >
+                  No Template
+                </Typography>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    color: '#02355a',
+                    fontSize: '2rem'
+                  }}
+                >
+                  {noTemplateCount}
+                </Typography>
+              </Box>
+            </Box>
           </CardContent>
         </Card>
 
-        {/* No Template Card */}
-        <Card sx={{ textAlign: 'center', backgroundColor: '#fff', border: '1px solid #e0e0e0' }}>
+        {/* Stacked Column Chart */}
+        <Card sx={{ backgroundColor: '#fff', border: '1px solid #e0e0e0', padding: '20px' }}>
           <CardContent>
             <Typography 
               variant="h6" 
@@ -154,76 +226,118 @@ const AribaReport = () => {
                 fontWeight: 700, 
                 color: '#02355a', 
                 textTransform: 'uppercase',
-                marginBottom: '10px',
+                marginBottom: '20px',
                 letterSpacing: '0.05em',
                 borderBottom: '2px solid #02355a',
-                paddingBottom: '10px'
+                paddingBottom: '10px',
+                textAlign: 'center'
               }}
             >
-              No Template
+              Estatus Solicitudes
             </Typography>
-            <Typography 
-              variant="h3" 
-              sx={{ 
-                fontWeight: 700, 
-                color: '#02355a',
-                fontSize: '3rem',
-                marginTop: '15px'
-              }}
-            >
-              {noTemplateCount}
-            </Typography>
+            
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart
+                data={statusChartData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="FIRMADO" stackId="a" fill="#003d99" />
+                <Bar dataKey="NO FIRMADO" stackId="a" fill="#1976d2" />
+              </BarChart>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
       </Box>
 
-      {/* Pie Chart Card */}
-      <Card sx={{ backgroundColor: '#fff', border: '1px solid #e0e0e0', padding: '20px' }}>
-        <CardContent>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              fontWeight: 700, 
-              color: '#02355a', 
-              textTransform: 'uppercase',
-              marginBottom: '20px',
-              letterSpacing: '0.05em',
-              borderBottom: '2px solid #02355a',
-              paddingBottom: '10px',
-              textAlign: 'center'
-            }}
-          >
-            Tipo de Contrato
-          </Typography>
-          
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={chartData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={(entry: any) => `${entry.percentage}%`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
+      {/* Bottom Row: Pie Chart and Other Widget */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        {/* Pie Chart Card */}
+        <Card sx={{ backgroundColor: '#fff', border: '1px solid #e0e0e0', padding: '20px' }}>
+          <CardContent>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                fontWeight: 700, 
+                color: '#02355a', 
+                textTransform: 'uppercase',
+                marginBottom: '20px',
+                letterSpacing: '0.05em',
+                borderBottom: '2px solid #02355a',
+                paddingBottom: '10px',
+                textAlign: 'center'
+              }}
+            >
+              Tipo de Contrato
+            </Typography>
+            
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={(entry: any) => `${entry.percentage}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  <Cell fill="#1976d2" />
+                  <Cell fill="#003d99" />
+                </Pie>
+                <Tooltip 
+                  formatter={(value: any) => `${value}`}
+                  labelFormatter={() => ''}
+                />
+                <Legend 
+                  verticalAlign="bottom" 
+                  height={36}
+                  formatter={(value) => value.toUpperCase()}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Requesting Area Widget */}
+        <Card sx={{ backgroundColor: '#fff', border: '1px solid #e0e0e0', padding: '20px' }}>
+          <CardContent sx={{ padding: '0' }}>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                fontWeight: 700, 
+                color: '#02355a', 
+                textTransform: 'uppercase',
+                marginBottom: '20px',
+                letterSpacing: '0.05em',
+                borderBottom: '2px solid #02355a',
+                paddingBottom: '10px',
+                textAlign: 'center'
+              }}
+            >
+              Requesting Area
+            </Typography>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={requestingAreaData}
+                layout="vertical"
+                margin={{ top: 5, right: 10, left: 120, bottom: 5 }}
               >
-                <Cell fill="#1976d2" />
-                <Cell fill="#003d99" />
-              </Pie>
-              <Tooltip 
-                formatter={(value: any) => `${value}`}
-                labelFormatter={() => ''}
-              />
-              <Legend 
-                verticalAlign="bottom" 
-                height={36}
-                formatter={(value) => value.toUpperCase()}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis type="number" />
+                <YAxis dataKey="name" type="category" width={115} tick={{ fontSize: 12 }} />
+                <Tooltip />
+                <Bar dataKey="count" fill="#003d99" radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </Box>
     </Box>
   );
 };
