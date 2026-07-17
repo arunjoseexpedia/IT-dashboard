@@ -7,5 +7,12 @@
   "data": "DATOS",
   "language": "IDIOMA",
   "english": "English",
-  "spanish": "Español"
+  "spanish": "Español",
+  "totalApplications": "Total de solicitudes",
+  "applicationStatus": "Estatus de Solicitudes",
+  "template": "Plantilla",
+  "noTemplate": "Sin Plantilla",
+  "requestingArea": "Área de Solicitud",
+  "contractType": "Tipo de Contrato"
+  
 }

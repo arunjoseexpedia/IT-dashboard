@@ -7,5 +7,11 @@
   "data": "DATA",
   "language": "LANGUAGE",
   "english": "English",
-  "spanish": "Español"
+  "spanish": "Español",
+  "totalApplications": "Total Applications",
+  "applicationStatus": "Application Status",
+  "template": "Template",
+  "noTemplate": "No Template",
+  "requestingArea": "Requesting Area",
+  "contractType": "Contract Type"
 }
