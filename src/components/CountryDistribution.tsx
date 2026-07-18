@@ -1,13 +1,12 @@
 import { Card, CardContent, Typography, Box } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-interface ApplicationStatusChartProps {
-  data: Array<{ name: string; [key: string]: any }>;
+interface CountryDistributionProps {
+  data: Array<{ country: string; count: number }>;
   title: string;
-  height?: number;
 }
 
-const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, title }) => {
+const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
   return (
     <Card
       sx={{
@@ -46,23 +45,31 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
           {title}
         </Typography>
 
+        {/* Chart Container with scrolling support */}
         <Box
           sx={{
             flex: 1,
-            overflow: 'hidden',
+            overflow: 'auto',
             display: 'flex',
             flexDirection: 'column',
             minHeight: 0,
           }}
         >
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={data.length > 8 ? Math.max(250, data.length * 30) : 250}>
             <BarChart
               data={data}
-              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+              layout="vertical"
+              margin={{ top: 5, right: 30, left: 60, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-              <XAxis dataKey="name" stroke="#666" />
-              <YAxis stroke="#666" />
+              <XAxis type="number" stroke="#666" />
+              <YAxis
+                dataKey="country"
+                type="category"
+                width={55}
+                tick={{ fontSize: 12 }}
+                stroke="#666"
+              />
               <Tooltip
                 contentStyle={{
                   backgroundColor: '#fff',
@@ -70,10 +77,20 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
                   borderRadius: '6px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 }}
+                formatter={(value: any) => [`${value} applications`, 'Count']}
+                labelFormatter={(label: any) => `Country: ${label}`}
               />
-              <Legend wrapperStyle={{ paddingTop: '10px' }} />
-              <Bar dataKey="FIRMADO" stackId="a" fill="#003d99" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="NO FIRMADO" stackId="a" fill="#1976d2" radius={[4, 4, 0, 0]} />
+              <Bar
+                dataKey="count"
+                fill="#2563EB"
+                radius={[0, 8, 8, 0]}
+                label={{
+                  position: 'right',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  fill: '#02355a',
+                }}
+              />
             </BarChart>
           </ResponsiveContainer>
         </Box>
@@ -82,4 +99,4 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
   );
 };
 
-export default ApplicationStatusChart;
+export default CountryDistribution;

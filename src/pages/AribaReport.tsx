@@ -3,17 +3,30 @@ import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { useTranslation } from 'react-i18next';
-import KpiCard from '../components/KpiCard';
 import ApplicationStatusChart from '../components/ApplicationStatusChart';
-import { Share as ShareIcon, ThumbUp as ThumbUpIcon, Star as StarIcon } from '@mui/icons-material';
+import SignatureStatusSummary from '../components/SignatureStatusSummary';
+import ApplicationsSummary from '../components/ApplicationsSummary';
+import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
+import CountryDistribution from '../components/CountryDistribution';
+import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [templateCount, setTemplateCount] = useState(0);
   const [noTemplateCount, setNoTemplateCount] = useState(0);
+  const [firmadoCount, setFirmadoCount] = useState(0);
+  const [noFirmadoCount, setNoFirmadoCount] = useState(0);
+  const [borradorCount, setBorradorCount] = useState(0);
+  const [publicadoCount, setPublicadoCount] = useState(0);
+  const [cerradoCount, setCerradoCount] = useState(0);
+  const [canceladoCount, setCanceladoCount] = useState(0);
+  const [totalContractValue, setTotalContractValue] = useState(0);
+  const [firmadoValue, setFirmadoValue] = useState(0);
+  const [noFirmadoValue, setNoFirmadoValue] = useState(0);
   const [chartData, setChartData] = useState<Array<{ name: string; value: number; percentage: string }>>([]);
   const [statusChartData, setStatusChartData] = useState<Array<{ name: string; [key: string]: any }>>([]);
   const [requestingAreaData, setRequestingAreaData] = useState<Array<{ name: string; count: number }>>([]);
+  const [countryData, setCountryData] = useState<Array<{ country: string; count: number }>>([]);
   const { t } = useTranslation();
   useEffect(() => {
     const fetchData = async () => {
@@ -45,13 +58,51 @@ const AribaReport = () => {
         // Count "No Template" and "Template"
         let noTemplate = 0;
         let template = 0;
+        let firmado = 0;
+        let noFirmado = 0;
+        let borrador = 0;
+        let publicado = 0;
+        let cerrado = 0;
+        let cancelado = 0;
+        let contractValue = 0;
+        let firmadoAmount = 0;
+        let noFirmadoAmount = 0;
         
         excelData.forEach((row: any) => {
           const templateValue = row['Pre-approved Standard Contract Template?'];
+          const status = row['Contract Status'];
+          const amount = row['Amount (USD)'];
+          
           if (templateValue === 'No') {
             noTemplate++;
+            noFirmado++;
+            // Add amount to noFirmadoAmount
+            if (amount && !isNaN(parseFloat(amount))) {
+              noFirmadoAmount += parseFloat(amount);
+            }
           } else if (templateValue) {
             template++;
+            firmado++;
+            // Add amount to firmadoAmount
+            if (amount && !isNaN(parseFloat(amount))) {
+              firmadoAmount += parseFloat(amount);
+            }
+          }
+          
+          // Count Contract Status types
+          if (status === 'Borrador') {
+            borrador++;
+          } else if (status === 'Publicado') {
+            publicado++;
+          } else if (status === 'Cerrado') {
+            cerrado++;
+          } else if (status === 'Cancelado') {
+            cancelado++;
+          }
+          
+          // Sum Amount (USD)
+          if (amount && !isNaN(parseFloat(amount))) {
+            contractValue += parseFloat(amount);
           }
         });
         
@@ -59,6 +110,15 @@ const AribaReport = () => {
         setTotalCount(total);
         setNoTemplateCount(noTemplate);
         setTemplateCount(template);
+        setFirmadoCount(firmado);
+        setNoFirmadoCount(noFirmado);
+        setBorradorCount(borrador);
+        setPublicadoCount(publicado);
+        setCerradoCount(cerrado);
+        setCanceladoCount(cancelado);
+        setTotalContractValue(contractValue);
+        setFirmadoValue(firmadoAmount);
+        setNoFirmadoValue(noFirmadoAmount);
         
         // Calculate percentages for chart
         const templatePercentage = total > 0 ? ((template / total) * 100).toFixed(2) : '0.00';
@@ -118,6 +178,24 @@ const AribaReport = () => {
           .slice(0, 10); // Limit to top 10 departments for better visualization
         
         setRequestingAreaData(departmentData);
+
+        // Process Country data
+        const countryMap: { [key: string]: number } = {};
+        
+        excelData.forEach((row: any) => {
+          const country = row['Country'];
+          
+          if (country) {
+            countryMap[country] = (countryMap[country] || 0) + 1;
+          }
+        });
+        
+        // Convert to array and sort in descending order by count
+        const cData = Object.entries(countryMap)
+          .map(([country, count]) => ({ country, count }))
+          .sort((a, b) => b.count - a.count);
+        
+        setCountryData(cData);
       } catch (error) {
         console.error('Error reading Excel file:', error);
         setTotalCount(0);
@@ -130,7 +208,7 @@ const AribaReport = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
       {/* KPI Cards Row */}
       <Box
         sx={{
@@ -140,38 +218,47 @@ const AribaReport = () => {
           marginBottom: '30px',
         }}
       >
-        <KpiCard 
-          title={t('totalApplications')} 
-          value={totalCount} 
-          color="#ffa500"
+        <ApplicationsSummary
+          title={t('totalApplications')}
+          totalCount={totalCount}
+          templateCount={templateCount}
+          noTemplateCount={noTemplateCount}
           icon={<ShareIcon sx={{ fontSize: '2rem' }} />}
         />
-        <KpiCard 
-          title={t('template')} 
-          value={templateCount} 
-          color="#ffa500"
-          icon={<ThumbUpIcon sx={{ fontSize: '2rem' }} />}
+        <SignatureStatusSummary
+          title={t('signaturesStatus')}
+          firmadoCount={firmadoCount}
+          noFirmadoCount={noFirmadoCount}
+          firmadoValue={firmadoValue}
+          noFirmadoValue={noFirmadoValue}
+          icon={<CheckCircleIcon sx={{ fontSize: '2rem' }} />}
         />
-        <KpiCard 
-          title={t('noTemplate')} 
-          value={noTemplateCount} 
-          color="#ffa500"
-          icon={<StarIcon sx={{ fontSize: '2rem' }} />}
+        <ContractStatusWithValueSummary
+          title={t('contractStatus')}
+          totalValue={totalContractValue}
+          borradorCount={borradorCount}
+          publicadoCount={publicadoCount}
+          cerradoCount={cerradoCount}
+          canceladoCount={canceladoCount}
+          icon={<DescriptionIcon sx={{ fontSize: '2rem',color:'#F59E0B'}} />}
         />
       </Box>
 
-      {/* Full-Width Application Status Chart */}
-      <ApplicationStatusChart data={statusChartData} title={t('applicationStatus')} height={350} />
+      {/* Application Status Chart and Country Distribution Row */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '24px', marginBottom: '30px' }}>
+        <ApplicationStatusChart data={statusChartData} title={t('applicationStatus')} />
+        <CountryDistribution data={countryData} title="Country Distribution" />
+      </Box>
 
       {/* Bottom Row: Pie Chart and Requesting Area */}
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '20px', marginTop: '30px' }}>
         {/* Pie Chart Card */}
         <Card
           sx={{
-            backgroundColor: '#fff',
-            border: 'none',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            backgroundColor: '#FFFFFF',
+            border: "1px solid #E5E7EB",
+            borderRadius: '20px',
+            boxShadow: '0 6px 20px rgba(15,23,42,.08)',
             padding: '20px',
           }}
         >
@@ -217,10 +304,10 @@ const AribaReport = () => {
         {/* Requesting Area Widget */}
         <Card
           sx={{
-            backgroundColor: '#fff',
-            border: 'none',
-            borderRadius: '12px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+             backgroundColor: '#FFFFFF',
+            border: "1px solid #E5E7EB",
+            borderRadius: '20px',
+            boxShadow: '0 6px 20px rgba(15,23,42,.08)',
             padding: '20px',
           }}
         >

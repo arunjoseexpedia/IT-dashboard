@@ -13,5 +13,10 @@
   "template": "Template",
   "noTemplate": "No Template",
   "requestingArea": "Requesting Area",
-  "contractType": "Contract Type"
+  "solicitante": "Solicitante",
+  "contractType": "Contract Type",
+  "contractStatus": "Contract Status",
+  "signaturesStatus": "Signatures Status",
+  "totalContractValue": "Total Contract Value"
 }
+

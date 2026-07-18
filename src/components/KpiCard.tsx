@@ -11,10 +11,10 @@ const KpiCard: React.FC<KpiCardProps> = ({ title, value, icon, color = '#02355a'
   return (
     <Card
       sx={{
-        backgroundColor: '#fff',
-        border: 'none',
-        borderRadius: '12px',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        backgroundColor: '#FFFFFF',
+        border: "1px solid #E5E7EB",
+        borderRadius: '20px',
+        boxShadow: '0 6px 20px rgba(15,23,42,.08)',
         transition: 'all 0.3s ease',
         '&:hover': {
           transform: 'translateY(-4px)',

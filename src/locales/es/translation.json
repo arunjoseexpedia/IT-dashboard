@@ -13,6 +13,9 @@
   "template": "Plantilla",
   "noTemplate": "Sin Plantilla",
   "requestingArea": "Área de Solicitud",
-  "contractType": "Tipo de Contrato"
-  
+  "solicitante": "Solicitante",
+  "contractType": "Tipo de Contrato",
+  "contractStatus": "Estatus de Contrato",
+  "signaturesStatus": "Estatus de Firmas",
+  "totalContractValue": "Valor Total del Contrato"
 }
