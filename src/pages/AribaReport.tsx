@@ -230,7 +230,7 @@ const AribaReport = () => {
       {/* Category Filter Section */}
       <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '12px' }}>
         <Typography sx={{ fontWeight: 600, fontSize: '14px', color: '#374151' }}>
-          {t('filter') || 'Filter'}:
+          {t('search') || 'Search'}:
         </Typography>
         <FormControl sx={{ minWidth: 250 }} size="small">
           <InputLabel id="category-select-label" sx={{ fontSize: '14px' }}>
