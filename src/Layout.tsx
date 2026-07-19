@@ -11,6 +11,7 @@ function Layout() {
   const tabNames = ['General', 'SLA Draft', 'E2E Template'];
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    console.log(event, newValue );
     setTabValue(newValue);
   };
 

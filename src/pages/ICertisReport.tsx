@@ -16,7 +16,7 @@ const ICertisReport = () => {
     const fetchData = async () => {
       try {
         console.log('Fetching sampleData.xlsx for ICERTIS Report...');
-        const response = await fetch('./sampleData.xlsx');
+        const response = await fetch(`${import.meta.env.BASE_URL}sampleData.xlsx`);
         console.log('Response status:', response);
 
         if (!response.ok) {

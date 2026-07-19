@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Box, IconButton, Tooltip, Typography, Drawer } from "@mui/material";
+import  { useEffect, useState } from "react"; 
+import { Box, IconButton, Typography, Drawer } from "@mui/material"; 
 import { DarkMode, LightMode, Close } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
 
@@ -11,6 +11,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
   const { t, i18n } = useTranslation();
   
   useEffect(() => {
+    console.log('Topbar component mounted',loaded);
     // Trigger the animation after component mounts
     setLoaded(true);
   }, []);
