@@ -123,9 +123,9 @@ const AssignedLawyerDashboard = ({
     >
       <CardContent
         sx={{
-          padding: '24px',
+          padding: '20px',
           '&:last-child': {
-            paddingBottom: '24px',
+            paddingBottom: '10px',
           },
         }}
       >
@@ -148,7 +148,7 @@ const AssignedLawyerDashboard = ({
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '35% 65%' },
+            gridTemplateColumns: { xs: '1fr', md: '45% 55%' },
             gap: '24px',
             alignItems: 'flex-start', // Top align both columns
             '@media (max-width: 1024px)': {
@@ -156,7 +156,7 @@ const AssignedLawyerDashboard = ({
             },
           }}
         >
-          {/* Left Column - Donut Chart (35%) */}
+          {/* Left Column - Donut Chart (45%) */}
           <Box
             sx={{
               display: 'flex',
@@ -165,7 +165,7 @@ const AssignedLawyerDashboard = ({
               backgroundColor: '#FFFFFF',
               borderRadius: '12px',
               padding: '16px',
-              border: '1px solid #F0F0F0',
+              
             }}
           >
             <Box
@@ -238,74 +238,25 @@ const AssignedLawyerDashboard = ({
               </Box>
             </Box>
 
-            {/* Legend below donut chart */}
-            <Box
-              sx={{
-                marginTop: '12px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '6px',
-                width: '100%',
-              }}
-            >
-              {data.map((item, index) => (
-                <Box
-                  key={`legend-${index}`}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: '12px',
-                      height: '12px',
-                      borderRadius: '2px',
-                      backgroundColor: COLORS[index % COLORS.length],
-                      flexShrink: 0,
-                    }}
-                  />
-                  <Typography
-                    sx={{
-                      fontSize: '13px',
-                      color: '#374151',
-                      fontWeight: 500,
-                      flex: 1,
-                    }}
-                  >
-                    {item.lawyer}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: '13px',
-                      color: '#6B7280',
-                      fontWeight: 600,
-                    }}
-                  >
-                    {item.count}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
+
           </Box>
 
-          {/* Right Column - Horizontal Bar Chart (65%) */}
+          {/* Right Column - Horizontal Bar Chart (55%) */}
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               backgroundColor: '#FFFFFF',
-              borderRadius: '12px',
-              padding: '16px',
-              border: '1px solid #F0F0F0',
+              
+              padding: '12px',
+             
             }}
           >
             <ResponsiveContainer width="100%" height={280}>
               <BarChart
                 data={data}
                 layout="vertical"
-                margin={{ top: 10, right: 30, left: 150, bottom: 10 }}
+                margin={{ top: 10, right: 20, left: 120, bottom: 10 }}
               >
                 <CartesianGrid
                   strokeDasharray="3 3"
@@ -316,9 +267,9 @@ const AssignedLawyerDashboard = ({
                 <YAxis
                   dataKey="lawyer"
                   type="category"
-                  width={140}
+                  width={110}
                   stroke="#6B7280"
-                  tick={{ fontSize: 13 }}
+                  tick={{ fontSize: 12 }}
                 />
                 <Tooltip content={<CustomBarTooltip />} />
                 <Bar
@@ -354,26 +305,26 @@ const AssignedLawyerDashboard = ({
             paddingTop: '24px',
             borderTop: '1px solid #E5E7EB',
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(4, 1fr)' },
-            gap: '16px',
+            gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
+            gap: '12px',
           }}
         >
           <Box>
             <Typography
               sx={{
-                fontSize: '13px',
+                fontSize: '11px',
                 color: '#6B7280',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 fontWeight: 600,
-                marginBottom: '4px',
+                marginBottom: '2px',
               }}
             >
               Total Lawyers
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: '16px',
                 fontWeight: 700,
                 color: '#2563EB',
               }}
@@ -385,19 +336,19 @@ const AssignedLawyerDashboard = ({
           <Box>
             <Typography
               sx={{
-                fontSize: '13px',
+                fontSize: '11px',
                 color: '#6B7280',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 fontWeight: 600,
-                marginBottom: '4px',
+                marginBottom: '2px',
               }}
             >
               Total Contracts
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: '16px',
                 fontWeight: 700,
                 color: '#2563EB',
               }}
@@ -409,19 +360,19 @@ const AssignedLawyerDashboard = ({
           <Box>
             <Typography
               sx={{
-                fontSize: '13px',
+                fontSize: '11px',
                 color: '#6B7280',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 fontWeight: 600,
-                marginBottom: '4px',
+                marginBottom: '2px',
               }}
             >
               Max Assigned
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: '16px',
                 fontWeight: 700,
                 color: '#22C55E',
               }}
@@ -433,19 +384,19 @@ const AssignedLawyerDashboard = ({
           <Box>
             <Typography
               sx={{
-                fontSize: '13px',
+                fontSize: '11px',
                 color: '#6B7280',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 fontWeight: 600,
-                marginBottom: '4px',
+                marginBottom: '2px',
               }}
             >
               Avg per Lawyer
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: '16px',
                 fontWeight: 700,
                 color: '#F59E0B',
               }}

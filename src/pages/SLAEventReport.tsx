@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import AssignedLawyerDashboard from '../components/AssignedLawyerDashboard';
 import NegotiationStatusChart from '../components/NegotiationStatusChart';
+import LawyerListCard from '../components/LawyerListCard';
 
 interface LawyerData {
   lawyer: string;
   count: number;
   percentage: string;
+  usdAmount?: number;
 }
 
 interface NegotiationStatusData {
@@ -40,24 +42,30 @@ const SLAEventReport = () => {
         const excelData = XLSX.utils.sheet_to_json(sheet);
 
         // Process Assigned Lawyer data
-        const lawyerMap: { [key: string]: number } = {};
+        const lawyerMap: { [key: string]: { count: number; usdAmount: number } } = {};
 
         excelData.forEach((row: any) => {
           const lawyer = row['Assigned Lawyer'];
+          const usdAmount = parseFloat(row['Amount (USD)']) || 0;
 
           // Ignore blank values
           if (lawyer && lawyer.trim() !== '') {
-            lawyerMap[lawyer] = (lawyerMap[lawyer] || 0) + 1;
+            if (!lawyerMap[lawyer]) {
+              lawyerMap[lawyer] = { count: 0, usdAmount: 0 };
+            }
+            lawyerMap[lawyer].count++;
+            lawyerMap[lawyer].usdAmount += usdAmount;
           }
         });
 
         // Convert to array and sort in descending order by count
-        const total = Object.values(lawyerMap).reduce((sum, count) => sum + count, 0);
+        const total = Object.values(lawyerMap).reduce((sum, data) => sum + data.count, 0);
         const lawyerDataArray = Object.entries(lawyerMap)
-          .map(([lawyer, count]) => ({
+          .map(([lawyer, data]) => ({
             lawyer,
-            count,
-            percentage: total > 0 ? ((count / total) * 100).toFixed(1) : '0.0',
+            count: data.count,
+            percentage: total > 0 ? ((data.count / total) * 100).toFixed(1) : '0.0',
+            usdAmount: data.usdAmount,
           }))
           .sort((a, b) => b.count - a.count);
 
@@ -114,7 +122,21 @@ const SLAEventReport = () => {
   return (
     <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
       <AssignedLawyerDashboard data={lawyerData} title="Assigned Lawyer" />
-      <NegotiationStatusChart data={negotiationStatusData} title="Negotiation Status Breakdown" />
+      
+      {/* Two-column layout for Negotiation Status and Lawyer List */}
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+          gap: '24px',
+          '@media (max-width: 1024px)': {
+            gridTemplateColumns: '1fr',
+          },
+        }}
+      >
+        <NegotiationStatusChart data={negotiationStatusData} title="Negotiation Status Breakdown" />
+        <LawyerListCard data={lawyerData} title="Lawyer Distribution" />
+      </Box>
     </Box>
   );
 };
