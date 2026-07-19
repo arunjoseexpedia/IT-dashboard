@@ -17,6 +17,8 @@
   "contractType": "Contract Type",
   "contractStatus": "Contract Status",
   "signaturesStatus": "Signatures Status",
-  "totalContractValue": "Total Contract Value"
+  "totalContractValue": "Total Contract Value",
+  "filter": "Filter",
+  "actualCategory": "Actual Category"
 }
 

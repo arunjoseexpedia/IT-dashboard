@@ -1,4 +1,4 @@
-import { Box, Typography, Card, CardContent } from '@mui/material';
+import { Box, Typography, Card, CardContent, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -27,6 +27,8 @@ const AribaReport = () => {
   const [statusChartData, setStatusChartData] = useState<Array<{ name: string; [key: string]: any }>>([]);
   const [requestingAreaData, setRequestingAreaData] = useState<Array<{ name: string; count: number }>>([]);
   const [countryData, setCountryData] = useState<Array<{ country: string; count: number }>>([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [allCategories, setAllCategories] = useState<string[]>(['All']);
   const { t } = useTranslation();
   useEffect(() => {
     const fetchData = async () => {
@@ -51,9 +53,25 @@ const AribaReport = () => {
         const sheet = workbook.Sheets[sheetName];
         const excelData = XLSX.utils.sheet_to_json(sheet);
         
+        // Extract all unique categories
+        const categoriesSet = new Set<string>();
+        excelData.forEach((row: any) => {
+          const category = row['Actual Category'];
+          if (category) {
+            categoriesSet.add(category);
+          }
+        });
+        const categories = ['All', ...Array.from(categoriesSet).sort()];
+        setAllCategories(categories);
+        
+        // Filter data based on selectedCategory
+        const filteredData = selectedCategory === 'All' 
+          ? excelData 
+          : excelData.filter((row: any) => row['Actual Category'] === selectedCategory);
+        
         // Count total rows
-        const total = excelData.length;
-        console.log('Total records:', total);
+        const total = filteredData.length;
+        console.log('Total records:', total, 'Category:', selectedCategory);
         
         // Count "No Template" and "Template"
         let noTemplate = 0;
@@ -68,7 +86,7 @@ const AribaReport = () => {
         let firmadoAmount = 0;
         let noFirmadoAmount = 0;
         
-        excelData.forEach((row: any) => {
+        filteredData.forEach((row: any) => {
           const templateValue = row['Pre-approved Standard Contract Template?'];
           const status = row['Contract Status'];
           const amount = row['Amount (USD)'];
@@ -134,7 +152,7 @@ const AribaReport = () => {
         // Process Contract Status data for stacked bar chart
         const statusMap: { [key: string]: { [key: string]: number } } = {};
         
-        excelData.forEach((row: any) => {
+        filteredData.forEach((row: any) => {
           const status = row['Contract Status'];
           const template = row['Pre-approved Standard Contract Template?'];
           
@@ -163,7 +181,7 @@ const AribaReport = () => {
         // Process Requesting Area / Department data
         const departmentMap: { [key: string]: number } = {};
         
-        excelData.forEach((row: any) => {
+        filteredData.forEach((row: any) => {
           const department = row['Requesting Area / Department'];
           
           if (department) {
@@ -182,7 +200,7 @@ const AribaReport = () => {
         // Process Country data
         const countryMap: { [key: string]: number } = {};
         
-        excelData.forEach((row: any) => {
+        filteredData.forEach((row: any) => {
           const country = row['Country'];
           
           if (country) {
@@ -205,10 +223,50 @@ const AribaReport = () => {
     };
 
     fetchData();
-  }, []);
+  }, [selectedCategory]);
 
   return (
     <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
+      {/* Category Filter Section */}
+      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '12px' }}>
+        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: '#374151' }}>
+          {t('filter') || 'Filter'}:
+        </Typography>
+        <FormControl sx={{ minWidth: 250 }} size="small">
+          <InputLabel id="category-select-label" sx={{ fontSize: '14px' }}>
+            {t('actualCategory') || 'Actual Category'}
+          </InputLabel>
+          <Select
+            labelId="category-select-label"
+            id="category-select"
+            value={selectedCategory}
+            label={t('actualCategory') || 'Actual Category'}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            sx={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '8px',
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#D1D5DB',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#2563EB',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#2563EB',
+                },
+              },
+            }}
+          >
+            {allCategories.map((category) => (
+              <MenuItem key={category} value={category}>
+                {category}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+
       {/* KPI Cards Row */}
       <Box
         sx={{

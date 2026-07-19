@@ -17,5 +17,7 @@
   "contractType": "Tipo de Contrato",
   "contractStatus": "Estatus de Contrato",
   "signaturesStatus": "Estatus de Firmas",
-  "totalContractValue": "Valor Total del Contrato"
+  "totalContractValue": "Valor Total del Contrato",
+  "filter": "Filtro",
+  "actualCategory": "Categoría Actual"
 }
