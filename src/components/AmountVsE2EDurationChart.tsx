@@ -101,7 +101,7 @@ const AmountVsE2EDurationChart = ({
       sx={{
         backgroundColor: '#FFFFFF',
         border: '1px solid #E5E7EB',
-        borderRadius: '12px',
+        borderRadius: '20px',
         boxShadow: '0 2px 8px rgba(15,23,42,0.08)',
         padding: '0',
         marginBottom: '24px',
@@ -150,7 +150,7 @@ const AmountVsE2EDurationChart = ({
                   tick={{ fontSize: 12 }}
                   label={{
                     value: 'E2E Duration (Days)',
-                    position: 'insideBottomRight',
+                    position: 'insideBottomLeft',
                     offset: -50,
                     fontSize: 12,
                     fontWeight: 600,
