@@ -52,8 +52,8 @@ function Layout() {
       {/* Tab Content */}
       <Box sx={{ flex: 1, overflow: 'auto' }}>
         {tabValue === 0 && <AribaReport />}
-        {tabValue === 1 && <ICertisReport />}
-        {tabValue === 2 && <SLAEventReport />}
+        {tabValue === 1 && <SLAEventReport /> }
+        {tabValue === 2 && <ICertisReport />}
       </Box>
     </div>
   );
