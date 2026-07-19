@@ -19,6 +19,8 @@
   "signaturesStatus": "Signatures Status",
   "totalContractValue": "Total Contract Value",
   "search": "Search",
-  "actualCategory": "Actual Category"
+  "actualCategory": "Actual Category",
+  "country": "Country",
+  "selectCountry": "Select Country"
 }
 

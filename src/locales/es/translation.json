@@ -19,5 +19,7 @@
   "signaturesStatus": "Estatus de Firmas",
   "totalContractValue": "Valor Total del Contrato",
   "search": "Buscar",
-  "actualCategory": "Categoría Actual"
+  "actualCategory": "Categoría Actual",
+  "country": "País",
+  "selectCountry": "Seleccionar País"
 }

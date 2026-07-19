@@ -193,29 +193,7 @@ const TopProjectsByE2EProcess = ({
             gap: '12px',
           }}
         >
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Total Projects
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-              {data.length}
-            </Typography>
-          </Box>
+        
 
           <Box>
             <Typography

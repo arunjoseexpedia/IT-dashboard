@@ -29,6 +29,8 @@ const AribaReport = () => {
   const [countryData, setCountryData] = useState<Array<{ country: string; count: number }>>([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [allCategories, setAllCategories] = useState<string[]>(['All']);
+  const [selectedCountry, setSelectedCountry] = useState('All');
+  const [allCountries, setAllCountries] = useState<string[]>(['All']);
   const { t } = useTranslation();
   useEffect(() => {
     const fetchData = async () => {
@@ -55,19 +57,32 @@ const AribaReport = () => {
         
         // Extract all unique categories
         const categoriesSet = new Set<string>();
+        const countriesSet = new Set<string>();
         excelData.forEach((row: any) => {
           const category = row['Actual Category'];
+          const country = row['Country'];
           if (category) {
             categoriesSet.add(category);
           }
+          if (country) {
+            countriesSet.add(country);
+          }
         });
         const categories = ['All', ...Array.from(categoriesSet).sort()];
+        const countries = ['All', ...Array.from(countriesSet).sort()];
         setAllCategories(categories);
+        setAllCountries(countries);
         
-        // Filter data based on selectedCategory
-        const filteredData = selectedCategory === 'All' 
-          ? excelData 
-          : excelData.filter((row: any) => row['Actual Category'] === selectedCategory);
+        // Filter data based on selectedCategory and selectedCountry
+        let filteredData = excelData;
+        
+        if (selectedCategory !== 'All') {
+          filteredData = filteredData.filter((row: any) => row['Actual Category'] === selectedCategory);
+        }
+        
+        if (selectedCountry !== 'All') {
+          filteredData = filteredData.filter((row: any) => row['Country'] === selectedCountry);
+        }
         
         // Count total rows
         const total = filteredData.length;
@@ -223,15 +238,18 @@ const AribaReport = () => {
     };
 
     fetchData();
-  }, [selectedCategory]);
+  }, [selectedCategory, selectedCountry]);
 
   return (
     <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
-      {/* Category Filter Section */}
-      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '12px' }}>
+      {/* Filter Section - Inline */}
+      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
+        {/* Search Label */}
         <Typography sx={{ fontWeight: 600, fontSize: '14px', color: '#374151' }}>
           {t('search') || 'Search'}:
         </Typography>
+        
+        {/* Category Filter */}
         <FormControl sx={{ minWidth: 250 }} size="small">
           <InputLabel id="category-select-label" sx={{ fontSize: '14px' }}>
             {t('actualCategory') || 'Actual Category'}
@@ -261,6 +279,44 @@ const AribaReport = () => {
             {allCategories.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        {/* Country Label */}
+       
+
+        {/* Country Filter */}
+        <FormControl sx={{ minWidth: 250 }} size="small">
+          <InputLabel id="country-select-label" sx={{ fontSize: '14px' }}>
+            {t('selectCountry') || 'Select Country'}
+          </InputLabel>
+          <Select
+            labelId="country-select-label"
+            id="country-select"
+            value={selectedCountry}
+            label={t('selectCountry') || 'Select Country'}
+            onChange={(e) => setSelectedCountry(e.target.value)}
+            sx={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '8px',
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#D1D5DB',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#2563EB',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#2563EB',
+                },
+              },
+            }}
+          >
+            {allCountries.map((country) => (
+              <MenuItem key={country} value={country}>
+                {country}
               </MenuItem>
             ))}
           </Select>

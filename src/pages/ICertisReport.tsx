@@ -56,7 +56,7 @@ const ICertisReport = () => {
             e2eProcess: Math.round(data.e2eProcess * 100) / 100, // Round to 2 decimal places
           }))
           .sort((a, b) => b.e2eProcess - a.e2eProcess)
-          .slice(0, 10); // Top 10 projects
+          .slice(0, 20); // Top 10 projects
         console.log('Top Projects by E2E Process:', projectDataArray);
         setProjectData(projectDataArray);
 
@@ -156,7 +156,7 @@ const ICertisReport = () => {
           },
         }}
       >
-        <TopProjectsByE2EProcess data={projectData} title="Top Projects by E2E Process" />
+        <TopProjectsByE2EProcess data={projectData} title="Top 20 Projects by E2E Process" />
         <ContractsByWorkArea data={contractData} title="Contracts by Work Area" />
       </Box>
 
