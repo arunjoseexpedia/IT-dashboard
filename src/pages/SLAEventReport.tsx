@@ -32,7 +32,7 @@ const SLAEventReport = () => {
     const fetchData = async () => {
       try {
         console.log('Fetching sampleData.xlsx for SLA Event Report...');
-        const response = await fetch('/sampleData.xlsx');
+        const response = await fetch(`${import.meta.env.BASE_URL}sampleData.xlsx`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
