@@ -24,6 +24,11 @@
   "selectCountry": "Select Country",
   "assignedLawyer": "Assigned Lawyer",
   "negotiationStatusBreakdown": "Negotiation Status Breakdown",
-  "lawyerDistribution": "Lawyer Distribution"
+  "lawyerDistribution": "Lawyer Distribution",
+  "e2eProcessingTime": "E2E Processing Time by Contract Type",
+  "amountVsE2eDuration": "Amount vs E2E Duration",
+  "topProjectsByE2E": "Top 20 Projects by E2E Process",
+  "contractsByWorkArea": "Contracts by Work Area",
+  "countryDistribution": "Country Distribution"
 }
 

@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import * as XLSX from 'xlsx';
 import TopProjectsByE2EProcess from '../components/TopProjectsByE2EProcess';
 import ContractsByWorkArea from '../components/ContractsByWorkArea';
@@ -7,6 +8,7 @@ import E2EProcessingTimeChart from '../components/E2EProcessingTimeChart';
 import AmountVsE2EDurationChart from '../components/AmountVsE2EDurationChart';
 
 const ICertisReport = () => {
+  const { t } = useTranslation();
   const [projectData, setProjectData] = useState<any[]>([]);
   const [contractData, setContractData] = useState<any[]>([]);
   const [e2eProcessingData, setE2eProcessingData] = useState<any[]>([]);
@@ -172,8 +174,8 @@ const ICertisReport = () => {
           },
         }}
       >
-        <TopProjectsByE2EProcess data={projectData} title="Top 20 Projects by E2E Process" />
-        <ContractsByWorkArea data={contractData} title="Contracts by Work Area" />
+        <TopProjectsByE2EProcess data={projectData} title={t('topProjectsByE2E')} />
+        <ContractsByWorkArea data={contractData} title={t('contractsByWorkArea')} />
       </Box>
 
       {/* Bottom Row - Two-column layout for additional charts */}
@@ -188,8 +190,8 @@ const ICertisReport = () => {
           },
         }}
       >
-        <E2EProcessingTimeChart data={e2eProcessingData} title="E2E Processing Time by Contract Type" />
-        <AmountVsE2EDurationChart data={amountVsE2eData} title="Amount vs E2E Duration" />
+        <E2EProcessingTimeChart data={e2eProcessingData} title={t('e2eProcessingTime')} />
+        <AmountVsE2EDurationChart data={amountVsE2eData} title={t('amountVsE2eDuration')} />
       </Box>
     </Box>
   );

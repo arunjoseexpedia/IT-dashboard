@@ -24,5 +24,10 @@
   "selectCountry": "Seleccionar País",
   "assignedLawyer": "Abogado Responsable",
   "negotiationStatusBreakdown": "Desglose del Estado de Negociación",
-  "lawyerDistribution": "Distribución por Abogado"
+  "lawyerDistribution": "Distribución por Abogado",
+  "e2eProcessingTime": "Duración del Procesamiento E2E por Tipo de Contrato",
+  "amountVsE2eDuration": "Comparación de Monto y Duración E2E",
+  "topProjectsByE2E": "Los 20 Principales Proyectos por Proceso E2E",
+  "contractsByWorkArea": "Contratos por Área de Trabajo",
+  "countryDistribution": "Distribución por País"
 }
