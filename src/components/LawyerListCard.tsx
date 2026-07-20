@@ -75,7 +75,7 @@ const LawyerListCard = ({
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '12px',
                 padding: '12px',
                 backgroundColor: '#F9FAFB',
                 borderRadius: '8px',
@@ -99,49 +99,40 @@ const LawyerListCard = ({
                   fontSize: '13px',
                   color: '#374151',
                   fontWeight: 500,
-                  flex: 1,
+                  minWidth: '140px',
                 }}
               >
                 {item.lawyer}
               </Typography>
-              <Box
+              <Typography
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-end',
-                  gap: '2px',
+                  fontSize: '13px',
+                  color: '#6B7280',
+                  fontWeight: 600,
+                  minWidth: '100px',
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: '13px',
-                    color: '#6B7280',
-                    fontWeight: 600,
-                  }}
-                >
-                  {item.count} contracts
-                </Typography>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Typography
-                    sx={{
-                      fontSize: '12px',
-                      color: '#2563EB',
-                      fontWeight: 600,
-                    }}
-                  >
-                    ${(item.usdAmount || 0).toLocaleString('en-US', { maximumFractionDigits: 0 })}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: '12px',
-                      color: '#9CA3AF',
-                      fontWeight: 500,
-                    }}
-                  >
-                    ({item.percentage}%)
-                  </Typography>
-                </Box>
-              </Box>
+                {item.count} contracts
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '13px',
+                  color: '#2563EB',
+                  fontWeight: 600,
+                  minWidth: '120px',
+                }}
+              >
+                ${(item.usdAmount || 0).toLocaleString('en-US', { maximumFractionDigits: 0 })}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '12px',
+                  color: '#9CA3AF',
+                  fontWeight: 500,
+                }}
+              >
+                ({item.percentage}%)
+              </Typography>
             </Box>
           ))}
         </Box>
