@@ -1,12 +1,14 @@
 import  { useEffect, useState } from "react"; 
-import { Box, IconButton, Typography, Drawer, Badge } from "@mui/material"; 
-import { DarkMode, LightMode, Close, Notifications } from "@mui/icons-material";
+import { Box, IconButton, Typography, Drawer, Badge, Tooltip } from "@mui/material"; 
+import { DarkMode, LightMode, Close, Notifications, HelpOutline } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
+import ChatBot from './components/ChatBot';
 
 
 const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const unreadCount = 7; // Unread notifications count
   const { t, i18n } = useTranslation();
@@ -59,24 +61,45 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
         </Typography>
       </div>
 
-      {/* Right side - Notifications and Menu Icons */}
+      {/* Right side - Notifications, Chatbot, and Menu Icons */}
       <Box display="flex" alignItems="center" gap={1}>
         {/* Notifications Icon with Badge */}
-        <Badge 
-          badgeContent={unreadCount} 
-          color="error"
-          sx={{
-            '& .MuiBadge-badge': {
-              right: -8,
-              top: 8,
-              border: `2px solid #02355a`,
-              padding: '0 4px',
-              fontWeight: 700,
-              fontSize: '11px',
-            },
-          }}
-        >
+        <Tooltip title="Notifications">
+          <Badge 
+            badgeContent={unreadCount} 
+            color="error"
+            sx={{
+              '& .MuiBadge-badge': {
+                right: -5,
+                top: 8,
+                border: `2px solid #02355a`,
+                padding: '0 3px',
+                fontWeight: 700,
+                fontSize: '11px',
+              },
+            }}
+          >
+            <IconButton 
+              sx={{ 
+                color: 'white', 
+                padding: '8px',
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' }, 
+                '&:active': { backgroundColor: 'rgba(255,255,255,0.2)' }, 
+                '& .MuiTouchRipple-root': { display: 'none' } 
+              }}
+            >
+              <Notifications sx={{ fontSize: 28 }} />
+            </IconButton>
+          </Badge>
+        </Tooltip>
+
+        {/* Chatbot Icon */}
+        <Tooltip title="Chat with Assistant">
           <IconButton 
+            onClick={() => setChatOpen(true)}
             sx={{ 
               color: 'white', 
               padding: '8px',
@@ -88,11 +111,12 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
               '& .MuiTouchRipple-root': { display: 'none' } 
             }}
           >
-            <Notifications sx={{ fontSize: 28 }} />
+            <HelpOutline sx={{ fontSize: 28 }} />
           </IconButton>
-        </Badge>
+        </Tooltip>
 
         {/* Menu Icon */}
+        <Tooltip title="Menu">
         <IconButton 
           sx={{ 
             color: 'white', 
@@ -114,6 +138,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
             sx={{ width: 70, height: 50, cursor: 'pointer', display: 'block' }}
           />
         </IconButton>
+        </Tooltip>
       </Box>
 
       {/* Sliding Menu Drawer */}
@@ -232,6 +257,9 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
           </Box>
         </Box>
       </Drawer>
+
+      {/* ChatBot Modal */}
+      <ChatBot open={chatOpen} onClose={() => setChatOpen(false)} />
     </div>
   );
 };
