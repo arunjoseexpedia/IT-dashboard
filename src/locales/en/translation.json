@@ -29,6 +29,9 @@
   "amountVsE2eDuration": "Amount vs E2E Duration",
   "topProjectsByE2E": "Top 20 Projects by E2E Process",
   "contractsByWorkArea": "Contracts by Work Area",
-  "countryDistribution": "Country Distribution"
+  "countryDistribution": "Country Distribution",
+  "generalTab": "General",
+  "slaTab": "SLA Draft",
+  "e2eTab": "E2E Template"
 }
 

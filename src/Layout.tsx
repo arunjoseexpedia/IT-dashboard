@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import Topbar from './Topbar';
 import AribaReport from './pages/AribaReport';
 import ICertisReport from './pages/ICertisReport';
@@ -8,6 +9,7 @@ import SLAEventReport from './pages/SLAEventReport';
 function Layout() {
   const [tabValue, setTabValue] = useState(0);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const { t } = useTranslation();
   
   useEffect(() => {
     // Check initial theme from localStorage
@@ -24,7 +26,7 @@ function Layout() {
     return () => window.removeEventListener('themeChange', handleThemeChange);
   }, []);
   
-  const tabNames = ['General', 'SLA Draft', 'E2E Template'];
+  const tabNames = [t('generalTab'), t('slaTab'), t('e2eTab')];
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     console.log(event, newValue );
@@ -60,9 +62,9 @@ function Layout() {
             }
           }}
         >
-          <Tab label="General" />
-          <Tab label="SLA Draft" />
-          <Tab label="E2E Template" />
+          <Tab label={t('generalTab')} />
+          <Tab label={t('slaTab')} />
+          <Tab label={t('e2eTab')} />
         </Tabs>
       </Box>
 

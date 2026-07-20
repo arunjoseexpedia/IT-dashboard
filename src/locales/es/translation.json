@@ -29,5 +29,8 @@
   "amountVsE2eDuration": "Comparación de Monto y Duración E2E",
   "topProjectsByE2E": "Los 20 Principales Proyectos por Proceso E2E",
   "contractsByWorkArea": "Contratos por Área de Trabajo",
-  "countryDistribution": "Distribución por País"
+  "countryDistribution": "Distribución por País",
+  "generalTab": "General",
+  "slaTab": "Borrador de SLA",
+  "e2eTab": "Plantilla E2E"
 }
