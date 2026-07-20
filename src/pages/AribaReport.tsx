@@ -390,8 +390,8 @@ const AribaReport = () => {
         {/* Pie Chart Card */}
         <Card
           sx={{
-            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-            border: isDarkTheme ? "1px solid #4B5563" : "1px solid #E5E7EB",
+            backgroundColor:'#FFFFFF',
+            border: "1px solid #E5E7EB",
             borderRadius: '20px',
             boxShadow: '0 6px 20px rgba(15,23,42,.08)',
             padding: '20px',
@@ -402,11 +402,11 @@ const AribaReport = () => {
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: isDarkTheme ? '#FFFFFF' : '#02355a',
+                color: '#02355a',
                 textTransform: 'uppercase',
                 marginBottom: '20px',
                 letterSpacing: '0.05em',
-                borderBottom: isDarkTheme ? '2px solid #4B5563' : '2px solid #02355a',
+                borderBottom: '2px solid #02355a',
                 paddingBottom: '10px',
                 textAlign: 'center',
               }}
@@ -439,8 +439,8 @@ const AribaReport = () => {
         {/* Requesting Area Widget */}
         <Card
           sx={{
-            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-            border: isDarkTheme ? "1px solid #4B5563" : "1px solid #E5E7EB",
+            backgroundColor: '#FFFFFF',
+            border: "1px solid #E5E7EB",
             borderRadius: '20px',
             boxShadow: '0 6px 20px rgba(15,23,42,.08)',
             padding: '20px',
@@ -451,11 +451,11 @@ const AribaReport = () => {
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: isDarkTheme ? '#FFFFFF' : '#02355a',
+                color: '#02355a',
                 textTransform: 'uppercase',
                 marginBottom: '20px',
                 letterSpacing: '0.05em',
-                borderBottom: isDarkTheme ? '2px solid #4B5563' : '2px solid #02355a',
+                borderBottom: '2px solid #02355a',
                 paddingBottom: '10px',
                 textAlign: 'center',
               }}

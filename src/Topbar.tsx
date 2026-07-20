@@ -1,6 +1,6 @@
 import  { useEffect, useState } from "react"; 
-import { Box, IconButton, Typography, Drawer } from "@mui/material"; 
-import { DarkMode, LightMode, Close } from "@mui/icons-material";
+import { Box, IconButton, Typography, Drawer, Badge } from "@mui/material"; 
+import { DarkMode, LightMode, Close, Notifications } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
 
 
@@ -8,6 +8,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const unreadCount = 7; // Unread notifications count
   const { t, i18n } = useTranslation();
   
   useEffect(() => {
@@ -58,18 +59,61 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
         </Typography>
       </div>
 
-      {/* Right side - Menu Toggle Button */}
-      <Box display="flex" alignItems="center" gap={2}>
-       
-          <IconButton sx={{ color: 'white', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': { backgroundColor: 'transparent' }, '&:active': { backgroundColor: 'transparent' }, '& .MuiTouchRipple-root': { display: 'none' } }} onFocus={(e) => (e.currentTarget.style.outline = "none")} onClick={() => setMenuOpen(true)}>
-            <Box
-              component="img"
-              src="MenuIcon.png"
-              alt="Menu Icon"
-              sx={{ width: 70, height: 50, cursor: 'pointer', display: 'block' }}
-            />
+      {/* Right side - Notifications and Menu Icons */}
+      <Box display="flex" alignItems="center" gap={1}>
+        {/* Notifications Icon with Badge */}
+        <Badge 
+          badgeContent={unreadCount} 
+          color="error"
+          sx={{
+            '& .MuiBadge-badge': {
+              right: -8,
+              top: 8,
+              border: `2px solid #02355a`,
+              padding: '0 4px',
+              fontWeight: 700,
+              fontSize: '11px',
+            },
+          }}
+        >
+          <IconButton 
+            sx={{ 
+              color: 'white', 
+              padding: '8px',
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' }, 
+              '&:active': { backgroundColor: 'rgba(255,255,255,0.2)' }, 
+              '& .MuiTouchRipple-root': { display: 'none' } 
+            }}
+          >
+            <Notifications sx={{ fontSize: 28 }} />
           </IconButton>
-        
+        </Badge>
+
+        {/* Menu Icon */}
+        <IconButton 
+          sx={{ 
+            color: 'white', 
+            padding: 0, 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            '&:hover': { backgroundColor: 'transparent' }, 
+            '&:active': { backgroundColor: 'transparent' }, 
+            '& .MuiTouchRipple-root': { display: 'none' } 
+          }} 
+          onFocus={(e) => (e.currentTarget.style.outline = "none")} 
+          onClick={() => setMenuOpen(true)}
+        >
+          <Box
+            component="img"
+            src="MenuIcon.png"
+            alt="Menu Icon"
+            sx={{ width: 70, height: 50, cursor: 'pointer', display: 'block' }}
+          />
+        </IconButton>
       </Box>
 
       {/* Sliding Menu Drawer */}
