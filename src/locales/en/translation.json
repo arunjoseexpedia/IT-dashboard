@@ -21,6 +21,9 @@
   "search": "Search",
   "actualCategory": "Actual Category",
   "country": "Country",
-  "selectCountry": "Select Country"
+  "selectCountry": "Select Country",
+  "assignedLawyer": "Assigned Lawyer",
+  "negotiationStatusBreakdown": "Negotiation Status Breakdown",
+  "lawyerDistribution": "Lawyer Distribution"
 }
 

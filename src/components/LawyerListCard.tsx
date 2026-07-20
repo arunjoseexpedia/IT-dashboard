@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface LawyerData {
   lawyer: string;
@@ -25,8 +26,9 @@ const COLORS = [
 
 const LawyerListCard = ({
   data,
-  title = 'Lawyer Distribution',
-}: LawyerListCardProps) => {
+  }: LawyerListCardProps) => {
+  const { t } = useTranslation();
+  const displayTitle = t('lawyerDistribution');
   return (
     <Card
       sx={{
@@ -57,7 +59,7 @@ const LawyerListCard = ({
             letterSpacing: '0.05em',
           }}
         >
-          {title}
+          {displayTitle}
         </Typography>
 
         {/* Lawyer List */}

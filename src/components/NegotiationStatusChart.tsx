@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import {
   BarChart,
   Bar,
@@ -31,8 +32,9 @@ const COLORS = {
 
 const NegotiationStatusChart = ({
   data,
-  title = 'Negotiation Status Breakdown',
-}: NegotiationStatusChartProps) => {
+  }: NegotiationStatusChartProps) => {
+  const { t } = useTranslation();
+  const displayTitle = t('negotiationStatusBreakdown');
   // Custom tooltip
   const CustomTooltip = (props: any) => {
     const { active, payload } = props;
@@ -96,7 +98,7 @@ const NegotiationStatusChart = ({
             letterSpacing: '0.05em',
           }}
         >
-          {title}
+          {displayTitle}
         </Typography>
 
         {/* Chart Container */}

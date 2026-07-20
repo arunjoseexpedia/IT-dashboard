@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import {
   PieChart,
   Pie,
@@ -35,9 +36,10 @@ const COLORS = [
 ];
 
 const AssignedLawyerDashboard = ({
-  data,
-  title = 'Assigned Lawyer',
-}: AssignedLawyerDashboardProps) => {
+  data
+ }: AssignedLawyerDashboardProps) => {
+  const { t } = useTranslation();
+  const displayTitle = t('assignedLawyer');
   const totalContracts = data.reduce((sum, item) => sum + item.count, 0);
 
   // Custom label for donut chart showing percentage
@@ -141,7 +143,7 @@ const AssignedLawyerDashboard = ({
             height: '24px', // Fixed height for consistency
           }}
         >
-          {title}
+          {displayTitle}
         </Typography>
 
         {/* Main Content Grid - Top aligned */}

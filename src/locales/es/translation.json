@@ -21,5 +21,8 @@
   "search": "Buscar",
   "actualCategory": "Categoría Actual",
   "country": "País",
-  "selectCountry": "Seleccionar País"
+  "selectCountry": "Seleccionar País",
+  "assignedLawyer": "Abogado Responsable",
+  "negotiationStatusBreakdown": "Desglose del Estado de Negociación",
+  "lawyerDistribution": "Distribución por Abogado"
 }

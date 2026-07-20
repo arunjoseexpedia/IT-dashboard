@@ -167,7 +167,7 @@ const SLAEventReport = () => {
         </FormControl>
       </Box>
 
-      <AssignedLawyerDashboard data={lawyerData} title="Assigned Lawyer" />
+      <AssignedLawyerDashboard data={lawyerData} />
       
       {/* Two-column layout for Negotiation Status and Lawyer List */}
       <Box
