@@ -76,7 +76,7 @@ const ChatBot = ({ open, onClose }: ChatBotProps) => {
       {/* Header */}
       <DialogTitle
         sx={{
-          backgroundColor: '#0052CC',
+          backgroundColor: '#02355A',
           color: 'white',
           display: 'flex',
           justifyContent: 'space-between',
