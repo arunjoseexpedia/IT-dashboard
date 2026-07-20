@@ -31,7 +31,23 @@ const AribaReport = () => {
   const [allCategories, setAllCategories] = useState<string[]>(['All']);
   const [selectedCountry, setSelectedCountry] = useState('All');
   const [allCountries, setAllCountries] = useState<string[]>(['All']);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const { t } = useTranslation();
+  
+  useEffect(() => {
+    // Check initial theme
+    const savedTheme = localStorage.getItem('theme');
+    setIsDarkTheme(savedTheme === 'dark');
+    
+    // Listen for theme changes
+    const handleThemeChange = () => {
+      const currentTheme = localStorage.getItem('theme');
+      setIsDarkTheme(currentTheme === 'dark');
+    };
+    
+    window.addEventListener('themeChange', handleThemeChange);
+    return () => window.removeEventListener('themeChange', handleThemeChange);
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -241,17 +257,17 @@ const AribaReport = () => {
   }, [selectedCategory, selectedCountry]);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F8FAFC', minHeight: '100vh' }}>
       {/* Filter Section - Inline */}
       <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
         {/* Search Label */}
-        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: '#374151' }}>
+        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: isDarkTheme ? '#FFFFFF' : '#374151' }}>
           {t('search') || 'Search'}:
         </Typography>
         
         {/* Category Filter */}
         <FormControl sx={{ minWidth: 250 }} size="small">
-          <InputLabel id="category-select-label" sx={{ fontSize: '14px' }}>
+          <InputLabel id="category-select-label" sx={{ fontSize: '14px', color: isDarkTheme ? '#9CA3AF' : '#6B7280' }}>
             {t('actualCategory') || 'Actual Category'}
           </InputLabel>
           <Select
@@ -261,11 +277,12 @@ const AribaReport = () => {
             label={t('actualCategory') || 'Actual Category'}
             onChange={(e) => setSelectedCategory(e.target.value)}
             sx={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+              color: isDarkTheme ? '#FFFFFF' : '#000000',
               borderRadius: '8px',
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                  borderColor: '#D1D5DB',
+                  borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
                 },
                 '&:hover fieldset': {
                   borderColor: '#2563EB',
@@ -273,6 +290,9 @@ const AribaReport = () => {
                 '&.Mui-focused fieldset': {
                   borderColor: '#2563EB',
                 },
+              },
+              '& .MuiSvgIcon-root': {
+                color: isDarkTheme ? '#9CA3AF' : '#6B7280',
               },
             }}
           >
@@ -284,12 +304,9 @@ const AribaReport = () => {
           </Select>
         </FormControl>
 
-        {/* Country Label */}
-       
-
         {/* Country Filter */}
         <FormControl sx={{ minWidth: 250 }} size="small">
-          <InputLabel id="country-select-label" sx={{ fontSize: '14px' }}>
+          <InputLabel id="country-select-label" sx={{ fontSize: '14px', color: isDarkTheme ? '#9CA3AF' : '#6B7280' }}>
             {t('selectCountry') || 'Select Country'}
           </InputLabel>
           <Select
@@ -299,11 +316,12 @@ const AribaReport = () => {
             label={t('selectCountry') || 'Select Country'}
             onChange={(e) => setSelectedCountry(e.target.value)}
             sx={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+              color: isDarkTheme ? '#FFFFFF' : '#000000',
               borderRadius: '8px',
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                  borderColor: '#D1D5DB',
+                  borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
                 },
                 '&:hover fieldset': {
                   borderColor: '#2563EB',
@@ -311,6 +329,9 @@ const AribaReport = () => {
                 '&.Mui-focused fieldset': {
                   borderColor: '#2563EB',
                 },
+              },
+              '& .MuiSvgIcon-root': {
+                color: isDarkTheme ? '#9CA3AF' : '#6B7280',
               },
             }}
           >
@@ -369,8 +390,8 @@ const AribaReport = () => {
         {/* Pie Chart Card */}
         <Card
           sx={{
-            backgroundColor: '#FFFFFF',
-            border: "1px solid #E5E7EB",
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            border: isDarkTheme ? "1px solid #4B5563" : "1px solid #E5E7EB",
             borderRadius: '20px',
             boxShadow: '0 6px 20px rgba(15,23,42,.08)',
             padding: '20px',
@@ -381,11 +402,11 @@ const AribaReport = () => {
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: '#02355a',
+                color: isDarkTheme ? '#FFFFFF' : '#02355a',
                 textTransform: 'uppercase',
                 marginBottom: '20px',
                 letterSpacing: '0.05em',
-                borderBottom: '2px solid #02355a',
+                borderBottom: isDarkTheme ? '2px solid #4B5563' : '2px solid #02355a',
                 paddingBottom: '10px',
                 textAlign: 'center',
               }}
@@ -418,8 +439,8 @@ const AribaReport = () => {
         {/* Requesting Area Widget */}
         <Card
           sx={{
-             backgroundColor: '#FFFFFF',
-            border: "1px solid #E5E7EB",
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            border: isDarkTheme ? "1px solid #4B5563" : "1px solid #E5E7EB",
             borderRadius: '20px',
             boxShadow: '0 6px 20px rgba(15,23,42,.08)',
             padding: '20px',
@@ -430,11 +451,11 @@ const AribaReport = () => {
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: '#02355a',
+                color: isDarkTheme ? '#FFFFFF' : '#02355a',
                 textTransform: 'uppercase',
                 marginBottom: '20px',
                 letterSpacing: '0.05em',
-                borderBottom: '2px solid #02355a',
+                borderBottom: isDarkTheme ? '2px solid #4B5563' : '2px solid #02355a',
                 paddingBottom: '10px',
                 textAlign: 'center',
               }}
@@ -443,14 +464,15 @@ const AribaReport = () => {
             </Typography>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={requestingAreaData} layout="vertical" margin={{ top: 5, right: 10, left: 120, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                <XAxis type="number" stroke="#666" />
-                <YAxis dataKey="name" type="category" width={115} tick={{ fontSize: 12 }} stroke="#666" />
+                <CartesianGrid strokeDasharray="3 3" stroke={isDarkTheme ? '#4B5563' : '#e0e0e0'} />
+                <XAxis type="number" stroke={isDarkTheme ? '#9CA3AF' : '#666'} tick={{ fill: isDarkTheme ? '#9CA3AF' : '#666', fontSize: 12 }} />
+                <YAxis dataKey="name" type="category" width={115} tick={{ fontSize: 12, fill: isDarkTheme ? '#9CA3AF' : '#666' }} stroke={isDarkTheme ? '#9CA3AF' : '#666'} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#fff',
-                    border: '1px solid #ccc',
+                    backgroundColor: isDarkTheme ? '#2d3748' : '#fff',
+                    border: isDarkTheme ? '1px solid #4B5563' : '1px solid #ccc',
                     borderRadius: '4px',
+                    color: isDarkTheme ? '#FFFFFF' : '#000000',
                   }}
                 />
                 <Bar dataKey="count" fill="#003d99" radius={[0, 4, 4, 0]} />

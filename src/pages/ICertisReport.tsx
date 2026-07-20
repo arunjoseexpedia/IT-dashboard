@@ -11,6 +11,22 @@ const ICertisReport = () => {
   const [contractData, setContractData] = useState<any[]>([]);
   const [e2eProcessingData, setE2eProcessingData] = useState<any[]>([]);
   const [amountVsE2eData, setAmountVsE2eData] = useState<any[]>([]);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const savedTheme = localStorage.getItem('theme');
+    setIsDarkTheme(savedTheme === 'dark');
+    
+    // Listen for theme changes
+    const handleThemeChange = () => {
+      const currentTheme = localStorage.getItem('theme');
+      setIsDarkTheme(currentTheme === 'dark');
+    };
+    
+    window.addEventListener('themeChange', handleThemeChange);
+    return () => window.removeEventListener('themeChange', handleThemeChange);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -144,7 +160,7 @@ const ICertisReport = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F8FAFC', minHeight: '100vh' }}>
       {/* Top Row - Two-column layout for charts */}
       <Box
         sx={{

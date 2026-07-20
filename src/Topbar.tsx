@@ -104,7 +104,12 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
           </Typography>
 
           <Box
-            onClick={() => setIsDarkTheme(!isDarkTheme)}
+            onClick={() => {
+              const newTheme = !isDarkTheme;
+              setIsDarkTheme(newTheme);
+              localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+              window.dispatchEvent(new Event('themeChange'));
+            }}
             sx={{
               display: 'flex',
               alignItems: 'center',

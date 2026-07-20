@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
 import Topbar from './Topbar';
 import AribaReport from './pages/AribaReport';
@@ -7,6 +7,22 @@ import SLAEventReport from './pages/SLAEventReport';
 
 function Layout() {
   const [tabValue, setTabValue] = useState(0);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  
+  useEffect(() => {
+    // Check initial theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    setIsDarkTheme(savedTheme === 'dark');
+    
+    // Listen for theme changes
+    const handleThemeChange = () => {
+      const currentTheme = localStorage.getItem('theme');
+      setIsDarkTheme(currentTheme === 'dark');
+    };
+    
+    window.addEventListener('themeChange', handleThemeChange);
+    return () => window.removeEventListener('themeChange', handleThemeChange);
+  }, []);
   
   const tabNames = ['General', 'SLA Draft', 'E2E Template'];
 
@@ -23,7 +39,7 @@ function Layout() {
       </header>
 
       {/* Tab Navigation */}
-      <Box sx={{ borderBottom: 1, borderColor: 'divider',  backgroundColor: '#F8FAFC' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: isDarkTheme ? '#111827' : '#F8FAFC' }}>
         <Tabs 
           value={tabValue} 
           onChange={handleTabChange}
@@ -32,13 +48,13 @@ function Layout() {
               textTransform: 'none',
               fontSize: '14px',
               fontWeight: 500,
-              color: '#666',
+              color: isDarkTheme ? '#9CA3AF' : '#666',
               outline: 'none',
               '&:focus': {
                 outline: 'none',
               },
               '&.Mui-selected': {
-                color: '#02355a',
+                color: isDarkTheme ? '#FFFFFF' : '#02355a',
                 fontWeight: 700,
               }
             }

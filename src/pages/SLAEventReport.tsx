@@ -26,7 +26,23 @@ const SLAEventReport = () => {
   const [lawyerData, setLawyerData] = useState<LawyerData[]>([]);
   const [negotiationStatusData, setNegotiationStatusData] = useState<NegotiationStatusData[]>([]);
   const [selectedSignatureStatus, setSelectedSignatureStatus] = useState('All');
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    // Check initial theme
+    const savedTheme = localStorage.getItem('theme');
+    setIsDarkTheme(savedTheme === 'dark');
+    
+    // Listen for theme changes
+    const handleThemeChange = () => {
+      const currentTheme = localStorage.getItem('theme');
+      setIsDarkTheme(currentTheme === 'dark');
+    };
+    
+    window.addEventListener('themeChange', handleThemeChange);
+    return () => window.removeEventListener('themeChange', handleThemeChange);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -128,14 +144,14 @@ const SLAEventReport = () => {
   }, [selectedSignatureStatus]);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F8FAFC', minHeight: '100vh' }}>
       {/* Signatures Status Filter Section */}
       <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '12px' }}>
-        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: '#374151' }}>
+        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: isDarkTheme ? '#FFFFFF' : '#374151' }}>
           {t('search') || 'Search'}:
         </Typography>
         <FormControl sx={{ minWidth: 250 }} size="small">
-          <InputLabel id="signature-status-select-label" sx={{ fontSize: '14px' }}>
+          <InputLabel id="signature-status-select-label" sx={{ fontSize: '14px', color: isDarkTheme ? '#9CA3AF' : '#6B7280' }}>
             {t('signaturesStatus') || 'Signatures Status'}
           </InputLabel>
           <Select
@@ -145,11 +161,12 @@ const SLAEventReport = () => {
             label={t('signaturesStatus') || 'Signatures Status'}
             onChange={(e) => setSelectedSignatureStatus(e.target.value)}
             sx={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+              color: isDarkTheme ? '#FFFFFF' : '#000000',
               borderRadius: '8px',
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                  borderColor: '#D1D5DB',
+                  borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
                 },
                 '&:hover fieldset': {
                   borderColor: '#2563EB',
@@ -157,6 +174,9 @@ const SLAEventReport = () => {
                 '&.Mui-focused fieldset': {
                   borderColor: '#2563EB',
                 },
+              },
+              '& .MuiSvgIcon-root': {
+                color: isDarkTheme ? '#9CA3AF' : '#6B7280',
               },
             }}
           >
