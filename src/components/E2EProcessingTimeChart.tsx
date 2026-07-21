@@ -36,6 +36,7 @@ const E2EProcessingTimeChart = ({
   data,
   title = 'E2E Processing Time by Contract Type',
 }: E2EProcessingTimeChartProps) => {
+  console.log('data',data);
   // Custom tooltip
   const CustomTooltip = (props: any) => {
     const { active, payload } = props;
@@ -62,7 +63,7 @@ const E2EProcessingTimeChart = ({
             {dataPoint.contractType}
           </Typography>
           <Typography sx={{ fontSize: '13px', color: '#6B7280', marginBottom: '2px' }}>
-            Avg Processing Time: {(Math.random() * 50 + 5).toLocaleString('en-US', { maximumFractionDigits: 2 })} days
+            Avg Processing Time: {dataPoint.avgProcessingTime.toLocaleString('en-US', { maximumFractionDigits: 2 })} days
           </Typography>
           <Typography sx={{ fontSize: '13px', color: '#6B7280' }}>
             Records: {dataPoint.recordCount}
