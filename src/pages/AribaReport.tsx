@@ -228,20 +228,24 @@ const AribaReport = () => {
         
         setRequestingAreaData(departmentData);
 
-        // Process Country data
-        const countryMap: { [key: string]: number } = {};
+        // Process Country data with Region
+        const countryMap: { [key: string]: { count: number; region: string } } = {};
         
         filteredData.forEach((row: any) => {
           const country = row['Country'];
+          const region = row['Region'] || 'N/A';
           
           if (country) {
-            countryMap[country] = (countryMap[country] || 0) + 1;
+            if (!countryMap[country]) {
+              countryMap[country] = { count: 0, region };
+            }
+            countryMap[country].count++;
           }
         });
         
         // Convert to array and sort in descending order by count
         const cData = Object.entries(countryMap)
-          .map(([country, count]) => ({ country, count }))
+          .map(([country, data]) => ({ country, count: data.count, region: data.region }))
           .sort((a, b) => b.count - a.count);
         
         setCountryData(cData);

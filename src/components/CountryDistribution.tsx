@@ -4,7 +4,7 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Tooltip } from 'react-tooltip';
 
 interface CountryDistributionProps {
-  data: Array<{ country: string; count: number }>;
+  data: Array<{ country: string; count: number; region?: string }>;
   title: string;
 }
 
@@ -30,13 +30,13 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
 
-  // Create a map of country names to contract counts
+  // Create a map of country names to contract counts and region
   const countryDataMap = useMemo(() => {
-    const map: Record<string, number> = {};
+    const map: Record<string, { count: number; region: string }> = {};
     data.forEach((item) => {
       const countryName = countryCodeMap[item.country];
       if (countryName) {
-        map[countryName] = item.count;
+        map[countryName] = { count: item.count, region: item.region || 'N/A' };
       }
     });
     return map;
@@ -44,7 +44,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
 
   // Calculate min and max for color scale
   const { minCount, maxCount } = useMemo(() => {
-    const counts = Object.values(countryDataMap);
+    const counts = Object.values(countryDataMap).map(item => item.count);
     return {
       minCount: counts.length > 0 ? Math.min(...counts) : 0,
       maxCount: counts.length > 0 ? Math.max(...counts) : 1,
@@ -53,10 +53,10 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
 
   // Color scale function (lighter to darker blue based on contract count)
   const getColor = (countryName: string): string => {
-    const count = countryDataMap[countryName];
-    if (!count) return '#F0F4F8'; // Light gray for no data
+    const data = countryDataMap[countryName];
+    if (!data) return '#F0F4F8'; // Light gray for no data
 
-    const ratio = (count - minCount) / (maxCount - minCount || 1);
+    const ratio = (data.count - minCount) / (maxCount - minCount || 1);
     // Scale from light blue (#D1E7FF) to dark blue (#0052CC)
     const hue = 217; // Blue hue
     const lightness = 95 - ratio * 60; // From 95% light to 35% light
@@ -119,7 +119,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
             <span>No Data</span>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Box sx={{ width: '16px', height: '16px', backgroundColor: '#D1E7FF', borderRadius: '2px' }} />
+            <Box sx={{ width: '16px', height: '16px', backgroundColor: '#85BEFF', borderRadius: '2px' }} />
             <span>Low</span>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -144,7 +144,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
               {({ geographies }: any) =>
                 geographies.map((geo: any) => {
                   const countryName = geo.properties.name;
-                  const count = countryDataMap[countryName];
+                  const countryData = countryDataMap[countryName];
                   const isHovered = hoveredCountry === countryName;
 
                   return (
@@ -153,8 +153,8 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                       geography={geo}
                       data-tooltip-id="country-tooltip"
                       data-tooltip-content={
-                        count
-                          ? `${countryName}\nContracts: ${count}`
+                        countryData
+                          ? `Place:${countryName}\nRegion: ${countryData.region}\nContracts: ${countryData.count}`
                           : `${countryName}\nNo Data`
                       }
                       onMouseEnter={() => setHoveredCountry(countryName)}
@@ -165,7 +165,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                           stroke: '#D2D2D2',
                           strokeWidth: 0.75,
                           outline: 'none',
-                          cursor: count ? 'pointer' : 'default',
+                          cursor: countryData ? 'pointer' : 'default',
                           opacity: isHovered ? 1 : 0.9,
                           transition: 'all 0.3s ease',
                         },
@@ -174,7 +174,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                           stroke: '#02355a',
                           strokeWidth: 1.5,
                           outline: 'none',
-                          cursor: count ? 'pointer' : 'default',
+                          cursor: countryData ? 'pointer' : 'default',
                           opacity: 1,
                           transition: 'all 0.3s ease',
                         },
@@ -183,7 +183,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                           stroke: '#02355a',
                           strokeWidth: 1.5,
                           outline: 'none',
-                          cursor: count ? 'pointer' : 'default',
+                          cursor: countryData ? 'pointer' : 'default',
                           opacity: 1,
                         },
                       }}
