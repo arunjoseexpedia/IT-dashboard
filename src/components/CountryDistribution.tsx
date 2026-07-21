@@ -200,7 +200,6 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
       <Tooltip
         id="country-tooltip"
         place="top"
-        type="dark"
         style={{
           backgroundColor: '#333',
           color: '#fff',
