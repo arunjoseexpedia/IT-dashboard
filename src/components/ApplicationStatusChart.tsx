@@ -16,14 +16,14 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
         borderRadius: '16px',
         boxShadow: '0 4px 16px rgba(15,23,42,.08)',
         height: '100%',
-        minHeight: '340px',
+        minHeight: '200px',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
       <CardContent
         sx={{
-          padding: '24px',
+          padding: '16px',
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
@@ -36,12 +36,13 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
             fontWeight: 700,
             color: '#02355a',
             textTransform: 'uppercase',
-            marginBottom: '20px',
+            marginBottom: '12px',
             letterSpacing: '0.05em',
             borderBottom: '2px solid #02355a',
-            paddingBottom: '10px',
+            paddingBottom: '8px',
             textAlign: 'center',
             flexShrink: 0,
+            fontSize: '13px',
           }}
         >
           {title}
@@ -59,7 +60,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={data}
-              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+              margin={{ top: 5, right: 8, left: 0, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
               <XAxis dataKey="name" stroke="#666" />
@@ -72,7 +73,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 }}
               />
-              <Legend wrapperStyle={{ paddingTop: '10px' }} />
+              <Legend wrapperStyle={{ paddingTop: '6px', fontSize: '12px' }} />
               <Bar dataKey="FIRMADO" stackId="a" fill="#003d99" radius={[4, 4, 0, 0]} />
               <Bar dataKey="NO FIRMADO" stackId="a" fill="#1976d2" radius={[4, 4, 0, 0]} />
             </BarChart>
