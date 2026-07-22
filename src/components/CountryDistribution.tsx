@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Card, CardContent, Typography, Box, Tabs, Tab } from '@mui/material';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Tooltip } from 'react-tooltip';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
 
 interface CountryDistributionProps {
   data: Array<{ country: string; count: number; region?: string }>;
@@ -29,6 +30,7 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
 const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const [tabValue, setTabValue] = useState(0);
 
   // Create a map of country names to contract counts and region
   const countryDataMap = useMemo(() => {
@@ -63,6 +65,17 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
     return `hsl(${hue}, 100%, ${lightness}%)`;
   };
 
+  // Prepare bar chart data (sorted by count descending)
+  const barChartData = useMemo(() => {
+    return data
+      .map((item) => ({
+        country: item.country,
+        region: item.region || 'N/A',
+        count: item.count,
+      }))
+      .sort((a, b) => b.count - a.count);
+  }, [data]);
+
   return (
     <Card
       sx={{
@@ -90,7 +103,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
             fontWeight: 700,
             color: '#02355a',
             textTransform: 'uppercase',
-            marginBottom: '20px',
+            marginBottom: '16px',
             letterSpacing: '0.05em',
             borderBottom: '2px solid #02355a',
             paddingBottom: '10px',
@@ -101,98 +114,204 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
           {title}
         </Typography>
 
-        {/* Legend */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '12px',
-            marginBottom: '16px',
-            flexWrap: 'wrap',
-            fontSize: '12px',
-            color: '#666',
-            flexShrink: 0,
-          }}
-        >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Box sx={{ width: '16px', height: '16px', backgroundColor: '#F0F4F8', border: '1px solid #ddd', borderRadius: '2px' }} />
-            <span>No Data</span>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Box sx={{ width: '16px', height: '16px', backgroundColor: '#85BEFF', borderRadius: '2px' }} />
-            <span>Low</span>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Box sx={{ width: '16px', height: '16px', backgroundColor: '#0052CC', borderRadius: '2px' }} />
-            <span>High</span>
-          </Box>
+        {/* Tabs */}
+        <Box sx={{ marginBottom: '16px', flexShrink: 0 }}>
+          <Tabs 
+            value={tabValue} 
+            onChange={(_, value) => setTabValue(value)}
+            variant="fullWidth"
+            sx={{
+              backgroundColor: 'transparent',
+              borderBottom: '1px solid #E5E7EB',
+              '& .MuiTabs-indicator': {
+                backgroundColor: '#02355a',
+                height: '3px',
+              },
+              '& .MuiTab-root': {
+                textTransform: 'none',
+                fontSize: '14px',
+                fontWeight: 500,
+                color: '#6B7280',
+                padding: '12px 16px',
+                minHeight: '44px',
+                border: 'none',
+                outline: 'none',
+                position: 'relative',
+                transition: 'all 0.2s ease',
+                '&:focus': {
+                  outline: 'none',
+                  boxShadow: 'inset 0 0 0 2px rgba(2, 53, 90, 0.1)',
+                },
+                '&:hover': {
+                  backgroundColor: 'rgba(245, 247, 250, 1)',
+                  color: '#374151',
+                },
+                '&.Mui-selected': {
+                  color: '#02355a',
+                  fontWeight: 600,
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  outline: 'none',
+                  boxShadow: 'none',
+                },
+                '& .MuiTouchRipple-root': {
+                  display: 'none',
+                },
+              },
+            }}
+          >
+            <Tab label="🗺️ Map" />
+            <Tab label="📊 Country & Region" />
+          </Tabs>
         </Box>
 
-        {/* Map Container */}
-        <Box
-          sx={{
-            flex: 1,
-            overflow: 'auto',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: 0,
-          }}
-        >
-          <ComposableMap projection="geoMercator">
-            <Geographies geography={geoUrl}>
-              {({ geographies }: any) =>
-                geographies.map((geo: any) => {
-                  const countryName = geo.properties.name;
-                  const countryData = countryDataMap[countryName];
-                  const isHovered = hoveredCountry === countryName;
+        {/* Tab Content Container */}
+        <Box sx={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+          {/* Map Tab */}
+          {tabValue === 0 && (
+            <>
+              {/* Legend */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '12px',
+                  marginBottom: '12px',
+                  flexWrap: 'wrap',
+                  fontSize: '12px',
+                  color: '#666',
+                  flexShrink: 0,
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Box sx={{ width: '16px', height: '16px', backgroundColor: '#F0F4F8', border: '1px solid #ddd', borderRadius: '2px' }} />
+                  <span>No Data</span>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Box sx={{ width: '16px', height: '16px', backgroundColor: '#85BEFF', borderRadius: '2px' }} />
+                  <span>Low</span>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Box sx={{ width: '16px', height: '16px', backgroundColor: '#0052CC', borderRadius: '2px' }} />
+                  <span>High</span>
+                </Box>
+              </Box>
 
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      data-tooltip-id="country-tooltip"
-                      data-tooltip-content={
-                        countryData
-                          ? `Place:${countryName}\nRegion: ${countryData.region}\nContracts: ${countryData.count}`
-                          : `${countryName}\nNo Data`
-                      }
-                      onMouseEnter={() => setHoveredCountry(countryName)}
-                      onMouseLeave={() => setHoveredCountry(null)}
-                      style={{
-                        default: {
-                          fill: getColor(countryName),
-                          stroke: '#D2D2D2',
-                          strokeWidth: 0.75,
-                          outline: 'none',
-                          cursor: countryData ? 'pointer' : 'default',
-                          opacity: isHovered ? 1 : 0.9,
-                          transition: 'all 0.3s ease',
-                        },
-                        hover: {
-                          fill: getColor(countryName),
-                          stroke: '#02355a',
-                          strokeWidth: 1.5,
-                          outline: 'none',
-                          cursor: countryData ? 'pointer' : 'default',
-                          opacity: 1,
-                          transition: 'all 0.3s ease',
-                        },
-                        pressed: {
-                          fill: getColor(countryName),
-                          stroke: '#02355a',
-                          strokeWidth: 1.5,
-                          outline: 'none',
-                          cursor: countryData ? 'pointer' : 'default',
-                          opacity: 1,
-                        },
-                      }}
-                    />
-                  );
-                })
-              }
-            </Geographies>
-          </ComposableMap>
+              {/* Map Container */}
+              <Box
+                sx={{
+                  flex: 1,
+                  overflow: 'auto',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  minHeight: 0,
+                }}
+              >
+                <ComposableMap projection="geoMercator">
+                  <Geographies geography={geoUrl}>
+                    {({ geographies }: any) =>
+                      geographies.map((geo: any) => {
+                        const countryName = geo.properties.name;
+                        const countryData = countryDataMap[countryName];
+                        const isHovered = hoveredCountry === countryName;
+
+                        return (
+                          <Geography
+                            key={geo.rsmKey}
+                            geography={geo}
+                            data-tooltip-id="country-tooltip"
+                            data-tooltip-content={
+                              countryData
+                                ? `Place:${countryName}\nRegion: ${countryData.region}\nContracts: ${countryData.count}`
+                                : `${countryName}\nNo Data`
+                            }
+                            onMouseEnter={() => setHoveredCountry(countryName)}
+                            onMouseLeave={() => setHoveredCountry(null)}
+                            style={{
+                              default: {
+                                fill: getColor(countryName),
+                                stroke: '#D2D2D2',
+                                strokeWidth: 0.75,
+                                outline: 'none',
+                                cursor: countryData ? 'pointer' : 'default',
+                                opacity: isHovered ? 1 : 0.9,
+                                transition: 'all 0.3s ease',
+                              },
+                              hover: {
+                                fill: getColor(countryName),
+                                stroke: '#02355a',
+                                strokeWidth: 1.5,
+                                outline: 'none',
+                                cursor: countryData ? 'pointer' : 'default',
+                                opacity: 1,
+                                transition: 'all 0.3s ease',
+                              },
+                              pressed: {
+                                fill: getColor(countryName),
+                                stroke: '#02355a',
+                                strokeWidth: 1.5,
+                                outline: 'none',
+                                cursor: countryData ? 'pointer' : 'default',
+                                opacity: 1,
+                              },
+                            }}
+                          />
+                        );
+                      })
+                    }
+                  </Geographies>
+                </ComposableMap>
+              </Box>
+            </>
+          )}
+
+          {/* Bar Chart Tab */}
+          {tabValue === 1 && (
+            <Box sx={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
+              <ResponsiveContainer width="100%" height={Math.max(300, barChartData.length * 40)}>
+                <BarChart
+                  data={barChartData}
+                  layout="vertical"
+                  margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis type="number" stroke="#666" />
+                  <YAxis
+                    dataKey="country"
+                    type="category"
+                    width={95}
+                    tick={{ fontSize: 12 }}
+                    stroke="#666"
+                  />
+                  <RechartsTooltip
+                    contentStyle={{
+                      backgroundColor: '#fff',
+                      border: '1px solid #ccc',
+                      borderRadius: '6px',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    }}
+                    formatter={(value: any) => `${value} contracts`}
+                    labelFormatter={(label: any) => {
+                      const item = barChartData.find(d => d.country === label);
+                      return item ? `${item.country} (${item.region})` : label;
+                    }}
+                  />
+                  <Bar
+                    dataKey="count"
+                    fill="#0052CC"
+                    radius={[0, 8, 8, 0]}
+                    label={{
+                      position: 'right',
+                      fontSize: 12,
+                      fontWeight: 600,
+                      fill: '#02355a',
+                    }}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          )}
         </Box>
       </CardContent>
 
