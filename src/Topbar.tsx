@@ -57,7 +57,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
           color:'white',
           cursor:'pointer'
         }}}>
-          <b>  {t('dashboard')} {currentTab} </b>
+          <b>  {currentTab} {t('dashboard')}  </b>
         </Typography>
       </div>
 
