@@ -384,7 +384,7 @@ const AribaReport = () => {
       </Box>
 
       {/* Application Status Chart and Country Distribution Row */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '24px', marginBottom: '30px' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '20px', marginBottom: '30px' }}>
         <ApplicationStatusChart data={statusChartData} title={t('applicationStatus')} />
         <CountryDistribution data={countryData} title={t('countryDistribution')} />
       </Box>

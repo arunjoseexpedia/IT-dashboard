@@ -16,6 +16,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
         borderRadius: '16px',
         boxShadow: '0 4px 16px rgba(15,23,42,.08)',
         height: '100%',
+        minHeight: '340px',
         display: 'flex',
         flexDirection: 'column',
       }}
