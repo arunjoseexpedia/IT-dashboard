@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
+import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
