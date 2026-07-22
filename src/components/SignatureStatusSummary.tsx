@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography } from '@mui/material';
 
 interface SignatureStatusSummaryProps {
   title: string;
@@ -32,180 +32,193 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
     <Card
       sx={{
         backgroundColor: '#FFFFFF',
-        borderRadius: '20px',
         border: "1px solid #E5E7EB",
-        padding: '24px',
-        boxShadow: '0 6px 20px rgba(15,23,42,.08)',
+        borderRadius: '16px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         transition: 'all 0.3s ease',
+        position: 'relative',
         '&:hover': {
-          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
-          transform: 'translateY(-4px)',
+          transform: 'translateY(-2px)',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
         },
+        height: '100%',
+        minHeight: '220px',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      {/* Header with title and icon */}
-      <Box
+      <CardContent
         sx={{
+          padding: '20px',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '20px',
+          flexDirection: 'column',
+          height: '100%',
         }}
       >
-        <Typography
-          variant="subtitle1"
-          sx={{
-            fontSize: '14px',
-            fontWeight: '600',
-            color: '#666',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-          }}
-        >
-          {title}
-        </Typography>
-        {icon && <Box sx={{ color: '#16A34A' }}>{icon}</Box>}
-      </Box>
+        {/* Header */}
+        <Box sx={{ marginBottom: '12px' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              fontWeight: 600,
+              color: '#6B7280',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              fontSize: '12px',
+            }}
+          >
+            {title}
+          </Typography>
+        </Box>
 
-      {/* Status grid - two columns */}
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '0',
-          alignItems: 'center',
-        }}
-      >
-        {/* FIRMADO */}
+        {/* Icon Badge - Top Right */}
+        {icon && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#16A34A',
+              fontSize: '24px',
+            }}
+          >
+            {icon}
+          </Box>
+        )}
+
+        {/* Breakdown - two columns */}
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: 'auto' }}>
+          {/* SIGNED */}
+          <Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '11px',
+                fontWeight: '500',
+                color: '#9CA3AF',
+                textTransform: 'uppercase',
+                display: 'block',
+                marginBottom: '8px',
+                letterSpacing: '0.03em',
+              }}
+            >
+              Signed
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#374151',
+                marginBottom: '2px',
+              }}
+            >
+              {firmadoCount.toLocaleString()}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '12px',
+                color: '#9CA3AF',
+                fontWeight: 500,
+              }}
+            >
+              {firmadoPercentage}%
+            </Typography>
+            {firmadoValue > 0 && (
+              <Typography
+                sx={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: '#16A34A',
+                  wordBreak: 'break-word',
+                  marginTop: '6px',
+                }}
+              >
+                {formattedFirmadoValue}
+              </Typography>
+            )}
+          </Box>
+
+          {/* UNSIGNED */}
+          <Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '11px',
+                fontWeight: '500',
+                color: '#9CA3AF',
+                textTransform: 'uppercase',
+                display: 'block',
+                marginBottom: '8px',
+                letterSpacing: '0.03em',
+              }}
+            >
+              Unsigned
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#374151',
+                marginBottom: '2px',
+              }}
+            >
+              {noFirmadoCount.toLocaleString()}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '12px',
+                color: '#9CA3AF',
+                fontWeight: 500,
+              }}
+            >
+              {noFirmadoPercentage}%
+            </Typography>
+            {noFirmadoValue > 0 && (
+              <Typography
+                sx={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: '#60A5FA',
+                  wordBreak: 'break-word',
+                  marginTop: '6px',
+                }}
+              >
+                {formattedNoFirmadoValue}
+              </Typography>
+            )}
+          </Box>
+        </Box>
+
+        {/* Total footer */}
         <Box
           sx={{
-            paddingRight: '16px',
-            borderRight: '1px solid #ddd',
+            marginTop: 'auto',
+            paddingTop: '12px',
+            borderTop: '1px solid #E5E7EB',
+            textAlign: 'center',
           }}
         >
           <Typography
             variant="caption"
             sx={{
               fontSize: '12px',
-              fontWeight: '500',
-              color: '#999',
-              textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '8px',
+              fontWeight: '600',
+              color: '#374151',
             }}
           >
-            Signed
+            Total: {total.toLocaleString()}
           </Typography>
-          <Typography
-            sx={{
-              fontSize: '28px',
-              fontWeight: '700',
-              color: '#28a745',
-              marginBottom: '4px',
-            }}
-          >
-            {firmadoCount.toLocaleString()}
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{
-              fontSize: '11px',
-              color: '#999',
-              marginBottom: '12px',
-              display: 'block',
-            }}
-          >
-            {firmadoPercentage}%
-          </Typography>
-          {firmadoValue > 0 && (
-            <Typography
-              sx={{
-                fontSize: '13px',
-                fontWeight: '600',
-                color: '#28a745',
-                wordBreak: 'break-word',
-              }}
-            >
-              {formattedFirmadoValue}
-            </Typography>
-          )}
         </Box>
-
-        {/* NO FIRMADO */}
-        <Box
-          sx={{
-            paddingLeft: '16px',
-          }}
-        >
-          <Typography
-            variant="caption"
-            sx={{
-              fontSize: '12px',
-              fontWeight: '500',
-              color: '#999',
-              textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '8px',
-            }}
-          >
-            Unsigned
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '28px',
-              fontWeight: '700',
-              color: '#ffa500',
-              marginBottom: '4px',
-            }}
-          >
-            {noFirmadoCount.toLocaleString()}
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{
-              fontSize: '11px',
-              color: '#999',
-              marginBottom: '12px',
-              display: 'block',
-            }}
-          >
-            {noFirmadoPercentage}%
-          </Typography>
-          {noFirmadoValue > 0 && (
-            <Typography
-              sx={{
-                fontSize: '13px',
-                fontWeight: '600',
-                color: '#ffa500',
-                wordBreak: 'break-word',
-              }}
-            >
-              {formattedNoFirmadoValue}
-            </Typography>
-          )}
-        </Box>
-      </Box>
-
-      {/* Total footer */}
-      <Box
-        sx={{
-          marginTop: '16px',
-          paddingTop: '16px',
-          borderTop: '1px solid #eee',
-          textAlign: 'center',
-        }}
-      >
-        <Typography
-          variant="caption"
-          sx={{
-            fontSize: '12px',
-            fontWeight: '500',
-            color: '#666',
-          }}
-        >
-          Total: {total.toLocaleString()}
-        </Typography>
-      </Box>
+      </CardContent>
     </Card>
   );
 };

@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography } from '@mui/material';
 
 interface ApplicationsSummaryProps {
   title: string;
@@ -16,163 +16,160 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
     <Card
       sx={{
         backgroundColor: '#FFFFFF',
-        borderRadius: '20px',
         border: "1px solid #E5E7EB",
-        padding: '24px',
-        boxShadow: '0 6px 20px rgba(15,23,42,.08)',
+        borderRadius: '16px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         transition: 'all 0.3s ease',
+        position: 'relative',
         '&:hover': {
-          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
-          transform: 'translateY(-4px)',
+          transform: 'translateY(-2px)',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
         },
+        height: '100%',
+        minHeight: '220px',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      {/* Header with title and icon */}
-      <Box
+      <CardContent
         sx={{
+          padding: '20px',
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '20px',
+          flexDirection: 'column',
+          height: '100%',
         }}
       >
-        <Typography
-          variant="subtitle1"
-          sx={{
-            fontSize: '14px',
-            fontWeight: '600',
-            color: '#666',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-          }}
-        >
-          {title}
-        </Typography>
-        {icon && <Box sx={{ color: '#2563EB' }}>{icon}</Box>}
-      </Box>
-
-      {/* Total count - large display at top */}
-      <Box
-        sx={{
-          marginBottom: '20px',
-          paddingBottom: '20px',
-          borderBottom: '2px solid #eee',
-        }}
-      >
-        <Typography
-          variant="caption"
-          sx={{
-            fontSize: '12px',
-            fontWeight: '500',
-            color: '#999',
-            textTransform: 'uppercase',
-            display: 'block',
-            marginBottom: '8px',
-          }}
-        >
-          Total Applications
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: '32px',
-            fontWeight: '700',
-            color: '#003d99',
-          }}
-        >
-          {totalCount.toLocaleString()}
-        </Typography>
-      </Box>
-
-      {/* Template and No Template grid - two columns */}
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '0',
-          alignItems: 'center',
-        }}
-      >
-        {/* TEMPLATE */}
-        <Box
-          sx={{
-            paddingRight: '16px',
-            borderRight: '1px solid #ddd',
-          }}
-        >
+        {/* Header */}
+        <Box sx={{ marginBottom: '12px' }}>
           <Typography
-            variant="caption"
+            variant="subtitle2"
             sx={{
-              fontSize: '12px',
-              fontWeight: '500',
-              color: '#999',
+              fontWeight: 600,
+              color: '#6B7280',
               textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '8px',
+              letterSpacing: '0.05em',
+              fontSize: '12px',
             }}
           >
-            With Template
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '24px',
-              fontWeight: '700',
-              color: '#28a745',
-              marginBottom: '4px',
-            }}
-          >
-            {templateCount.toLocaleString()}
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{
-              fontSize: '11px',
-              color: '#999',
-            }}
-          >
-            {templatePercentage}%
+            {title}
           </Typography>
         </Box>
 
-        {/* NO TEMPLATE */}
-        <Box
-          sx={{
-            paddingLeft: '16px',
-          }}
-        >
-          <Typography
-            variant="caption"
+        {/* Icon Badge - Top Right */}
+        {icon && (
+          <Box
             sx={{
-              fontSize: '12px',
-              fontWeight: '500',
-              color: '#999',
-              textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '8px',
-            }}
-          >
-            No Template
-          </Typography>
-          <Typography
-            sx={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #DBEAFE 0%, #E0E7FF 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#2563EB',
               fontSize: '24px',
-              fontWeight: '700',
-              color: '#ffa500',
-              marginBottom: '4px',
             }}
           >
-            {noTemplateCount.toLocaleString()}
-          </Typography>
+            {icon}
+          </Box>
+        )}
+
+        {/* Total count - Main prominent display */}
+        <Box sx={{ marginBottom: '16px' }}>
           <Typography
-            variant="caption"
             sx={{
-              fontSize: '11px',
-              color: '#999',
+              fontSize: '42px',
+              fontWeight: '700',
+              color: '#2563EB',
+              lineHeight: 1,
             }}
           >
-            {noTemplatePercentage}%
+            {totalCount.toLocaleString()}
           </Typography>
         </Box>
-      </Box>
+
+        {/* Breakdown - two columns */}
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: 'auto' }}>
+          {/* WITH TEMPLATE */}
+          <Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '11px',
+                fontWeight: '500',
+                color: '#9CA3AF',
+                textTransform: 'uppercase',
+                display: 'block',
+                marginBottom: '8px',
+                letterSpacing: '0.03em',
+              }}
+            >
+              With Template
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#374151',
+                marginBottom: '2px',
+              }}
+            >
+              {templateCount.toLocaleString()}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '12px',
+                color: '#9CA3AF',
+                fontWeight: 500,
+              }}
+            >
+              {templatePercentage}%
+            </Typography>
+          </Box>
+
+          {/* NO TEMPLATE */}
+          <Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '11px',
+                fontWeight: '500',
+                color: '#9CA3AF',
+                textTransform: 'uppercase',
+                display: 'block',
+                marginBottom: '8px',
+                letterSpacing: '0.03em',
+              }}
+            >
+              No Template
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#374151',
+                marginBottom: '2px',
+              }}
+            >
+              {noTemplateCount.toLocaleString()}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: '12px',
+                color: '#9CA3AF',
+                fontWeight: 500,
+              }}
+            >
+              {noTemplatePercentage}%
+            </Typography>
+          </Box>
+        </Box>
+      </CardContent>
     </Card>
   );
 };
