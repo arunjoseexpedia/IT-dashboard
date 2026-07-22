@@ -1,7 +1,8 @@
-import { Box, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Box, Typography, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { useTranslation } from 'react-i18next';
+import { Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
 import AssignedLawyerDashboard from '../components/AssignedLawyerDashboard';
 import NegotiationStatusChart from '../components/NegotiationStatusChart';
 import LawyerListCard from '../components/LawyerListCard';
@@ -146,45 +147,111 @@ const SLAEventReport = () => {
   return (
     <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
       {/* Signatures Status Filter Section */}
-      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '12px' }}>
-        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: isDarkTheme ? '#FFFFFF' : '#374151' }}>
-          {t('search') || 'Search'}:
-        </Typography>
-        <FormControl sx={{ minWidth: 250 }} size="small">
-          <InputLabel id="signature-status-select-label" sx={{ fontSize: '14px', color: isDarkTheme ? '#9CA3AF' : '#6B7280' }}>
-            {t('signaturesStatus') || 'Signatures Status'}
-          </InputLabel>
-          <Select
-            labelId="signature-status-select-label"
-            id="signature-status-select"
-            value={selectedSignatureStatus}
-            label={t('signaturesStatus') || 'Signatures Status'}
-            onChange={(e) => setSelectedSignatureStatus(e.target.value)}
-            sx={{
-              backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-              color: isDarkTheme ? '#FFFFFF' : '#000000',
-              borderRadius: '8px',
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
-                },
-                '&:hover fieldset': {
-                  borderColor: '#2563EB',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: '#2563EB',
-                },
-              },
-              '& .MuiSvgIcon-root': {
-                color: isDarkTheme ? '#9CA3AF' : '#6B7280',
-              },
+      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
+        {/* Signature Status Filter */}
+        <Box>
+          <Typography 
+            sx={{ 
+              fontSize: '12px', 
+              fontWeight: '700', 
+              color: '#6B7280', 
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            <MenuItem value="All">All</MenuItem>
-            <MenuItem value="FIRMADO">FIRMADO</MenuItem>
-            <MenuItem value="NO FIRMADO">NO FIRMADO</MenuItem>
-          </Select>
-        </FormControl>
+            <Box component="span" sx={{ fontSize: '14px' }}>✓</Box>
+            SIGNATURES STATUS
+          </Typography>
+          <FormControl sx={{ minWidth: 220 }} size="small">
+            <Select
+              id="signature-status-select"
+              value={selectedSignatureStatus}
+              onChange={(e) => setSelectedSignatureStatus(e.target.value)}
+              sx={{
+                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+                borderRadius: '8px',
+                border: '1px solid #D1D5DB',
+                fontSize: '14px',
+                fontWeight: '500',
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#2563EB',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2563EB',
+                    borderWidth: '2px',
+                  },
+                },
+                '& .MuiSvgIcon-root': {
+                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
+                },
+              }}
+            >
+              <MenuItem value="All" sx={{ fontSize: '14px' }}>All</MenuItem>
+              <MenuItem value="FIRMADO" sx={{ fontSize: '14px' }}>FIRMADO</MenuItem>
+              <MenuItem value="NO FIRMADO" sx={{ fontSize: '14px' }}>NO FIRMADO</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+
+        {/* Search Button */}
+        <Button
+          variant="outlined"
+          startIcon={<SearchIcon sx={{ fontSize: '18px' }} />}
+          sx={{
+            borderColor: '#D1D5DB',
+            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            textTransform: 'uppercase',
+            fontSize: '13px',
+            fontWeight: '700',
+            padding: '8px 20px',
+            letterSpacing: '0.05em',
+            borderRadius: '8px',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
+              borderColor: '#2563EB',
+              color: '#2563EB',
+            },
+          }}
+        >
+          Search
+        </Button>
+
+        {/* Clear Button */}
+        <Button
+          variant="outlined"
+          startIcon={<CloseIcon sx={{ fontSize: '18px' }} />}
+          onClick={() => setSelectedSignatureStatus('All')}
+          sx={{
+            borderColor: '#D1D5DB',
+            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            textTransform: 'uppercase',
+            fontSize: '13px',
+            fontWeight: '700',
+            padding: '8px 20px',
+            letterSpacing: '0.05em',
+            borderRadius: '8px',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
+              borderColor: '#EF4444',
+              color: '#EF4444',
+            },
+          }}
+        >
+          Clear
+        </Button>
       </Box>
 
       <AssignedLawyerDashboard data={lawyerData} />
