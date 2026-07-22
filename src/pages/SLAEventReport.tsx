@@ -1,6 +1,7 @@
 import { Box, Typography, FormControl, Select, MenuItem, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
+import { useTranslation } from 'react-i18next';
 import { Close as CloseIcon } from '@mui/icons-material';
 import AssignedLawyerDashboard from '../components/AssignedLawyerDashboard';
 import NegotiationStatusChart from '../components/NegotiationStatusChart';
@@ -27,6 +28,7 @@ const SLAEventReport = () => {
   const [negotiationStatusData, setNegotiationStatusData] = useState<NegotiationStatusData[]>([]);
   const [selectedSignatureStatus, setSelectedSignatureStatus] = useState('All');
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+   const { t } = useTranslation();
   
 
   useEffect(() => {
@@ -227,7 +229,7 @@ const SLAEventReport = () => {
             },
           }}
         >
-          Clear
+          {t('clear')}
         </Button>
       </Box>
 

@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -281,7 +281,7 @@ const AribaReport = () => {
             }}
           >
             <Box component="span" sx={{ fontSize: '14px' }}>🏷️</Box>
-            ACTUAL CATEGORY
+            {t('actualCategory') || 'CATEGORÍA ACTUAL'}
           </Typography>
           <FormControl sx={{ minWidth: 220 }} size="small">
             <Select
@@ -337,7 +337,7 @@ const AribaReport = () => {
             }}
           >
             <Box component="span" sx={{ fontSize: '14px' }}>🌍</Box>
-            SELECT COUNTRY
+            {t('selectCountry') || 'SELECCIONAR PAÍS'}
           </Typography>
           <FormControl sx={{ minWidth: 220 }} size="small">
             <Select
@@ -377,9 +377,7 @@ const AribaReport = () => {
           </FormControl>
         </Box>
 
-    
-
-        {/* Clear Button */}
+      {/* Clear Button */}
         <Button
           variant="outlined"
           startIcon={<CloseIcon sx={{ fontSize: '18px' }} />}
@@ -405,7 +403,7 @@ const AribaReport = () => {
             },
           }}
         >
-          Clear
+          {t('clear') || 'LIMPIAR'}
         </Button>
       </Box>
 
