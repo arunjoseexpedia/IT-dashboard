@@ -41,7 +41,7 @@ function Layout() {
       </header>
 
       {/* Tab Navigation */}
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: isDarkTheme ? '#111827' : '#F8FAFC' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: isDarkTheme ? '#111827' : '#FFFFF' }}>
         <Tabs 
           value={tabValue} 
           onChange={handleTabChange}

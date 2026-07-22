@@ -162,7 +162,7 @@ const ICertisReport = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F8FAFC', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F5F7FA', minHeight: '100vh' }}>
       {/* Top Row - Two-column layout for charts */}
       <Box
         sx={{

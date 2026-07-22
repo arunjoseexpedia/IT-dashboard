@@ -144,7 +144,7 @@ const SLAEventReport = () => {
   }, [selectedSignatureStatus]);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F8FAFC', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#F5F7FA', minHeight: '100vh' }}>
       {/* Signatures Status Filter Section */}
       <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '12px' }}>
         <Typography sx={{ fontWeight: 600, fontSize: '14px', color: isDarkTheme ? '#FFFFFF' : '#374151' }}>
