@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -377,30 +377,7 @@ const AribaReport = () => {
           </FormControl>
         </Box>
 
-        {/* Search Button */}
-        <Button
-          variant="outlined"
-          startIcon={<SearchIcon sx={{ fontSize: '18px' }} />}
-          sx={{
-            borderColor: '#D1D5DB',
-            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
-            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-            textTransform: 'uppercase',
-            fontSize: '13px',
-            fontWeight: '700',
-            padding: '8px 20px',
-            letterSpacing: '0.05em',
-            borderRadius: '8px',
-            transition: 'all 0.2s ease',
-            '&:hover': {
-              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
-              borderColor: '#2563EB',
-              color: '#2563EB',
-            },
-          }}
-        >
-          Search
-        </Button>
+    
 
         {/* Clear Button */}
         <Button

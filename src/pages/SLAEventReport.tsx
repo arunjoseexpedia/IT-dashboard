@@ -1,8 +1,7 @@
-import { Box, Typography, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
+import { Box, Typography, FormControl, Select, MenuItem, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-import { useTranslation } from 'react-i18next';
-import { Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Close as CloseIcon } from '@mui/icons-material';
 import AssignedLawyerDashboard from '../components/AssignedLawyerDashboard';
 import NegotiationStatusChart from '../components/NegotiationStatusChart';
 import LawyerListCard from '../components/LawyerListCard';
@@ -28,7 +27,7 @@ const SLAEventReport = () => {
   const [negotiationStatusData, setNegotiationStatusData] = useState<NegotiationStatusData[]>([]);
   const [selectedSignatureStatus, setSelectedSignatureStatus] = useState('All');
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const { t } = useTranslation();
+  
 
   useEffect(() => {
     // Check initial theme
@@ -203,29 +202,7 @@ const SLAEventReport = () => {
         </Box>
 
         {/* Search Button */}
-        <Button
-          variant="outlined"
-          startIcon={<SearchIcon sx={{ fontSize: '18px' }} />}
-          sx={{
-            borderColor: '#D1D5DB',
-            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
-            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-            textTransform: 'uppercase',
-            fontSize: '13px',
-            fontWeight: '700',
-            padding: '8px 20px',
-            letterSpacing: '0.05em',
-            borderRadius: '8px',
-            transition: 'all 0.2s ease',
-            '&:hover': {
-              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
-              borderColor: '#2563EB',
-              color: '#2563EB',
-            },
-          }}
-        >
-          Search
-        </Button>
+       
 
         {/* Clear Button */}
         <Button
