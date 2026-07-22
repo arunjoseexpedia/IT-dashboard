@@ -32,5 +32,7 @@
   "countryDistribution": "Distribución por País",
   "generalTab": "General",
   "slaTab": "Borrador de SLA",
-  "e2eTab": "Plantilla E2E"
+  "e2eTab": "Plantilla E2E",
+  "mapTab": "Mapa",
+  "countryRegionTab": "País y Región"
 }

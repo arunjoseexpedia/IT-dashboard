@@ -32,6 +32,8 @@
   "countryDistribution": "Country Distribution",
   "generalTab": "General",
   "slaTab": "SLA Draft",
-  "e2eTab": "E2E Template"
+  "e2eTab": "E2E Template",
+  "mapTab": "Map",
+  "countryRegionTab": "Country & Region"
 }
 

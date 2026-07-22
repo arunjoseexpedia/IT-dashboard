@@ -3,6 +3,7 @@ import { Card, CardContent, Typography, Box, Tabs, Tab } from '@mui/material';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Tooltip } from 'react-tooltip';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 interface CountryDistributionProps {
   data: Array<{ country: string; count: number; region?: string }>;
@@ -31,6 +32,7 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [tabValue, setTabValue] = useState(0);
+  const { t } = useTranslation();
 
   // Create a map of country names to contract counts and region
   const countryDataMap = useMemo(() => {
@@ -69,7 +71,8 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
   const barChartData = useMemo(() => {
     return data
       .map((item) => ({
-        country: item.country,
+        countryCode: item.country,
+        country: countryCodeMap[item.country] || item.country,
         region: item.region || 'N/A',
         count: item.count,
       }))
@@ -160,8 +163,8 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
               },
             }}
           >
-            <Tab label="🗺️ Map" />
-            <Tab label="📊 Country & Region" />
+            <Tab label={`🗺️ ${t('mapTab')}`} />
+            <Tab label={`📊 ${t('countryRegionTab')}`} />
           </Tabs>
         </Box>
 
@@ -280,7 +283,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                   <YAxis
                     dataKey="country"
                     type="category"
-                    width={95}
+                    width={120}
                     tick={{ fontSize: 12 }}
                     stroke="#666"
                   />
