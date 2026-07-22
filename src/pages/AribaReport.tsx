@@ -1,4 +1,4 @@
-import { Box, Typography, Card, CardContent, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Box, Typography, Card, CardContent, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon } from '@mui/icons-material';
+import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -262,90 +262,174 @@ const AribaReport = () => {
 
   return (
     <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
-      {/* Filter Section - Inline */}
-      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
-        {/* Search Label */}
-        <Typography sx={{ fontWeight: 600, fontSize: '14px', color: isDarkTheme ? '#FFFFFF' : '#374151' }}>
-          {t('search') || 'Search'}:
-        </Typography>
+      {/* Filter Section - Enhanced */}
+      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
         
         {/* Category Filter */}
-        <FormControl sx={{ minWidth: 250 }} size="small">
-          <InputLabel id="category-select-label" sx={{ fontSize: '14px', color: isDarkTheme ? '#9CA3AF' : '#6B7280' }}>
-            {t('actualCategory') || 'Actual Category'}
-          </InputLabel>
-          <Select
-            labelId="category-select-label"
-            id="category-select"
-            value={selectedCategory}
-            label={t('actualCategory') || 'Actual Category'}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            sx={{
-              backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-              color: isDarkTheme ? '#FFFFFF' : '#000000',
-              borderRadius: '8px',
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
-                },
-                '&:hover fieldset': {
-                  borderColor: '#2563EB',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: '#2563EB',
-                },
-              },
-              '& .MuiSvgIcon-root': {
-                color: isDarkTheme ? '#9CA3AF' : '#6B7280',
-              },
+        <Box>
+          <Typography 
+            sx={{ 
+              fontSize: '12px', 
+              fontWeight: '700', 
+              color: '#6B7280', 
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            {allCategories.map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+            <Box component="span" sx={{ fontSize: '14px' }}>🏷️</Box>
+            ACTUAL CATEGORY
+          </Typography>
+          <FormControl sx={{ minWidth: 220 }} size="small">
+            <Select
+              id="category-select"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              sx={{
+                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+                borderRadius: '8px',
+                border: '1px solid #D1D5DB',
+                fontSize: '14px',
+                fontWeight: '500',
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#2563EB',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2563EB',
+                    borderWidth: '2px',
+                  },
+                },
+                '& .MuiSvgIcon-root': {
+                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
+                },
+              }}
+            >
+              {allCategories.map((category) => (
+                <MenuItem key={category} value={category} sx={{ fontSize: '14px' }}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
 
         {/* Country Filter */}
-        <FormControl sx={{ minWidth: 250 }} size="small">
-          <InputLabel id="country-select-label" sx={{ fontSize: '14px', color: isDarkTheme ? '#9CA3AF' : '#6B7280' }}>
-            {t('selectCountry') || 'Select Country'}
-          </InputLabel>
-          <Select
-            labelId="country-select-label"
-            id="country-select"
-            value={selectedCountry}
-            label={t('selectCountry') || 'Select Country'}
-            onChange={(e) => setSelectedCountry(e.target.value)}
-            sx={{
-              backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-              color: isDarkTheme ? '#FFFFFF' : '#000000',
-              borderRadius: '8px',
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
-                },
-                '&:hover fieldset': {
-                  borderColor: '#2563EB',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: '#2563EB',
-                },
-              },
-              '& .MuiSvgIcon-root': {
-                color: isDarkTheme ? '#9CA3AF' : '#6B7280',
-              },
+        <Box>
+          <Typography 
+            sx={{ 
+              fontSize: '12px', 
+              fontWeight: '700', 
+              color: '#6B7280', 
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            {allCountries.map((country) => (
-              <MenuItem key={country} value={country}>
-                {country}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+            <Box component="span" sx={{ fontSize: '14px' }}>🌍</Box>
+            SELECT COUNTRY
+          </Typography>
+          <FormControl sx={{ minWidth: 220 }} size="small">
+            <Select
+              id="country-select"
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              sx={{
+                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+                borderRadius: '8px',
+                border: '1px solid #D1D5DB',
+                fontSize: '14px',
+                fontWeight: '500',
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#2563EB',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2563EB',
+                    borderWidth: '2px',
+                  },
+                },
+                '& .MuiSvgIcon-root': {
+                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
+                },
+              }}
+            >
+              {allCountries.map((country) => (
+                <MenuItem key={country} value={country} sx={{ fontSize: '14px' }}>
+                  {country}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        {/* Search Button */}
+        <Button
+          variant="outlined"
+          startIcon={<SearchIcon sx={{ fontSize: '18px' }} />}
+          sx={{
+            borderColor: '#D1D5DB',
+            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            textTransform: 'uppercase',
+            fontSize: '13px',
+            fontWeight: '700',
+            padding: '8px 20px',
+            letterSpacing: '0.05em',
+            borderRadius: '8px',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
+              borderColor: '#2563EB',
+              color: '#2563EB',
+            },
+          }}
+        >
+          Search
+        </Button>
+
+        {/* Clear Button */}
+        <Button
+          variant="outlined"
+          startIcon={<CloseIcon sx={{ fontSize: '18px' }} />}
+          onClick={() => {
+            setSelectedCategory('All');
+            setSelectedCountry('All');
+          }}
+          sx={{
+            borderColor: '#D1D5DB',
+            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            textTransform: 'uppercase',
+            fontSize: '13px',
+            fontWeight: '700',
+            padding: '8px 20px',
+            letterSpacing: '0.05em',
+            borderRadius: '8px',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
+              borderColor: '#EF4444',
+              color: '#EF4444',
+            },
+          }}
+        >
+          Clear
+        </Button>
       </Box>
 
       {/* KPI Cards Row */}
