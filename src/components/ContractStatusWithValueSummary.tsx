@@ -114,7 +114,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           <Typography
             sx={{
               fontWeight: 700,
-              color: '#2563EB',
+              color: '#1E3A8A',
               fontSize: '32px',
               lineHeight: 1,
               wordBreak: 'break-word',

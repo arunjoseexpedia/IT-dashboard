@@ -191,7 +191,7 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
                 sx={{
                   fontSize: '12px',
                   fontWeight: '600',
-                  color: '#60A5FA',
+                  color: '#1E3A8A',
                   wordBreak: 'break-word',
                   marginTop: '6px',
                 }}

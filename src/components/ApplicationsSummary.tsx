@@ -87,7 +87,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             sx={{
               fontSize: '42px',
               fontWeight: '700',
-              color: '#2563EB',
+              color: '#1E3A8A',
               lineHeight: 1,
             }}
           >
