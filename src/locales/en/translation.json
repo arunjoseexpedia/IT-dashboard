@@ -1,7 +1,7 @@
 {
   "dashboard": "DashBoard",
   "menu": "MENU",
-  "appearance": "APPEARANCE",
+  "appearance": "THEME",
   "switchToDarkTheme": "Switch to Dark Theme",
   "switchToLightTheme": "Switch to Light Theme",
   "data": "DATA",

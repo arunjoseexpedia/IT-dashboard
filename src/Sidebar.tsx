@@ -256,9 +256,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
       <Box
         sx={{
           width: sidebarWidth,
+          height: '100%',
           transition: 'width 0.3s ease',
           boxShadow: '2px 0 8px rgba(0,0,0,0.08)',
           zIndex: 100,
+          flexShrink: 0,
         }}
       >
         {sidebarContent}

@@ -48,8 +48,8 @@ function Layout() {
         <Topbar currentTab={tabNames[tabValue]} />
       </header>
 
-      {/* Main Content Area with Sidebar */}
-      <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      {/* Main Content Area with Sidebar - Below Topbar */}
+      <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden', zIndex: 40 }}>
         {/* Left Sidebar */}
         <Sidebar isDarkTheme={isDarkTheme} onThemeToggle={handleThemeToggle} />
 
