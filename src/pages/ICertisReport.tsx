@@ -2,15 +2,11 @@ import { Box } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as XLSX from 'xlsx';
-import TopProjectsByE2EProcess from '../components/TopProjectsByE2EProcess';
-import ContractsByWorkArea from '../components/ContractsByWorkArea';
 import E2EProcessingTimeChart from '../components/E2EProcessingTimeChart';
 import AmountVsE2EDurationChart from '../components/AmountVsE2EDurationChart';
 
 const ICertisReport = () => {
   const { t } = useTranslation();
-  const [projectData, setProjectData] = useState<any[]>([]);
-  const [contractData, setContractData] = useState<any[]>([]);
   const [e2eProcessingData, setE2eProcessingData] = useState<any[]>([]);
   const [amountVsE2eData, setAmountVsE2eData] = useState<any[]>([]);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -76,7 +72,7 @@ const ICertisReport = () => {
           .sort((a, b) => b.e2eProcess - a.e2eProcess)
           .slice(0, 20); // Top 10 projects
         console.log('Top Projects by E2E Process:', projectDataArray);
-        setProjectData(projectDataArray);
+       
 
         // Process Contracts by Work Area
         const contractMap: { [key: string]: { contractType: string; count: number } } = {};
@@ -104,9 +100,7 @@ const ICertisReport = () => {
           .sort((a, b) => b.contractCount - a.contractCount);
 
         console.log('Contracts by Work Area:', contractDataArray);
-        setContractData(contractDataArray);
-
-        // Process E2E Processing Time by Contract Type
+         // Process E2E Processing Time by Contract Type
         const e2eProcessingMap: { [key: string]: { total: number; count: number } } = {};
 
         excelData.forEach((row: any) => {
@@ -154,7 +148,7 @@ const ICertisReport = () => {
         setAmountVsE2eData(scatterData);
       } catch (error) {
         console.error('Error reading Excel file:', error);
-        setProjectData([]);
+        
       }
     };
 
