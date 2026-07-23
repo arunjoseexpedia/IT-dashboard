@@ -21,6 +21,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         transition: 'all 0.3s ease',
         position: 'relative',
+        overflow: 'visible',
         '&:hover': {
           transform: 'translateY(-2px)',
           boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
@@ -33,12 +34,37 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
     >
       <CardContent
         sx={{
-          padding: '20px',
+          padding: '16px',
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
+          position: 'relative',
         }}
       >
+        {/* Icon Badge - Top Right, Floating Above Card Border */}
+        {icon && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '-20px',
+              right: '20px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #FFE4E6 0%, #FBCFE8 50%, #F9A8D4 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              fontSize: '24px',
+              boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
+              zIndex: 10,
+            }}
+          >
+            {icon}
+          </Box>
+        )}
+
         {/* Header */}
         <Box sx={{ marginBottom: '12px' }}>
           <Typography
@@ -54,28 +80,6 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             {title}
           </Typography>
         </Box>
-
-        {/* Icon Badge - Top Right */}
-        {icon && (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '20px',
-              right: '20px',
-              width: '48px',
-              height: '48px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #DBEAFE 0%, #E0E7FF 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#2563EB',
-              fontSize: '24px',
-            }}
-          >
-            {icon}
-          </Box>
-        )}
 
         {/* Total count - Main prominent display */}
         <Box sx={{ marginBottom: '16px' }}>

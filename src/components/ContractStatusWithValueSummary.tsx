@@ -35,6 +35,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         transition: 'all 0.3s ease',
         position: 'relative',
+        overflow: 'visible',
         '&:hover': {
           transform: 'translateY(-2px)',
           boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
@@ -51,6 +52,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
+          position: 'relative',
         }}
       >
         {/* Header */}
@@ -74,17 +76,19 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           <Box
             sx={{
               position: 'absolute',
-              top: '20px',
+              top: '-16px',
               right: '20px',
               width: '48px',
               height: '48px',
               borderRadius: '12px',
-              background: 'linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%)',
+              background: 'linear-gradient(135deg, #BA7517 0%, #854F0B 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#F59E0B',
+              color: 'white',
               fontSize: '24px',
+              zIndex: 10,
+              boxShadow: '0 4px 12px rgba(245, 158, 11, 0.2)',
             }}
           >
             {icon}

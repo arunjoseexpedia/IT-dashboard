@@ -37,6 +37,7 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         transition: 'all 0.3s ease',
         position: 'relative',
+        overflow: 'visible',
         '&:hover': {
           transform: 'translateY(-2px)',
           boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
@@ -53,8 +54,33 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
+          position: 'relative',
         }}
       >
+        {/* Icon Badge - Top Right, Floating Above Card Border */}
+        {icon && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '-16px',
+              right: '20px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #34D399 0%, #059669 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              fontSize: '24px',
+              boxShadow: '0 4px 12px rgba(34, 197, 94, 0.2)',
+              zIndex: 10,
+            }}
+          >
+            {icon}
+          </Box>
+        )}
+
         {/* Header */}
         <Box sx={{ marginBottom: '12px' }}>
           <Typography
@@ -70,28 +96,6 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
             {title}
           </Typography>
         </Box>
-
-        {/* Icon Badge - Top Right */}
-        {icon && (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '20px',
-              right: '20px',
-              width: '48px',
-              height: '48px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#16A34A',
-              fontSize: '24px',
-            }}
-          >
-            {icon}
-          </Box>
-        )}
 
         {/* Breakdown - two columns */}
         <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: 'auto' }}>

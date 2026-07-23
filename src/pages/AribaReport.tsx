@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Share as ShareIcon, CheckCircle as CheckCircleIcon, Description as DescriptionIcon, Close as CloseIcon } from '@mui/icons-material';
+import { TaskAlt, Analytics, PendingActions, Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -421,7 +421,7 @@ const AribaReport = () => {
           totalCount={totalCount}
           templateCount={templateCount}
           noTemplateCount={noTemplateCount}
-          icon={<ShareIcon sx={{ fontSize: '2rem' }} />}
+          icon={<TaskAlt sx={{ fontSize: '2rem' }} />}
         />
         <SignatureStatusSummary
           title={t('signaturesStatus')}
@@ -429,7 +429,7 @@ const AribaReport = () => {
           noFirmadoCount={noFirmadoCount}
           firmadoValue={firmadoValue}
           noFirmadoValue={noFirmadoValue}
-          icon={<CheckCircleIcon sx={{ fontSize: '2rem' }} />}
+          icon={<Analytics sx={{ fontSize: '2rem' }} />}
         />
         <ContractStatusWithValueSummary
           title={t('contractStatus')}
@@ -438,7 +438,7 @@ const AribaReport = () => {
           publicadoCount={publicadoCount}
           cerradoCount={cerradoCount}
           canceladoCount={canceladoCount}
-          icon={<DescriptionIcon sx={{ fontSize: '2rem',color:'#F59E0B'}} />}
+          icon={<PendingActions sx={{ fontSize: '2rem'}} />}
         />
       </Box>
 
