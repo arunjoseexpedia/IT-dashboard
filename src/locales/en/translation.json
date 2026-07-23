@@ -35,6 +35,8 @@
   "e2eTab": "E2E Template",
   "mapTab": "Map",
   "clear": "Clear",
-  "countryRegionTab": "Country & Region"
+  "countryRegionTab": "Country & Region",
+  "expand": "Expand",
+  "collapse": "Collapse"
 }
 

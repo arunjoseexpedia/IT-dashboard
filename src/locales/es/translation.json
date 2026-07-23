@@ -35,5 +35,7 @@
   "e2eTab": "Plantilla E2E",
   "mapTab": "Mapa",
   "clear": "Limpiar",
-  "countryRegionTab": "País y Región"
+  "countryRegionTab": "País y Región",
+  "expand": "Expandir",
+  "collapse": "Contraer"
 }

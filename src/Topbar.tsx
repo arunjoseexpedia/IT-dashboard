@@ -1,34 +1,21 @@
-import  { useEffect, useState } from "react"; 
-import { Box, IconButton, Typography, Drawer, Badge, Tooltip } from "@mui/material"; 
-import { DarkMode, LightMode, Close, Notifications, HelpOutline } from "@mui/icons-material";
+import { useEffect, useState } from "react"; 
+import { Box, IconButton, Typography, Badge, Tooltip } from "@mui/material"; 
+import { Notifications, HelpOutline } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
 import ChatBot from './components/ChatBot';
 
 
 const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
   const [loaded, setLoaded] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const unreadCount = 7; // Unread notifications count
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   
   useEffect(() => {
     console.log('Topbar component mounted',loaded);
     // Trigger the animation after component mounts
     setLoaded(true);
   }, []);
-
-  useEffect(() => {
-    // Apply theme to document background
-    if (isDarkTheme) {
-      document.body.style.backgroundColor = '#0d1117';
-      document.body.style.color = '#ffffff';
-    } else {
-      document.body.style.backgroundColor = '#ffffff';
-      document.body.style.color = '#000000';
-    }
-  }, [isDarkTheme]);
   return (
     <div
       style={{
@@ -114,149 +101,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
             <HelpOutline sx={{ fontSize: 28 }} />
           </IconButton>
         </Tooltip>
-
-        {/* Menu Icon */}
-        <Tooltip title="Menu">
-        <IconButton 
-          sx={{ 
-            color: 'white', 
-            padding: 0, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            '&:hover': { backgroundColor: 'transparent' }, 
-            '&:active': { backgroundColor: 'transparent' }, 
-            '& .MuiTouchRipple-root': { display: 'none' } 
-          }} 
-          onFocus={(e) => (e.currentTarget.style.outline = "none")} 
-          onClick={() => setMenuOpen(true)}
-        >
-          <Box
-            component="img"
-            src="MenuIcon.png"
-            alt="Menu Icon"
-            sx={{ width: 70, height: 50, cursor: 'pointer', display: 'block' }}
-          />
-        </IconButton>
-        </Tooltip>
       </Box>
-
-      {/* Sliding Menu Drawer */}
-      <Drawer
-        anchor="right"
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      >
-        <Box
-          sx={{
-            width: 300,
-            padding: '20px',
-            backgroundColor: '#f5f5f5',
-            height: '100%',
-          }}
-        >
-          {/* Close Button */}
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-            <Typography variant="h6" sx={{ fontWeight: 700, color: '#666' }}>
-              {t('menu')}
-            </Typography>
-            <IconButton size="small" onClick={() => setMenuOpen(false)}>
-              <Close />
-            </IconButton>
-          </Box>
-
-          <Box sx={{ borderBottom: '1px solid #ddd', mb: 2 }} />
-
-          {/* Appearance Section */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#999', mb: 2 }}>
-            {t('appearance')}
-          </Typography>
-
-          <Box
-            onClick={() => {
-              const newTheme = !isDarkTheme;
-              setIsDarkTheme(newTheme);
-              localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-              window.dispatchEvent(new Event('themeChange'));
-            }}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-              padding: '10px',
-              cursor: 'pointer',
-              borderRadius: '4px',
-              '&:hover': { backgroundColor: '#e0e0e0' },
-            }}
-          >
-            {isDarkTheme ? (
-              <LightMode sx={{ fontSize: 30, color: '#f0ad4e' }} />
-            ) : (
-              <DarkMode sx={{ fontSize: 30, color: '#5c6ac4' }} />
-            )}
-            <Typography sx={{ color: '#666', fontWeight: 500 }}>
-              {isDarkTheme ? t('switchToLightTheme') : t('switchToDarkTheme')}
-            </Typography>
-          </Box>
-
-          <Box sx={{ borderBottom: '1px solid #ddd', my: 2 }} />
-
-          {/* Additional Menu Items */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#999', mb: 2 }}>
-            {t('data')}
-          </Typography>
-
-          <Box sx={{ borderBottom: '1px solid #ddd', my: 2 }} />
-
-          {/* Language Section */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#999', mb: 2 }}>
-            {t('language')}
-          </Typography>
-
-          {/* English Button */}
-          <Box
-            onClick={() => i18n.changeLanguage('en')}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              padding: '10px',
-              cursor: 'pointer',
-              borderRadius: '4px',
-              backgroundColor: i18n.language === 'en' ? '#e3f2fd' : 'transparent',
-              fontWeight: i18n.language === 'en' ? 600 : 500,
-              color: i18n.language === 'en' ? '#02355a' : '#666',
-              marginBottom: '8px',
-              '&:hover': { backgroundColor: '#f0f0f0' },
-            }}
-          >
-            <Typography sx={{ color: 'inherit', fontWeight: 'inherit' }}>
-              {t('english')}
-            </Typography>
-          </Box>
-
-          {/* Spanish Button */}
-          <Box
-            onClick={() => i18n.changeLanguage('es')}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              padding: '10px',
-              cursor: 'pointer',
-              borderRadius: '4px',
-              backgroundColor: i18n.language === 'es' ? '#e3f2fd' : 'transparent',
-              fontWeight: i18n.language === 'es' ? 600 : 500,
-              color: i18n.language === 'es' ? '#02355a' : '#666',
-              '&:hover': { backgroundColor: '#f0f0f0' },
-            }}
-          >
-            <Typography sx={{ color: 'inherit', fontWeight: 'inherit' }}>
-              {t('spanish')}
-            </Typography>
-          </Box>
-        </Box>
-      </Drawer>
 
       {/* ChatBot Modal */}
       <ChatBot open={chatOpen} onClose={() => setChatOpen(false)} />
