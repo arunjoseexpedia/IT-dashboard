@@ -25,14 +25,16 @@ interface AssignedLawyerDashboardProps {
 }
 
 const COLORS = [
-  '#2563EB',
-  '#06B6D4',
-  '#22C55E',
-  '#F59E0B',
-  '#8B5CF6',
-  '#EC4899',
-  '#EF4444',
-  '#6B7280',
+  '#2a78d6', // Blue - No (Admin)
+  '#eb6834', // Orange - Jorge Henríquez
+  '#1baf7a', // Teal - Ángel Díaz
+  '#eda100', // Yellow - Iván Quintana
+  '#e87ba4', // Magenta - Verónica García
+  '#008300', // Green - Jhomar López
+  '#4a3aa7', // Violet - José Toledo
+  '#e34948', // Red - Miguel Sierra
+  '#9b9b9b', // Gray - Gabriel Ugas
+  '#cccccc', // Light Gray - Santiago Rangel
 ];
 
 const AssignedLawyerDashboard = ({
@@ -150,15 +152,15 @@ const AssignedLawyerDashboard = ({
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '45% 55%' },
+            gridTemplateColumns: { xs: '1fr', md: 'auto auto 1fr' },
             gap: '24px',
-            alignItems: 'flex-start', // Top align both columns
+            alignItems: 'flex-start',
             '@media (max-width: 1024px)': {
               gridTemplateColumns: '1fr',
             },
           }}
         >
-          {/* Left Column - Donut Chart (45%) */}
+          {/* Left Column - Donut Chart (Fixed 220×220px to accommodate labels) */}
           <Box
             sx={{
               display: 'flex',
@@ -166,8 +168,11 @@ const AssignedLawyerDashboard = ({
               alignItems: 'center',
               backgroundColor: '#FFFFFF',
               borderRadius: '12px',
-              padding: '16px',
-              
+              padding: '12px',
+              width: '220px',
+              height: '220px',
+              flexShrink: 0,
+              overflow: 'visible',
             }}
           >
             <Box
@@ -177,18 +182,26 @@ const AssignedLawyerDashboard = ({
                 alignItems: 'center',
                 position: 'relative',
                 width: '100%',
+                height: '100%',
+                overflow: 'visible',
               }}
             >
-              <ResponsiveContainer width="100%" height={280}>
+              <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={donutData}
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={renderCustomLabel}
-                    innerRadius={70}
-                    outerRadius={110}
+                    label={{ 
+                      formatter: renderCustomLabel,
+                      position: 'outside',
+                      offset: 8,
+                      fontSize: 11,
+                      fontWeight: 500,
+                    }}
+                    innerRadius={45}
+                    outerRadius={72}
                     fill="#8884d8"
                     dataKey="value"
                     animationBegin={0}
@@ -219,7 +232,7 @@ const AssignedLawyerDashboard = ({
               >
                 <Typography
                   sx={{
-                    fontSize: '28px',
+                    fontSize: '18px',
                     fontWeight: 700,
                     color: '#2563EB',
                   }}
@@ -228,7 +241,7 @@ const AssignedLawyerDashboard = ({
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: '12px',
+                    fontSize: '10px',
                     color: '#6B7280',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
@@ -243,18 +256,127 @@ const AssignedLawyerDashboard = ({
 
           </Box>
 
-          {/* Right Column - Horizontal Bar Chart (55%) */}
+          {/* Middle Column - Metric Cards */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              width: '140px',
+              flexShrink: 0,
+            }}
+          >
+            {/* Total Contracts */}
+            <Box
+              sx={{
+                backgroundColor: '#F9FAFB',
+                borderRadius: '8px',
+                padding: '12px',
+                textAlign: 'center',
+                border: '1px solid #E5E7EB',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '10px',
+                  color: '#6B7280',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  marginBottom: '4px',
+                }}
+              >
+                Total Contracts
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#2563EB',
+                }}
+              >
+                {totalContracts.toLocaleString()}
+              </Typography>
+            </Box>
+
+            {/* Max Assigned */}
+            <Box
+              sx={{
+                backgroundColor: '#F9FAFB',
+                borderRadius: '8px',
+                padding: '12px',
+                textAlign: 'center',
+                border: '1px solid #E5E7EB',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '10px',
+                  color: '#6B7280',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  marginBottom: '4px',
+                }}
+              >
+                Max Assigned
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#22C55E',
+                }}
+              >
+                {data.length > 0 ? data[0].count : 0}
+              </Typography>
+            </Box>
+
+            {/* Avg per Lawyer */}
+            <Box
+              sx={{
+                backgroundColor: '#F9FAFB',
+                borderRadius: '8px',
+                padding: '12px',
+                textAlign: 'center',
+                border: '1px solid #E5E7EB',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '10px',
+                  color: '#6B7280',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  marginBottom: '4px',
+                }}
+              >
+                Avg per Lawyer
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#F59E0B',
+                }}
+              >
+                {data.length > 0 ? Math.round(totalContracts / data.length) : 0}
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Right Column - Horizontal Bar Chart (Full Width, 260px height) */}
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               backgroundColor: '#FFFFFF',
-              
               padding: '12px',
-             
+              flex: 1,
             }}
           >
-            <ResponsiveContainer width="100%" height={280}>
+            <ResponsiveContainer width="100%" height={260}>
               <BarChart
                 data={data}
                 layout="vertical"
@@ -300,115 +422,7 @@ const AssignedLawyerDashboard = ({
           </Box>
         </Box>
 
-        {/* Footer Statistics */}
-        <Box
-          sx={{
-            marginTop: '24px',
-            paddingTop: '24px',
-            borderTop: '1px solid #E5E7EB',
-            display: 'grid',
-            gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
-            gap: '12px',
-          }}
-        >
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Total Lawyers
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-              {data.length}
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Total Contracts
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-              {totalContracts.toLocaleString()}
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Max Assigned
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#22C55E',
-              }}
-            >
-              {data.length > 0 ? data[0].count : 0}
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Avg per Lawyer
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#F59E0B',
-              }}
-            >
-              {data.length > 0
-                ? Math.round(totalContracts / data.length)
-                : 0}
-            </Typography>
-          </Box>
-        </Box>
+        
       </CardContent>
     </Card>
   );

@@ -56,13 +56,22 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
             badgeContent={unreadCount} 
             color="error"
             sx={{
+              position: 'relative',
+              display: 'inline-flex',
               '& .MuiBadge-badge': {
-                right: -5,
-                top: 8,
+                right: '9px',
+                top: '9px',
                 border: `2px solid #02355a`,
-                padding: '0 3px',
+                padding: '0 4px',
                 fontWeight: 700,
                 fontSize: '11px',
+                minWidth: '20px',
+                height: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#ef4444',
+                zIndex: 1,
               },
             }}
           >
