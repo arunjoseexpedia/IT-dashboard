@@ -183,7 +183,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                       backgroundColor: item.isActive
                         ? isDarkTheme
                           ? 'rgba(2, 53, 90, 0.2)'
-                          : '#E3F2FD'
+                          : '#a5caee'
                         : 'transparent',
                       color: item.isActive ? '#02355a' : textColor,
                       fontWeight: item.isActive ? 600 : 500,

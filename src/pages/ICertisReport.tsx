@@ -164,19 +164,7 @@ const ICertisReport = () => {
   return (
     <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
       {/* Top Row - Two-column layout for charts */}
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-          gap: '24px',
-          '@media (max-width: 1024px)': {
-            gridTemplateColumns: '1fr',
-          },
-        }}
-      >
-        <TopProjectsByE2EProcess data={projectData} title={t('topProjectsByE2E')} />
-        <ContractsByWorkArea data={contractData} title={t('contractsByWorkArea')} />
-      </Box>
+      
 
       {/* Bottom Row - Two-column layout for additional charts */}
       <Box
