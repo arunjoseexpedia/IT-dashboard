@@ -32,7 +32,7 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
     <Card
       sx={{
         backgroundColor: '#FFFFFF',
-        border: "1px solid #E5E7EB",
+        border: "1px solid #c6e0f5ff",
         borderRadius: '16px',
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         transition: 'all 0.3s ease',
