@@ -84,7 +84,7 @@ function Layout() {
           </Box>
 
           {/* Tab Content */}
-          <Box sx={{ flex: 1, overflow: 'auto', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd' }}>
+          <Box sx={{ flex: 1, overflow: 'auto',  backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd' }}>
             {tabValue === 0 && <AribaReport />}
             {tabValue === 1 && <SLAEventReport /> }
             {tabValue === 2 && <ICertisReport />}

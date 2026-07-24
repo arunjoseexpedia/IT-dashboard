@@ -92,7 +92,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
       <Box
         sx={{
           padding: isCollapsed ? '12px 8px' : '16px 20px',
-          borderBottom: `1px solid ${borderColor}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -105,9 +104,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
             sx={{
               fontSize: '16px',
               fontWeight: 700,
-              color: '#02355a',
+              color: '#483D8B',
               letterSpacing: '0.05em',
-              textTransform: 'uppercase',
+              textTransform: 'none',
               whiteSpace: 'nowrap',
             }}
           >
