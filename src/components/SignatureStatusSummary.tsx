@@ -353,7 +353,7 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
             flexShrink: 0,
           }}
         >
-          Signature Completion Trend
+          Signature Completion Trend - Last 12 Months
         </DialogTitle>
 
         <DialogContent sx={{ 
