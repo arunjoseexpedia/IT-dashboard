@@ -10,6 +10,7 @@ interface MenuItem {
   icon?: React.ReactNode;
   color?: string;
   isActive?: boolean;
+  code?: string;
 }
 
 interface MenuSection {
@@ -60,11 +61,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
           label: t('english'),
           onClick: () => i18n.changeLanguage('en'),
           isActive: i18n.language === 'en',
+          code: 'GB',
         },
         {
           label: t('spanish'),
           onClick: () => i18n.changeLanguage('es'),
           isActive: i18n.language === 'es',
+          code: 'ES',
         },
       ],
     },
@@ -194,7 +197,25 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                       justifyContent: isCollapsed ? 'center' : 'flex-start',
                     }}
                   >
-                    {item.icon && (
+                    {item.code ? (
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '6px',
+                          backgroundColor: item.isActive ? '#2563EB' : isDarkTheme ? '#374151' : '#E5E7EB',
+                          color: item.isActive ? 'white' : textColor,
+                          fontWeight: 600,
+                          fontSize: '12px',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {item.code}
+                      </Box>
+                    ) : item.icon ? (
                       <Box
                         sx={{
                           display: 'flex',
@@ -206,7 +227,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                       >
                         {item.icon}
                       </Box>
-                    )}
+                    ) : null}
                     {!isCollapsed && (
                       <Typography
                         sx={{
