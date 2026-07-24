@@ -322,7 +322,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             flexShrink: 0,
           }}
         >
-          Application Trend - Last 12 Months
+          Request Creation Trend - Last 12 Months
         </DialogTitle>
 
         <DialogContent sx={{ 
@@ -354,7 +354,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
                 marginBottom: '8px'
               }}
             >
-              Total Applications (Last 12 Months)
+              Total Applications
             </Typography>
             <Typography 
               sx={{ 
