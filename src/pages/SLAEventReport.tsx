@@ -237,17 +237,9 @@ const SLAEventReport = () => {
       
       {/* Two-column layout for Negotiation Status and Lawyer List */}
       <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-          gap: '24px',
-          '@media (max-width: 1024px)': {
-            gridTemplateColumns: '1fr',
-          },
-        }}
+        
       >
-        <NegotiationStatusChart data={negotiationStatusData} title="Negotiation Status Breakdown" />
-        <LawyerListCard data={lawyerData} title="Lawyer Distribution" />
+       <LawyerListCard data={lawyerData} title="Lawyer Distribution" />
       </Box>
     </Box>
   );

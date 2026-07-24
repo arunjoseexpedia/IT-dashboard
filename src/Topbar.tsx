@@ -75,7 +75,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
           >
             <IconButton 
               sx={{ 
-                color: 'white', 
+                color: '#FFF8E1', 
                 padding: '8px',
                 display: 'flex', 
                 alignItems: 'center', 
