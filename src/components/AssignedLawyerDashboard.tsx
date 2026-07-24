@@ -46,12 +46,14 @@ const AssignedLawyerDashboard = ({
 
   // Custom label for donut chart showing percentage
   const renderCustomLabel = (entry: any) => {
-    return `${entry.percentage}%`;
+    return `${entry}%`;
   };
 
   // Custom tooltip for donut chart
   const CustomDonutTooltip = (props: any) => {
+    console.log(props);
     const { active, payload } = props;
+    console.log(payload);
     if (active && payload && payload.length) {
       const data = payload[0];
       return (
@@ -113,7 +115,8 @@ const AssignedLawyerDashboard = ({
     ...item,
     value: item.count,
   }));
-
+  console.log(data);
+   console.log(donutData);
   return (
     <Card
       sx={{
@@ -215,7 +218,7 @@ const AssignedLawyerDashboard = ({
                       />
                     ))}
                   </Pie>
-                  <Tooltip content={<CustomDonutTooltip />} />
+                  <Tooltip content={<CustomDonutTooltip props={data}/>} />
                 </PieChart>
               </ResponsiveContainer>
 
