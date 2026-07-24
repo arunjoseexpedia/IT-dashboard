@@ -4,7 +4,6 @@ import * as XLSX from 'xlsx';
 import { useTranslation } from 'react-i18next';
 import { Close as CloseIcon } from '@mui/icons-material';
 import AssignedLawyerDashboard from '../components/AssignedLawyerDashboard';
-import NegotiationStatusChart from '../components/NegotiationStatusChart';
 import LawyerListCard from '../components/LawyerListCard';
 
 interface LawyerData {
@@ -14,18 +13,11 @@ interface LawyerData {
   usdAmount?: number;
 }
 
-interface NegotiationStatusData {
-  lawyer: string;
-  completed: number;
-  inNegotiation: number;
-  total: number;
-  completedPercentage: string;
-  inNegotiationPercentage: string;
-}
+
 
 const SLAEventReport = () => {
   const [lawyerData, setLawyerData] = useState<LawyerData[]>([]);
-  const [negotiationStatusData, setNegotiationStatusData] = useState<NegotiationStatusData[]>([]);
+  
   const [selectedSignatureStatus, setSelectedSignatureStatus] = useState('All');
   const [isDarkTheme, setIsDarkTheme] = useState(false);
    const { t } = useTranslation();
@@ -135,7 +127,7 @@ const SLAEventReport = () => {
           })
           .sort((a, b) => b.total - a.total);
 
-        setNegotiationStatusData(negotiationDataArray);
+        console.log('Negotiation Status by Assigned Lawyer:', negotiationDataArray);
       } catch (error) {
         console.error('Error reading Excel file:', error);
         setLawyerData([]);
