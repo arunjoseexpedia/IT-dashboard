@@ -22,6 +22,11 @@ interface LawyerData {
 interface AssignedLawyerDashboardProps {
   data: LawyerData[];
   title?: string;
+  complianceData?: {
+    compliant: number;
+    nonCompliant: number;
+  };
+  completionRate?: number;
 }
 
 const COLORS = [
@@ -38,7 +43,9 @@ const COLORS = [
 ];
 
 const AssignedLawyerDashboard = ({
-  data
+  data,
+  complianceData = { compliant: 241, nonCompliant: 18 },
+  completionRate = 98.1
  }: AssignedLawyerDashboardProps) => {
   const { t } = useTranslation();
   const displayTitle = t('assignedLawyer');
@@ -115,8 +122,8 @@ const AssignedLawyerDashboard = ({
     ...item,
     value: item.count,
   }));
-  console.log(data);
-   console.log(donutData);
+  
+  
   return (
     <Card
       sx={{
@@ -139,13 +146,13 @@ const AssignedLawyerDashboard = ({
         {/* Header */}
         <Typography
           sx={{
-            fontSize: '18px',
+            fontSize: '15px',
             fontWeight: 600,
             color: '#374151',
             marginBottom: '24px',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
-            height: '24px', // Fixed height for consistency
+            height: '21px', // Fixed height for consistency
           }}
         >
           {displayTitle}
@@ -259,13 +266,13 @@ const AssignedLawyerDashboard = ({
 
           </Box>
 
-          {/* Middle Column - Metric Cards */}
+          {/* Middle Column - Metric Cards (Updated to 2x2 grid) */}
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
               gap: '12px',
-              width: '140px',
+              width: '290px',
               flexShrink: 0,
             }}
           >
@@ -281,7 +288,7 @@ const AssignedLawyerDashboard = ({
             >
               <Typography
                 sx={{
-                  fontSize: '10px',
+                  fontSize: '9px',
                   color: '#6B7280',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -293,12 +300,45 @@ const AssignedLawyerDashboard = ({
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '18px',
+                  fontSize: '16px',
                   fontWeight: 700,
                   color: '#2563EB',
                 }}
               >
                 {totalContracts.toLocaleString()}
+              </Typography>
+            </Box>
+
+            {/* BR Compliance */}
+            <Box
+              sx={{
+                backgroundColor: '#F9FAFB',
+                borderRadius: '8px',
+                padding: '12px',
+                textAlign: 'center',
+                border: '1px solid #E5E7EB',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '9px',
+                  color: '#6B7280',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  marginBottom: '4px',
+                }}
+              >
+                BR Compliant
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#22C55E',
+                }}
+              >
+                {complianceData.compliant.toLocaleString()}
               </Typography>
             </Box>
 
@@ -314,7 +354,7 @@ const AssignedLawyerDashboard = ({
             >
               <Typography
                 sx={{
-                  fontSize: '10px',
+                  fontSize: '9px',
                   color: '#6B7280',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -326,7 +366,7 @@ const AssignedLawyerDashboard = ({
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '18px',
+                  fontSize: '16px',
                   fontWeight: 700,
                   color: '#22C55E',
                 }}
@@ -335,7 +375,7 @@ const AssignedLawyerDashboard = ({
               </Typography>
             </Box>
 
-            {/* Avg per Lawyer */}
+            {/* BR Non-Compliance */}
             <Box
               sx={{
                 backgroundColor: '#F9FAFB',
@@ -347,7 +387,74 @@ const AssignedLawyerDashboard = ({
             >
               <Typography
                 sx={{
-                  fontSize: '10px',
+                  fontSize: '9px',
+                  color: '#6B7280',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  marginBottom: '4px',
+                }}
+              >
+                BR Non-Compliant
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#EF4444',
+                }}
+              >
+                {complianceData.nonCompliant.toLocaleString()}
+              </Typography>
+            </Box>
+
+            {/* Completion Rate */}
+            <Box
+              sx={{
+                backgroundColor: '#F9FAFB',
+                borderRadius: '8px',
+                padding: '12px',
+                textAlign: 'center',
+                border: '1px solid #E5E7EB',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '9px',
+                  color: '#6B7280',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  marginBottom: '4px',
+                }}
+              >
+                Completion Rate
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#6366F1',
+                }}
+              >
+                {completionRate.toFixed(1)}%
+              </Typography>
+            </Box>
+
+            {/* Avg per Lawyer */}
+            <Box
+              sx={{
+                backgroundColor: '#F9FAFB',
+                borderRadius: '8px',
+                padding: '12px',
+                textAlign: 'center',
+                border: '1px solid #E5E7EB',
+                
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '9px',
                   color: '#6B7280',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -359,7 +466,7 @@ const AssignedLawyerDashboard = ({
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '18px',
+                  fontSize: '16px',
                   fontWeight: 700,
                   color: '#F59E0B',
                 }}
@@ -383,7 +490,7 @@ const AssignedLawyerDashboard = ({
               <BarChart
                 data={data}
                 layout="vertical"
-                margin={{ top: 10, right: 20, left: 120, bottom: 10 }}
+                margin={{ top: 10, right: 20, left: 8, bottom: 10 }}
               >
                 <CartesianGrid
                   strokeDasharray="3 3"
