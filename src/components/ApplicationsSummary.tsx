@@ -38,8 +38,8 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
           right: 0,
           bottom: 0,
           backgroundImage: `
-            linear-gradient(90deg, rgba(37, 99, 235, 0.02) 1px, transparent 1px),
-            linear-gradient(180deg, rgba(37, 99, 235, 0.02) 1px, transparent 1px)
+            linear-gradient(90deg, #F8FAFC  1px, transparent 1px),
+            linear-gradient(180deg, #F8FAFC  1px, transparent 1px)
           `,
           backgroundSize: '24px 24px',
           pointerEvents: 'none',
@@ -53,9 +53,9 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
           right: 0,
           bottom: 0,
           backgroundImage: `
-            linear-gradient(135deg, transparent 0%, rgba(37, 99, 235, 0.03) 30%, rgba(37, 99, 235, 0.02) 50%, transparent 100%),
-            linear-gradient(125deg, transparent 0%, rgba(59, 130, 246, 0.02) 40%, transparent 70%),
-            linear-gradient(115deg, transparent 0%, rgba(96, 165, 250, 0.02) 50%, transparent 80%),
+            linear-gradient(135deg, transparent 0%, #F8FAFC 30%, #F8FAFC 50%, transparent 100%),
+            linear-gradient(125deg, transparent 0%, #F8FAFC 40%, transparent 70%),
+            linear-gradient(115deg, transparent 0%, #F8FAFC 50%, transparent 80%),
             radial-gradient(ellipse 800px 400px at 100% 80%, rgba(37, 99, 235, 0.03) 0%, transparent 60%)
           `,
           pointerEvents: 'none',

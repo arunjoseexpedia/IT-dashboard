@@ -46,8 +46,8 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
         </Typography>
       </div>
 
-      {/* Right side - Notifications, Chatbot, and Menu Icons */}
-      <Box display="flex" alignItems="center" gap={1}>
+      {/* Right side - Notifications and User Avatar */}
+      <Box display="flex" alignItems="center" gap={2}>
         {/* Notifications Icon with Badge */}
         <Tooltip title="Notifications">
           <Badge 
@@ -89,6 +89,51 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
             </IconButton>
           </Badge>
         </Tooltip>
+
+        {/* User Avatar and Info */}
+        <Box display="flex" alignItems="center" gap="10px" sx={{ paddingLeft: '12px', borderLeft: '1px solid rgba(255,255,255,0.2)' }}>
+          {/* Avatar Circle */}
+          <Box
+            sx={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #4F46E5 0%, #6D28D9 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14px',
+              fontWeight: 700,
+              color: 'white',
+              flexShrink: 0,
+            }}
+          >
+            JD
+          </Box>
+
+          {/* User Info */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: '0' }}>
+            <Typography
+              sx={{
+                fontSize: '13px',
+                fontWeight: 600,
+                color: 'white',
+                lineHeight: 1.2,
+              }}
+            >
+              John Doe
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                color: 'rgba(255,255,255,0.7)',
+                lineHeight: 1.2,
+              }}
+            >
+              admin
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </div>
   );
