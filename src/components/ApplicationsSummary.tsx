@@ -30,15 +30,52 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
         minHeight: '220px',
         display: 'flex',
         flexDirection: 'column',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `
+            linear-gradient(90deg, rgba(37, 99, 235, 0.02) 1px, transparent 1px),
+            linear-gradient(180deg, rgba(37, 99, 235, 0.02) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px',
+          pointerEvents: 'none',
+          zIndex: 1,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `
+            linear-gradient(135deg, transparent 0%, rgba(37, 99, 235, 0.03) 30%, rgba(37, 99, 235, 0.02) 50%, transparent 100%),
+            linear-gradient(125deg, transparent 0%, rgba(59, 130, 246, 0.02) 40%, transparent 70%),
+            linear-gradient(115deg, transparent 0%, rgba(96, 165, 250, 0.02) 50%, transparent 80%),
+            radial-gradient(ellipse 800px 400px at 100% 80%, rgba(37, 99, 235, 0.03) 0%, transparent 60%)
+          `,
+          pointerEvents: 'none',
+          zIndex: 0,
+        },
       }}
     >
+      {/* Wave Accent - Bottom Right */}
+     
       <CardContent
         sx={{
-          padding: '16px',
+          padding: '20px',
+          paddingBottom: '16px',
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
           position: 'relative',
+          zIndex: 2,
+          overflow: 'visible',
+          gap: '8px',
         }}
       >
         {/* Icon Badge - Top Right, Floating Above Card Border */}
@@ -46,16 +83,16 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
           <Box
             sx={{
               position: 'absolute',
-              top: '-20px',
+              top: '-22px',
               right: '20px',
               width: '48px',
               height: '48px',
-              borderRadius: '50%',
-              background: '#2563EB',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #DBEAFE 0%, #E0E7FF 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'white',
+              color: '#2563EB',
               fontSize: '24px',
               boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
               zIndex: 10,
@@ -82,10 +119,10 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
         </Box>
 
         {/* Total count - Main prominent display */}
-        <Box sx={{ marginBottom: '16px' }}>
+        <Box sx={{ marginBottom: '4px' }}>
           <Typography
             sx={{
-              fontSize: '42px',
+              fontSize: '36px',
               fontWeight: '700',
               color: '#1E3A8A',
               lineHeight: 1,
@@ -96,9 +133,9 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
         </Box>
 
         {/* Breakdown - two columns */}
-        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: 'auto' }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: 'auto', paddingTop: '8px' }}>
           {/* WITH TEMPLATE */}
-          <Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography
               variant="caption"
               sx={{
@@ -107,7 +144,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
                 color: '#9CA3AF',
                 textTransform: 'uppercase',
                 display: 'block',
-                marginBottom: '8px',
+                marginBottom: '6px',
                 letterSpacing: '0.03em',
               }}
             >
@@ -115,10 +152,11 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: '18px',
                 fontWeight: '700',
                 color: '#374151',
-                marginBottom: '2px',
+                marginBottom: '4px',
+                lineHeight: 1.2,
               }}
             >
               {templateCount.toLocaleString()}
@@ -129,6 +167,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
                 fontSize: '12px',
                 color: '#9CA3AF',
                 fontWeight: 500,
+                lineHeight: 1,
               }}
             >
               {templatePercentage}%
@@ -136,7 +175,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
           </Box>
 
           {/* NO TEMPLATE */}
-          <Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography
               variant="caption"
               sx={{
@@ -145,7 +184,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
                 color: '#9CA3AF',
                 textTransform: 'uppercase',
                 display: 'block',
-                marginBottom: '8px',
+                marginBottom: '6px',
                 letterSpacing: '0.03em',
               }}
             >
@@ -153,10 +192,11 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             </Typography>
             <Typography
               sx={{
-                fontSize: '20px',
+                fontSize: '18px',
                 fontWeight: '700',
                 color: '#374151',
-                marginBottom: '2px',
+                marginBottom: '4px',
+                lineHeight: 1.2,
               }}
             >
               {noTemplateCount.toLocaleString()}
@@ -167,6 +207,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
                 fontSize: '12px',
                 color: '#9CA3AF',
                 fontWeight: 500,
+                lineHeight: 1,
               }}
             >
               {noTemplatePercentage}%

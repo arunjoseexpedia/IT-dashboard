@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"; 
 import { Box, IconButton, Typography, Badge, Tooltip } from "@mui/material"; 
-import { Notifications, HelpOutline } from "@mui/icons-material";
+import { Notifications } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
-import ChatBot from './components/ChatBot';
 
 
 const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
   const [loaded, setLoaded] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
   const unreadCount = 7; // Unread notifications count
   const { t } = useTranslation();
   
@@ -91,29 +89,7 @@ const Topbar = ({ currentTab = 'General' }: { currentTab?: string }) => {
             </IconButton>
           </Badge>
         </Tooltip>
-
-        {/* Chatbot Icon */}
-        <Tooltip title="Chat with Assistant">
-          <IconButton 
-            onClick={() => setChatOpen(true)}
-            sx={{ 
-              color: 'white', 
-              padding: '8px',
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' }, 
-              '&:active': { backgroundColor: 'rgba(255,255,255,0.2)' }, 
-              '& .MuiTouchRipple-root': { display: 'none' } 
-            }}
-          >
-            <HelpOutline sx={{ fontSize: 28 }} />
-          </IconButton>
-        </Tooltip>
       </Box>
-
-      {/* ChatBot Modal */}
-      <ChatBot open={chatOpen} onClose={() => setChatOpen(false)} />
     </div>
   );
 };
