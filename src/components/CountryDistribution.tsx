@@ -87,14 +87,14 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
         borderRadius: '16px',
         boxShadow: '0 4px 16px rgba(15,23,42,.08)',
         height: '100%',
-        minHeight: '200px',
+        minHeight: '240px',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
       <CardContent
         sx={{
-          padding: '16px',
+          padding: '10px 16px',
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
@@ -107,20 +107,20 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
             fontWeight: 700,
             color: '#02355a',
             textTransform: 'uppercase',
-            marginBottom: '12px',
+            marginBottom: '6px',
             letterSpacing: '0.05em',
             borderBottom: '2px solid #02355a',
-            paddingBottom: '8px',
+            paddingBottom: '4px',
             textAlign: 'center',
             flexShrink: 0,
-            fontSize: '13px',
+            fontSize: '11px',
           }}
         >
           {title}
         </Typography>
 
         {/* Tabs */}
-        <Box sx={{ marginBottom: '12px', flexShrink: 0 }}>
+        <Box sx={{ marginBottom: '6px', flexShrink: 0 }}>
           <Tabs 
             value={tabValue} 
             onChange={(_, value) => setTabValue(value)}
@@ -130,15 +130,15 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
               borderBottom: '1px solid #E5E7EB',
               '& .MuiTabs-indicator': {
                 backgroundColor: '#02355a',
-                height: '3px',
+                height: '2px',
               },
               '& .MuiTab-root': {
                 textTransform: 'none',
-                fontSize: '12px',
+                fontSize: '10px',
                 fontWeight: 500,
                 color: '#6B7280',
-                padding: '8px 12px',
-                minHeight: '36px',
+                padding: '4px 8px',
+                minHeight: '28px',
                 border: 'none',
                 outline: 'none',
                 position: 'relative',
@@ -180,10 +180,10 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: '12px',
-                  marginBottom: '8px',
+                  gap: '10px',
+                  marginBottom: '4px',
                   flexWrap: 'wrap',
-                  fontSize: '11px',
+                  fontSize: '9px',
                   color: '#666',
                   flexShrink: 0,
                 }}
@@ -274,19 +274,19 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
           {/* Bar Chart Tab */}
           {tabValue === 1 && (
             <Box sx={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
-              <ResponsiveContainer width="100%" height={Math.max(200, barChartData.length * 32)}>
+              <ResponsiveContainer width="100%" height={Math.max(140, barChartData.length * 24)}>
                 <BarChart
                   data={barChartData}
                   layout="vertical"
-                  margin={{ top: 4, right: 20, left: 100, bottom: 4 }}
+                  margin={{ top: 1, right: 16, left: 85, bottom: 1 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis type="number" stroke="#666" tick={{ fontSize: 11 }} />
+                  <XAxis type="number" stroke="#666" tick={{ fontSize: 9 }} />
                   <YAxis
                     dataKey="country"
                     type="category"
-                    width={100}
-                    tick={{ fontSize: 11 }}
+                    width={85}
+                    tick={{ fontSize: 9 }}
                     stroke="#666"
                   />
                   <RechartsTooltip
@@ -295,7 +295,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                       border: '1px solid #ccc',
                       borderRadius: '6px',
                       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                      fontSize: '11px',
+                      fontSize: '9px',
                     }}
                     formatter={(value: any) => `${value} contracts`}
                     labelFormatter={(label: any) => {
@@ -309,7 +309,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                     radius={[0, 8, 8, 0]}
                     label={{
                       position: 'right',
-                      fontSize: 10,
+                      fontSize: 9,
                       fontWeight: 600,
                       fill: '#02355a',
                     }}

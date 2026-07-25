@@ -261,9 +261,9 @@ const AribaReport = () => {
   }, [selectedCategory, selectedCountry]);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
+    <Box sx={{ padding: '16px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
       {/* Filter Section - Enhanced */}
-      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
+      <Box sx={{ marginBottom: '14px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
         
         {/* Category Filter */}
         <Box>
@@ -412,8 +412,8 @@ const AribaReport = () => {
         sx={{
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr' },
-          gap: '20px',
-          marginBottom: '30px',
+          gap: '16px',
+          marginBottom: '16px',
         }}
       >
         <ApplicationsSummary
@@ -443,7 +443,7 @@ const AribaReport = () => {
       </Box>
 
       {/* Application Status Chart and Country Distribution Row */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '20px', marginBottom: '30px' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '16px', marginBottom: '20px' }}>
         <ApplicationStatusChart data={statusChartData} title={t('applicationStatus')} />
         <CountryDistribution data={countryData} title={t('countryDistribution')} />
       </Box>
@@ -463,17 +463,20 @@ const AribaReport = () => {
           <CardContent sx={{ padding: '20px' }}>
             <Typography
               variant="h6"
-              sx={{
-                fontWeight: 700,
-                color: '#02355a',
-                textTransform: 'uppercase',
-                marginBottom: '20px',
-                letterSpacing: '0.05em',
-                borderBottom: '2px solid #02355a',
-                paddingBottom: '10px',
-                textAlign: 'center',
-              }}
-            >
+             sx={{
+            fontWeight: 700,
+            color: '#02355a',
+            textTransform: 'uppercase',
+            marginBottom: '6px',
+            letterSpacing: '0.05em',
+            borderBottom: '2px solid #02355a',
+            paddingBottom: '4px',
+            textAlign: 'center',
+            flexShrink: 0,
+            fontSize: '11px',
+          }}
+        >
+            
               {t('contractType')}
             </Typography>
 
@@ -493,7 +496,18 @@ const AribaReport = () => {
                   <Cell fill="#003d99" />
                 </Pie>
                 <Tooltip formatter={(value: any) => `${value}`} labelFormatter={() => ''} />
-                <Legend verticalAlign="bottom" height={36} formatter={(value) => value.toUpperCase()} />
+                <Legend verticalAlign="bottom" height={14}  formatter={(value) => (
+    <span
+      style={{
+        fontSize: '12px',      // Reduce font size
+        fontWeight: 500,
+        color: '#003d99',
+        textTransform: 'uppercase',
+      }}
+    >
+      {value}
+    </span>
+  )} />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
@@ -512,21 +526,23 @@ const AribaReport = () => {
           <CardContent sx={{ padding: '20px' }}>
             <Typography
               variant="h6"
-              sx={{
-                fontWeight: 700,
-                color: '#02355a',
-                textTransform: 'uppercase',
-                marginBottom: '20px',
-                letterSpacing: '0.05em',
-                borderBottom: '2px solid #02355a',
-                paddingBottom: '10px',
-                textAlign: 'center',
-              }}
-            >
+                 sx={{
+            fontWeight: 700,
+            color: '#02355a',
+            textTransform: 'uppercase',
+            marginBottom: '6px',
+            letterSpacing: '0.05em',
+            borderBottom: '2px solid #02355a',
+            paddingBottom: '4px',
+            textAlign: 'center',
+            flexShrink: 0,
+            fontSize: '11px',
+          }}
+        >
               {t('requestingArea')}
             </Typography>
             <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={requestingAreaData} layout="vertical" margin={{ top: 5, right: 10, left: 120, bottom: 5 }}>
+              <BarChart data={requestingAreaData} layout="vertical" margin={{ top: 5, right: 10, left: 40, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke={isDarkTheme ? '#4B5563' : '#e0e0e0'} />
                 <XAxis type="number" stroke={isDarkTheme ? '#9CA3AF' : '#666'} tick={{ fill: isDarkTheme ? '#9CA3AF' : '#666', fontSize: 12 }} />
                 <YAxis dataKey="name" type="category" width={115} tick={{ fontSize: 12, fill: isDarkTheme ? '#9CA3AF' : '#666' }} stroke={isDarkTheme ? '#9CA3AF' : '#666'} />
