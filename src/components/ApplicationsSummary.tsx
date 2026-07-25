@@ -111,7 +111,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
       <Card
         onClick={() => setDialogOpen(true)}
         sx={{
-          backgroundColor: '#FFFFFF',
+          background: 'linear-gradient(135deg, #3b82f6 50%, #60a5fa 100%)',
           border: "1px solid #c2f4cbff",
           
           borderRadius: '16px',
@@ -152,18 +152,17 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
           <Box
             sx={{
               position: 'absolute',
-              top: '-22px',
+              top: '-23px',
               right: '20px',
               width: '48px',
               height: '48px',
               borderRadius: '12px',
-              background: '#2563EB',
+              background: 'transparent',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'white',
+              color: '#90CAF9',
               fontSize: '24px',
-              boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
               zIndex: 10,
             }}
           >
@@ -177,7 +176,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             variant="subtitle2"
             sx={{
               fontWeight: 600,
-              color: '#6B7280',
+              color: 'white',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               fontSize: '12px',
@@ -193,7 +192,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             sx={{
               fontSize: '36px',
               fontWeight: '700',
-              color: '#1E3A8A',
+              color: 'white',
               lineHeight: 1,
             }}
           >
@@ -210,7 +209,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
               sx={{
                 fontSize: '11px',
                 fontWeight: '500',
-                color: '#9CA3AF',
+                color: 'white',
                 textTransform: 'uppercase',
                 display: 'block',
                 marginBottom: '6px',
@@ -223,7 +222,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
               sx={{
                 fontSize: '18px',
                 fontWeight: '700',
-                color: '#374151',
+                color: 'white',
                 marginBottom: '4px',
                 lineHeight: 1.2,
               }}
@@ -234,7 +233,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
               variant="caption"
               sx={{
                 fontSize: '12px',
-                color: '#9CA3AF',
+                color: 'white',
                 fontWeight: 500,
                 lineHeight: 1,
               }}
@@ -250,7 +249,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
               sx={{
                 fontSize: '11px',
                 fontWeight: '500',
-                color: '#9CA3AF',
+                color: 'white',
                 textTransform: 'uppercase',
                 display: 'block',
                 marginBottom: '6px',
@@ -263,7 +262,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
               sx={{
                 fontSize: '18px',
                 fontWeight: '700',
-                color: '#374151',
+                color: 'white',
                 marginBottom: '4px',
                 lineHeight: 1.2,
               }}
@@ -274,7 +273,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
               variant="caption"
               sx={{
                 fontSize: '12px',
-                color: '#9CA3AF',
+                color: 'white',
                 fontWeight: 500,
                 lineHeight: 1,
               }}

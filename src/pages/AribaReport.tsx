@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { TaskAlt, Analytics, PendingActions, Close as CloseIcon } from '@mui/icons-material';
+import { Work, Description, BusinessCenter, Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -421,7 +421,7 @@ const AribaReport = () => {
           totalCount={totalCount}
           templateCount={templateCount}
           noTemplateCount={noTemplateCount}
-          icon={<TaskAlt sx={{ fontSize: '2rem' }} />}
+          icon={<Work sx={{ fontSize: '2rem' }} />}
         />
         <SignatureStatusSummary
           title={t('signaturesStatus')}
@@ -429,7 +429,7 @@ const AribaReport = () => {
           noFirmadoCount={noFirmadoCount}
           firmadoValue={firmadoValue}
           noFirmadoValue={noFirmadoValue}
-          icon={<Analytics sx={{ fontSize: '2rem' }} />}
+          icon={<Description sx={{ fontSize: '2rem' }} />}
         />
         <ContractStatusWithValueSummary
           title={t('contractStatus')}
@@ -438,7 +438,7 @@ const AribaReport = () => {
           publicadoCount={publicadoCount}
           cerradoCount={cerradoCount}
           canceladoCount={canceladoCount}
-          icon={<PendingActions sx={{ fontSize: '2rem'}} />}
+          icon={<BusinessCenter sx={{ fontSize: '2rem'}} />}
         />
       </Box>
 

@@ -185,13 +185,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                       backgroundColor: item.isActive
                         ? isDarkTheme
                           ? 'rgba(2, 53, 90, 0.2)'
-                          : '#a5caee'
+                          : 'white'
                         : 'transparent',
                       color: item.isActive ? '#02355a' : textColor,
                       fontWeight: item.isActive ? 600 : 500,
                       transition: 'all 0.2s ease',
                       '&:hover': {
-                        backgroundColor: hoverBgColor,
+                        backgroundColor: '#fffff',
                         color: '#02355a',
                       },
                       justifyContent: isCollapsed ? 'center' : 'flex-start',
@@ -206,7 +206,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                           width: '32px',
                           height: '32px',
                           borderRadius: '6px',
-                          backgroundColor: item.isActive ? '#2563EB' : isDarkTheme ? '#374151' : '#E5E7EB',
+                          backgroundColor: item.isActive ? '#2563EB' : isDarkTheme ? 'white' : '#E5E7EB',
                           color: item.isActive ? 'white' : textColor,
                           fontWeight: 600,
                           fontSize: '12px',

@@ -29,7 +29,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
   return (
     <Card
       sx={{
-        backgroundColor: '#FFFFFF',
+        background: 'linear-gradient(135deg, #DB2777 0%, #EC4899 50%, #ef89beff 100%)',  
         border: "1px solid #f5e3b4ff",
         borderRadius: '16px',
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
@@ -61,7 +61,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
             variant="subtitle2"
             sx={{
               fontWeight: 600,
-              color: '#6B7280',
+              color: 'white',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               fontSize: '12px',
@@ -76,20 +76,18 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           <Box
             sx={{
               position: 'absolute',
-              top: '-16px',
+              top: '-23px',
               right: '20px',
               width: '48px',
               height: '48px',
               borderRadius: '50%',
-              background: '#7C3AED',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'white',
+              color: '#f269adff',
               fontSize: '24px',
               zIndex: 10,
-              boxShadow: '0 4px 12px rgba(245, 158, 11, 0.2)',
-            }}
+             }}
           >
             {icon}
           </Box>
@@ -101,7 +99,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
             variant="caption"
             sx={{
               fontWeight: 600,
-              color: '#9CA3AF',
+              color: 'white',
               textTransform: 'uppercase',
               letterSpacing: '0.03em',
               fontSize: '11px',
@@ -114,7 +112,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           <Typography
             sx={{
               fontWeight: 700,
-              color: '#1E3A8A',
+              color: 'white',
               fontSize: '32px',
               lineHeight: 1,
               wordBreak: 'break-word',
@@ -132,7 +130,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="caption"
               sx={{
                 fontWeight: 600,
-                color: '#9CA3AF',
+                color: 'white',
                 textTransform: 'uppercase',
                 letterSpacing: '0.03em',
                 fontSize: '10px',
@@ -144,7 +142,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: '#374151',
+                color: 'white',
                 fontSize: '18px',
                 marginTop: '6px',
                 lineHeight: 1,
@@ -160,7 +158,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="caption"
               sx={{
                 fontWeight: 600,
-                color: '#9CA3AF',
+                color: 'white',
                 textTransform: 'uppercase',
                 letterSpacing: '0.03em',
                 fontSize: '10px',
@@ -172,7 +170,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: '#374151',
+                color: 'white',
                 fontSize: '18px',
                 marginTop: '6px',
                 lineHeight: 1,
@@ -188,7 +186,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="caption"
               sx={{
                 fontWeight: 600,
-                color: '#9CA3AF',
+                color: 'white',
                 textTransform: 'uppercase',
                 letterSpacing: '0.03em',
                 fontSize: '10px',
@@ -200,7 +198,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: '#374151',
+                color: 'white',
                 fontSize: '18px',
                 marginTop: '6px',
                 lineHeight: 1,
@@ -216,7 +214,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="caption"
               sx={{
                 fontWeight: 600,
-                color: '#9CA3AF',
+                color: 'white',
                 textTransform: 'uppercase',
                 letterSpacing: '0.03em',
                 fontSize: '10px',
@@ -228,7 +226,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: '#374151',
+                color: 'white',
                 fontSize: '18px',
                 marginTop: '6px',
                 lineHeight: 1,
