@@ -84,7 +84,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#f269adff',
+              color: '#e7b2ccff',
               fontSize: '24px',
               zIndex: 10,
              }}
