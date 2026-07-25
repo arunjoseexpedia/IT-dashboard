@@ -77,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
   const sidebarBgColor = isDarkTheme ? '#1a1f2e' : '#FFFFFF';
   const textColor = isDarkTheme ? '#FFFFFF' : '#1F2937';
   const borderColor = isDarkTheme ? '#2d3748' : '#E5E7EB';
-  const hoverBgColor = isDarkTheme ? '#2d3748' : '#F3F4F6';
+  
 
   const sidebarContent = (
     <Box
