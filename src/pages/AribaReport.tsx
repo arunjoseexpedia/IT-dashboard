@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Work, Description, BusinessCenter, Close as CloseIcon } from '@mui/icons-material';
+import { Work, Description, Folder , Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -438,7 +438,7 @@ const AribaReport = () => {
           publicadoCount={publicadoCount}
           cerradoCount={cerradoCount}
           canceladoCount={canceladoCount}
-          icon={<BusinessCenter sx={{ fontSize: '2rem'}} />}
+          icon={<Folder  sx={{ fontSize: '2rem'}} />}
         />
       </Box>
 

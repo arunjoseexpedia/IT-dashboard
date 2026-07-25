@@ -76,7 +76,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           <Box
             sx={{
               position: 'absolute',
-              top: '-23px',
+              top: '-22px',
               right: '20px',
               width: '48px',
               height: '48px',
