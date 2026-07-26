@@ -103,34 +103,78 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
         }}
       >
         {!isCollapsed && (
-          <Typography
-            sx={{
-              fontSize: '16px',
-              fontWeight: 700,
-              color: '#483D8B',
-              letterSpacing: '0.05em',
-              textTransform: 'none',
-              whiteSpace: 'nowrap',
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <img
+              src={`${import.meta.env.BASE_URL}filter.png`}
+              alt="Menu"
+              style={{
+                width: '24px',
+                height: '24px',
+                objectFit: 'contain',
+              }}
+            />
+            <Typography
+              sx={{
+                fontSize: '16px',
+                fontWeight: 700,
+                color: isDarkTheme ? 'white' : '#483D8B',
+                letterSpacing: '0.05em',
+                textTransform: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {t('menu')}
+            </Typography>
+          </Box>
+        )}
+        {isCollapsed && (
+          <img
+            src={`${import.meta.env.BASE_URL}filter.png`}
+            alt="Menu"
+            style={{
+              width: '22px',
+              height: '22px',
+              objectFit: 'contain',
+              margin: '0 auto',
             }}
-          >
-            {t('menu')}
-          </Typography>
+          />
         )}
         <Tooltip title={isCollapsed ? t('expand') || 'Expand' : t('collapse') || 'Collapse'}>
           <IconButton
             size="small"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            sx={{
-              color: '#02355a',
+             disableRipple
+  disableFocusRipple
+  sx={{
+    color: isDarkTheme ? 'white' : '#02355a',
               marginLeft: 'auto',
               padding: '4px',
-              '&:hover': { backgroundColor: 'rgba(2, 53, 90, 0.08)' },
-            }}
+    bgcolor: 'transparent',
+    '&:hover': {
+      bgcolor: 'transparent',
+    },
+    '&:focus': {
+      outline: 'none',
+      bgcolor: 'transparent',
+    },
+    '&.Mui-focusVisible': {
+      bgcolor: 'transparent',
+    },
+  }}
           >
             {isCollapsed ? (
-              <ChevronRight sx={{ fontSize: 20 }} />
+              <ChevronRight  sx={{
+    bgcolor: 'transparent',
+    fontSize: 20,
+    borderRadius: 0,
+    p: 0,
+    '&:hover': {
+      bgcolor: 'transparent',
+    },
+  }} />
             ) : (
-              <ChevronLeft sx={{ fontSize: 20 }} />
+              <ChevronLeft sx={{ fontSize: 20, 
+    borderRadius: '50%', }} />
             )}
           </IconButton>
         </Tooltip>
@@ -187,12 +231,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                           ? 'rgba(2, 53, 90, 0.2)'
                           : 'white'
                         : 'transparent',
-                      color: item.isActive ? '#02355a' : textColor,
+                      color: item.isActive ? isDarkTheme ? 'white' : '#02355a' : textColor,
                       fontWeight: item.isActive ? 600 : 500,
                       transition: 'all 0.2s ease',
                       '&:hover': {
                         backgroundColor: '#fffff',
-                        color: '#02355a',
+                        color: isDarkTheme ? 'white' :'#02355a',
                       },
                       justifyContent: isCollapsed ? 'center' : 'flex-start',
                     }}
@@ -206,8 +250,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                           width: '32px',
                           height: '32px',
                           borderRadius: '6px',
-                          backgroundColor: item.isActive ? '#2563EB' : isDarkTheme ? 'white' : '#E5E7EB',
-                          color: item.isActive ? 'white' : textColor,
+                          backgroundColor: item.isActive ?  '#2563EB' : isDarkTheme ? 'white' : '#E5E7EB',
+                          color: item.isActive ? isDarkTheme ? 'black' : 'white' : isDarkTheme ? 'black' : textColor,
                           fontWeight: 600,
                           fontSize: '12px',
                           flexShrink: 0,

@@ -121,7 +121,7 @@ const ICertisReport = () => {
         const e2eProcessingDataArray = Object.entries(e2eProcessingMap)
           .map(([contractType, data]) => ({
             contractType,
-            avgProcessingTime: Math.round((data.total / data.count) * 100) / 100,
+            avgProcessingTime: Math.round((data.total / data.count)),
             recordCount: data.count,
           }))
           .sort((a, b) => b.avgProcessingTime - a.avgProcessingTime);

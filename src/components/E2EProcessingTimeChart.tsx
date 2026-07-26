@@ -32,12 +32,39 @@ const COLORS = [
   '#6B7280',
 ];
 
+// Color palette for Y-axis tick labels
+const TICK_COLORS = ['#2563EB', '#06B6D4', '#22C55E', '#F59E0B', '#8B5CF6', '#EC4899'];
+
 const E2EProcessingTimeChart = ({
   data,
   title = 'E2E Processing Time by Contract Type',
 }: E2EProcessingTimeChartProps) => {
   console.log('data',data);
-  // Custom tooltip
+  
+  // Custom Y-Axis tick renderer with different colors
+  const CustomYAxisTick = (props: any) => {
+    const { x, y, payload } = props;
+    const tickIndex = parseInt(payload.value);
+    const color = TICK_COLORS[tickIndex % TICK_COLORS.length];
+    
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text
+          x={0}
+          y={0}
+          dy={4}
+          textAnchor="end"
+          fill={color}
+          fontSize="11px"
+          fontWeight="600"
+        >
+          {payload.value}
+        </text>
+      </g>
+    );
+  };
+  
+  // ...existing code...
   const CustomTooltip = (props: any) => {
     const { active, payload } = props;
     if (active && payload && payload.length) {
@@ -133,7 +160,7 @@ const E2EProcessingTimeChart = ({
                 <YAxis
                   label={{ value: 'days', angle: -90, position: 'insideLeft' }}
                   stroke="#6B7280"
-                  tick={{ fontSize: 10 }}
+                  tick={<CustomYAxisTick />}
                   domain={[0, 'dataMax + 10']}
                   ticks={[0, 10, 20, 30, 40, 50]}
                 />
@@ -144,7 +171,7 @@ const E2EProcessingTimeChart = ({
                   radius={[6, 6, 0, 0]}
                   label={{
                     position: 'top',
-                    fontSize: 12,
+                    fontSize: 9,
                     fontWeight: 600,
                     fill: '#374151',
                     offset: 4,
