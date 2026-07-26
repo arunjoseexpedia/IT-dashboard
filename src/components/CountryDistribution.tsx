@@ -205,12 +205,14 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
               {/* Map Container */}
               <Box
                 sx={{
+                  
                   flex: 1,
                   overflow: 'auto',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   minHeight: 0,
+                  maxHeight: '320px', 
                 }}
               >
                 <ComposableMap projection="geoMercator">
