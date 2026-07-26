@@ -166,10 +166,18 @@ const ICertisReport = () => {
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
           gap: '24px',
-          marginTop: '24px',
-          '@media (max-width: 1024px)': {
-            gridTemplateColumns: '1fr',
-          },
+          mt: 2,
+            alignItems: 'start',
+
+    '& > *': {
+      height: 420, // Reduce from default (adjust as needed)
+      minHeight: 420,
+    },
+
+    '@media (max-width: 1024px)': {
+      gridTemplateColumns: '1fr',
+    },
+         
         }}
       >
         <E2EProcessingTimeChart data={e2eProcessingData} title={t('e2eProcessingTime')} />

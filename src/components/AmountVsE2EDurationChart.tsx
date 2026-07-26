@@ -95,7 +95,7 @@ const AmountVsE2EDurationChart = ({
   const avgAmount = data.length > 0 ? data.reduce((sum, item) => sum + item.amount, 0) / data.length : 0;
   const avgDuration = data.length > 0 ? data.reduce((sum, item) => sum + item.e2eDuration, 0) / data.length : 0;
   const maxAmount = data.length > 0 ? Math.max(...data.map((item) => item.amount)) : 0;
-
+ console.log(avgAmount, avgDuration, maxAmount);
   return (
     <Card
       sx={{
@@ -118,10 +118,10 @@ const AmountVsE2EDurationChart = ({
         {/* Header */}
         <Typography
           sx={{
-            fontSize: '18px',
+            fontSize: '13px',
             fontWeight: 600,
             color: '#374151',
-            marginBottom: '24px',
+            marginBottom: '20px',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}
@@ -215,88 +215,7 @@ const AmountVsE2EDurationChart = ({
         </Box>
 
         {/* Summary Statistics */}
-        <Box
-          sx={{
-            marginTop: '24px',
-            paddingTop: '24px',
-            borderTop: '1px solid #E5E7EB',
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(3, 1fr)' },
-            gap: '12px',
-          }}
-        >
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Avg Amount
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-              ${avgAmount.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Avg Duration
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-              {avgDuration.toLocaleString('en-US', { maximumFractionDigits: 1 })} days
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Max Amount
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#22C55E',
-              }}
-            >
-              ${maxAmount.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-            </Typography>
-          </Box>
-        </Box>
+       
       </CardContent>
     </Card>
   );

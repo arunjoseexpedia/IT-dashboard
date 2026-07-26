@@ -96,7 +96,7 @@ const E2EProcessingTimeChart = ({
         {/* Header */}
         <Typography
           sx={{
-            fontSize: '18px',
+            fontSize: '11px',
             fontWeight: 600,
             color: '#374151',
             marginBottom: '24px',
@@ -186,88 +186,7 @@ const E2EProcessingTimeChart = ({
         </Box>
 
         {/* Summary Statistics */}
-        <Box
-          sx={{
-            marginTop: '24px',
-            paddingTop: '24px',
-            borderTop: '1px solid #E5E7EB',
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(3, 1fr)' },
-            gap: '12px',
-          }}
-        >
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Contract Types
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-              {data.length}
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Avg Processing Time
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#2563EB',
-              }}
-            >
-             65.9 days
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '11px',
-                color: '#6B7280',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                fontWeight: 600,
-                marginBottom: '2px',
-              }}
-            >
-              Total Records
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: '#22C55E',
-              }}
-            >
-              {data.reduce((sum, item) => sum + item.recordCount, 0).toLocaleString()}
-            </Typography>
-          </Box>
-        </Box>
+        
       </CardContent>
     </Card>
   );
