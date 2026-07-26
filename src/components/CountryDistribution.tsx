@@ -215,7 +215,8 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                   maxHeight: '320px', 
                 }}
               >
-                <ComposableMap projection="geoMercator">
+                <ComposableMap projection="geoMercator"  width={800}
+      height={490}>
                   <Geographies geography={geoUrl}>
                     {({ geographies }: any) =>
                       geographies.map((geo: any) => {
