@@ -11,6 +11,7 @@ interface LawyerData {
   count: number;
   percentage: string;
   usdAmount?: number;
+  brCompliance?: number;
 }
 
 
@@ -60,30 +61,38 @@ const SLAEventReport = () => {
           : excelData.filter((row: any) => row['Signatures Status'] === selectedSignatureStatus);
 
         // Process Assigned Lawyer data
-        const lawyerMap: { [key: string]: { count: number; usdAmount: number } } = {};
+        const lawyerMap: { [key: string]: { count: number; usdAmount: number; brCompliance: number } } = {};
 
         filteredData.forEach((row: any) => {
           const lawyer = row['Assigned Lawyer'];
           const usdAmount = parseFloat(row['Amount (USD)']) || 0;
+          const brComplianceValue = row['BR Compliance'];
 
           // Ignore blank values
           if (lawyer && lawyer.trim() !== '') {
             if (!lawyerMap[lawyer]) {
-              lawyerMap[lawyer] = { count: 0, usdAmount: 0 };
+              lawyerMap[lawyer] = { count: 0, usdAmount: 0, brCompliance: 0 };
             }
             lawyerMap[lawyer].count++;
             lawyerMap[lawyer].usdAmount += usdAmount;
+            
+            // Count BR Compliance records (checking if column value is truthy/yes/compliant)
+            if (brComplianceValue && (brComplianceValue.toString().toLowerCase() === 'compliance' || brComplianceValue.toString().toLowerCase() === 'compliance'|| brComplianceValue === 1)) {
+              lawyerMap[lawyer].brCompliance++;
+            }
           }
         });
 
         // Convert to array and sort in descending order by count
         const total = Object.values(lawyerMap).reduce((sum, data) => sum + data.count, 0);
+        console.log('lawyerDataArray:', lawyerMap);
         const lawyerDataArray = Object.entries(lawyerMap)
           .map(([lawyer, data]) => ({
             lawyer,
             count: data.count,
             percentage: total > 0 ? ((data.count / total) * 100).toFixed(1) : '0.0',
             usdAmount: data.usdAmount,
+            brCompliance: data.brCompliance,
           }))
           .sort((a, b) => b.count - a.count);
 
