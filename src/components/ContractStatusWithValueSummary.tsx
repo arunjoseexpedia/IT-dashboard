@@ -34,12 +34,12 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
   const [averageAmount, setAverageAmount] = useState(0);
   const [hasData, setHasData] = useState(true);
 
-  const formattedValue = totalValue.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  const formattedValue = (totalValue / 1000000).toLocaleString('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+}) + 'M';
 
   // Fetch and process trend data
   const fetchTrendData = async () => {
