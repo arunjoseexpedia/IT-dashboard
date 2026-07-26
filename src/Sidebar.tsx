@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, IconButton, Drawer, Tooltip } from '@mui/material';
-import { Close, DarkMode, LightMode } from '@mui/icons-material';
+import { Box, Typography, IconButton, Drawer, Tooltip, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Close, DarkMode, LightMode, DashboardRounded, AutoAwesome, Assessment } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
@@ -27,6 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
+  const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -41,6 +42,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Navigation menu items
+  const navigationItems = [
+    { id: 'dashboard', label: t('dashboard'), icon: <DashboardRounded sx={{ fontSize: 24 }} /> },
+    { id: 'ai-insights', label: t('aiInsights'), icon: <AutoAwesome sx={{ fontSize: 24 }} /> },
+    { id: 'reports', label: t('reports'), icon: <Assessment sx={{ fontSize: 24 }} /> },
+  ];
 
   const menuSections: MenuSection[] = [
     {
@@ -192,6 +200,74 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
           gap: '20px',
         }}
       >
+        {/* Navigation Menu */}
+        <Box>
+          {!isCollapsed && (
+            <Typography
+              sx={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#999',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                marginBottom: '8px',
+                paddingLeft: '8px',
+              }}
+            >
+              {t('navigation')}
+            </Typography>
+          )}
+          <List sx={{ padding: 0, gap: '4px', display: 'flex', flexDirection: 'column' }}>
+            {navigationItems.map((item) => (
+              <Tooltip key={item.id} title={isCollapsed ? item.label : ''} placement="right">
+                <ListItemButton
+                  onClick={() => setActiveMenuItem(item.id)}
+                  selected={activeMenuItem === item.id}
+                  sx={{
+                    borderRadius: '8px',
+                    padding: isCollapsed ? '8px 4px' : '10px 8px',
+                    marginBottom: '4px',
+                    backgroundColor: activeMenuItem === item.id ? '#2563EB' : 'transparent',
+                    color: activeMenuItem === item.id ? 'white' : textColor,
+                    '&:hover': {
+                      backgroundColor: activeMenuItem === item.id ? '#2563EB' : '#F3F4F6',
+                    },
+                    '&.Mui-selected': {
+                      backgroundColor: '#2563EB',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#2563EB',
+                      },
+                    },
+                    justifyContent: isCollapsed ? 'center' : 'flex-start',
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      color: activeMenuItem === item.id ? 'white' : 'inherit',
+                      minWidth: '24px',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  {!isCollapsed && (
+                    <ListItemText
+                      primary={item.label}
+                      sx={{
+                        '& .MuiTypography-root': {
+                          fontSize: '13px',
+                          fontWeight: activeMenuItem === item.id ? 600 : 500,
+                          color: 'inherit',
+                        },
+                      }}
+                    />
+                  )}
+                </ListItemButton>
+              </Tooltip>
+            ))}
+          </List>
+        </Box>
         {menuSections.map((section, idx) => (
           <Box key={idx}>
             {!isCollapsed && (

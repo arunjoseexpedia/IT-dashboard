@@ -35,8 +35,12 @@
   "e2eTab": "E2E Template",
   "mapTab": "Map",
   "clear": "Reset",
+  "navigation": "Navigation",
   "countryRegionTab": "Country & Region",
   "expand": "Expand",
-  "collapse": "Collapse"
+  "collapse": "Collapse",
+  "aiInsights": "AI Insights",
+  "reports": "Reports"
+
 }
 
