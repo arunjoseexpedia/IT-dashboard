@@ -19,8 +19,7 @@ interface TrendData {
 const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount, icon }: ApplicationsSummaryProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [trendData, setTrendData] = useState<TrendData[]>([]);
-  const [totalApplications, setTotalApplications] = useState(0);
-
+  
   useEffect(() => {
     if (dialogOpen) {
       fetchTrendData();
@@ -98,7 +97,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
       const total = Object.values(monthMap).reduce((sum, item) => sum + item.count, 0);
 
       setTrendData(data);
-      setTotalApplications(total);
+      console.log(total);
     } catch (error) {
       console.error('Error reading Excel file for application trend data:', error);
     }
