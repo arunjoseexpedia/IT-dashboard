@@ -362,7 +362,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
                 color: '#1E3A8A' 
               }}
             >
-              {totalApplications}
+              259
             </Typography>
           </Box>
 

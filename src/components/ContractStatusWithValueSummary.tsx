@@ -363,7 +363,7 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           borderBottom: '2px solid white',
         }}
       >
-        Amount (USD) by Request Creation Period
+        Amount (USD) by Request Creation Period for Last 7 Months
       </DialogTitle>
 
       <DialogContent
