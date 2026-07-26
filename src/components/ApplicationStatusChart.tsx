@@ -60,7 +60,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
         .filter((row: any) => row['Signatures Status'] === 'NO FIRMADO')
         .reduce((sum: number, row: any) => sum + (parseFloat(row['Amount (USD)']) || 0), 0);
       console.log('No Firmado Sum:', noFirmadoSum);
-      const totalSum = firmadoSum + noFirmadoSum;
+      
 
       // Create pie chart data
       const pieData: SignatureStatusData[] = [];
