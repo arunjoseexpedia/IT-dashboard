@@ -314,7 +314,6 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             color: '#374151',
             fontSize: '18px',
             paddingBottom: '16px',
-            borderBottom: '1px solid #E5E7EB',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
             flexShrink: 0,
