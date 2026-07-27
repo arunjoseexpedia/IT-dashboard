@@ -18,6 +18,7 @@ interface SignatureStatusData {
 const SIGNATURE_COLORS = ['#22C55E', '#EF4444']; // Green for FIRMADO, Red for NO FIRMADO
 
 const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, title }) => {
+  console.log('ApplicationStatusChart data:', data);
   const [contractStatusDialogOpen, setContractStatusDialogOpen] = useState(false);
   const [selectedContractStatus, setSelectedContractStatus] = useState<string | null>(null);
   const [signatureStatusData, setSignatureStatusData] = useState<SignatureStatusData[]>([]);
@@ -27,7 +28,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
 
   // Fetch and process data when a bar is clicked
   const handleBarClick = async (barName: string) => {
-    console.log(barName);
+    console.log('barName',barName);
     // barName is Contract Status (Borrador, Publicado, Cerrado, Vencido)
     setSelectedContractStatus(barName);
     
@@ -148,7 +149,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
               margin={{ top: 2, right: 8, left: 0, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-              <XAxis dataKey="name" stroke="none" tick={{ fontSize: 10 }} />
+              <XAxis dataKey="name" stroke="#02355a" tick={{ fontSize: 10 }} />
               <YAxis stroke="#666" tick={{ fontSize: 10 }} />
               <Tooltip
                 contentStyle={{
