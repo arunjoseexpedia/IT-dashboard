@@ -1,4 +1,4 @@
-import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button } from '@mui/material';
+import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button, IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -8,7 +8,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Work, Description, Folder , Close as CloseIcon } from '@mui/icons-material';
+import { Work, Description, Folder, Close as CloseIcon } from '@mui/icons-material';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -32,8 +32,10 @@ const AribaReport = () => {
   const [selectedCountry, setSelectedCountry] = useState('All');
   const [allCountries, setAllCountries] = useState<string[]>(['All']);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [showApplicationStatusDetails, setShowApplicationStatusDetails] = useState(false);
+  const [pieChartData, setPieChartData] = useState<any>(null);
   const { t } = useTranslation();
-  
+  const SIGNATURE_COLORS = ['#22C55E', '#EF4444'];
   useEffect(() => {
     // Check initial theme
     const savedTheme = localStorage.getItem('theme');
@@ -260,6 +262,27 @@ const AribaReport = () => {
     fetchData();
   }, [selectedCategory, selectedCountry]);
 
+  // Handle Application Status bar click
+  const handleApplicationStatusBarClick = (data: any, barName: string) => {
+    console.log('Application Status Bar Clicked:', data.name, barName);
+    setShowApplicationStatusDetails(true);
+  };
+
+  // Handle close Application Status details
+  const handleCloseApplicationStatusDetails = () => {
+    setShowApplicationStatusDetails(false);
+    setPieChartData(null);
+  };
+const formatAmountInMillions = (amount: number) => {
+  return `$${(amount / 1000000).toFixed(2)}M`;
+};
+
+// Handle show pie chart from ApplicationStatusChart
+const handleShowPieChartData = (chartData: any) => {
+  console.log('Received pie chart data from ApplicationStatusChart:', chartData);
+  setPieChartData(chartData);
+};
+
   return (
     <Box sx={{ padding: '16px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
       {/* Filter Section - Enhanced */}
@@ -444,8 +467,142 @@ const AribaReport = () => {
 
       {/* Application Status Chart and Country Distribution Row */}
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '16px', marginBottom: '20px' }}>
-        <ApplicationStatusChart data={statusChartData} title={t('applicationStatus')} />
-        <CountryDistribution data={countryData} title={t('countryDistribution')} />
+        <ApplicationStatusChart 
+          data={statusChartData} 
+          title={t('applicationStatus')} 
+          onBarClick={handleApplicationStatusBarClick}
+          onPieChartDataReady={handleShowPieChartData}
+        />
+        
+        {!showApplicationStatusDetails ? (
+          <CountryDistribution data={countryData} title={t('countryDistribution')} />
+        ) : pieChartData ? (
+          <Card
+            sx={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E5E7EB',
+              borderRadius: '16px',
+              boxShadow: '0 4px 16px rgba(15,23,42,.08)',
+              height: '100%',
+              minHeight: '240px',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <CardContent
+              sx={{
+                padding: '10px 16px',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Header with Close Button */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '16px',
+                  flexShrink: 0,
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 700,
+                    color: '#02355a',
+                    textTransform: 'uppercase',
+                    marginBottom: '0px',
+                    letterSpacing: '0.05em',
+                    borderBottom: '2px solid #02355a',
+                    paddingBottom: '4px',
+                    textAlign: 'center',
+                    fontSize: '11px',
+                    flex: 1,
+                  }}
+                >
+                  {t('applicationStatus')}
+                </Typography>
+                
+              </Box>
+
+              {/* Pie Chart Content */}
+              <Box sx={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {/* Subtitle */}
+                <Typography sx={{ fontSize: '12px', color: '#6B7280', fontWeight: 500, textAlign: 'center' }}>
+                  Based on Contract Amount (USD)
+                </Typography>
+
+                {/* Summary Cards */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '8px' }}>
+                  {/* Total Amount Card */}
+                 
+
+                  {/* FIRMADO Amount Card */}
+                  
+
+                  {/* NO FIRMADO Amount Card */}
+                  
+                </Box>
+
+                {/* Pie Chart */}
+                <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 150 }}>
+                  <ResponsiveContainer width="140%" height={220}>
+                    <PieChart>
+                      <Pie
+                        data={pieChartData.signatureStatusData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, value, percent = 0 }) => `${name}: $${value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} (${(percent * 100).toFixed(1)}%)`}
+                        outerRadius={50}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                       {pieChartData.signatureStatusData.map((_:any, index:any) => (
+                                             <Cell key={`cell-${index}`} fill={SIGNATURE_COLORS[index % SIGNATURE_COLORS.length]} />
+                                           ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value: any) => `$${value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
+                        contentStyle={{
+                          backgroundColor: '#fff',
+                          border: '1px solid #ccc',
+                          borderRadius: '6px',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                          fontSize: '12px',
+                        }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '8px' }}>
+                                <Button
+                                  onClick={handleCloseApplicationStatusDetails}
+                                  sx={{
+                                    backgroundColor: '#EC4899',
+                                    color: '#FFFFFF',
+                                    fontWeight: 600,
+                                    textTransform: 'none',
+                                    borderRadius: '6px',
+                                    padding: '6px 20px',
+                                    fontSize: '12px',
+                                    '&:hover': {
+                                      backgroundColor: '#DB2777',
+                                    },
+                                  }}
+                                >
+                                  Back
+                                </Button>
+                              </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        ) : (
+          <CountryDistribution data={countryData} title={t('countryDistribution')} />
+        )}
       </Box>
 
       {/* Bottom Row: Pie Chart and Requesting Area */}

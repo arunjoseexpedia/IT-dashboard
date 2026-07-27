@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
-import { Card, CardContent, Typography, Box, Tabs, Tab } from '@mui/material';
+import { Card, CardContent, Typography, Box, Tabs, Tab, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Tooltip } from 'react-tooltip';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
@@ -32,6 +33,8 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [tabValue, setTabValue] = useState(0);
+  const [showCountryDetails, setShowCountryDetails] = useState(false);
+  const [selectedCountryData, setSelectedCountryData] = useState<any>(null);
   const { t } = useTranslation();
 
   // Create a map of country names to contract counts and region
@@ -79,6 +82,18 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
       .sort((a, b) => b.count - a.count);
   }, [data]);
 
+  // Handle bar click to show details
+  const handleBarClick = (barData: any) => {
+    setSelectedCountryData(barData);
+    setShowCountryDetails(true);
+  };
+
+  // Handle close details
+  const handleCloseDetails = () => {
+    setShowCountryDetails(false);
+    setSelectedCountryData(null);
+  };
+
   return (
     <Card
       sx={{
@@ -101,26 +116,29 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
           overflow: 'hidden',
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 700,
-            color: '#02355a',
-            textTransform: 'uppercase',
-            marginBottom: '6px',
-            letterSpacing: '0.05em',
-            borderBottom: '2px solid #02355a',
-            paddingBottom: '4px',
-            textAlign: 'center',
-            flexShrink: 0,
-            fontSize: '11px',
-          }}
-        >
-          {title}
-        </Typography>
+        {!showCountryDetails ? (
+          <>
+            {/* Default Card Content */}
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 700,
+                color: '#02355a',
+                textTransform: 'uppercase',
+                marginBottom: '6px',
+                letterSpacing: '0.05em',
+                borderBottom: '2px solid #02355a',
+                paddingBottom: '4px',
+                textAlign: 'center',
+                flexShrink: 0,
+                fontSize: '11px',
+              }}
+            >
+              {title}
+            </Typography>
 
-        {/* Tabs */}
-        <Box sx={{ marginBottom: '6px', flexShrink: 0 }}>
+            {/* Tabs */}
+            <Box sx={{ marginBottom: '6px', flexShrink: 0 }}>
           <Tabs 
             value={tabValue} 
             onChange={(_, value) => setTabValue(value)}
@@ -167,13 +185,13 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
           >
             <Tab label={`🗺️ ${t('mapTab')}`} />
             <Tab label={`📊 ${t('countryRegionTab')}`} />
-          </Tabs>
-        </Box>
+              </Tabs>
+            </Box>
 
-        {/* Tab Content Container */}
-        <Box sx={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-          {/* Map Tab */}
-          {tabValue === 0 && (
+            {/* Tab Content Container */}
+            <Box sx={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+              {/* Map Tab */}
+              {tabValue === 0 && (
             <>
               {/* Legend */}
               <Box
@@ -310,6 +328,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                     dataKey="count"
                     fill="#0052CC"
                     radius={[0, 8, 8, 0]}
+                    onClick={(data) => handleBarClick(data)}
                     label={{
                       position: 'right',
                       fontSize: 9,
@@ -322,6 +341,99 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
             </Box>
           )}
         </Box>
+          </>
+        ) : (
+          <>
+            {/* Country Details View */}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '16px',
+                flexShrink: 0,
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 700,
+                  color: '#02355a',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontSize: '12px',
+                }}
+              >
+                {selectedCountryData?.country} Details
+              </Typography>
+              <IconButton
+                onClick={handleCloseDetails}
+                sx={{
+                  width: '24px',
+                  height: '24px',
+                  color: '#6B7280',
+                  '&:hover': {
+                    backgroundColor: '#F3F4F6',
+                    color: '#02355a',
+                  },
+                }}
+              >
+                <CloseIcon sx={{ fontSize: '18px' }} />
+              </IconButton>
+            </Box>
+
+            {/* Details Content */}
+            <Box sx={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <Box
+                sx={{
+                  backgroundColor: '#F3F4F6',
+                  borderRadius: '8px',
+                  padding: '16px',
+                  border: '1px solid #E5E7EB',
+                }}
+              >
+                <Typography sx={{ fontSize: '10px', color: '#6B7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '6px' }}>
+                  Country Code
+                </Typography>
+                <Typography sx={{ fontSize: '16px', fontWeight: 700, color: '#02355a' }}>
+                  {selectedCountryData?.countryCode}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  backgroundColor: '#F0FDF4',
+                  borderRadius: '8px',
+                  padding: '16px',
+                  border: '1px solid #DCFCE7',
+                }}
+              >
+                <Typography sx={{ fontSize: '10px', color: '#166534', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '6px' }}>
+                  Region
+                </Typography>
+                <Typography sx={{ fontSize: '16px', fontWeight: 700, color: '#22C55E' }}>
+                  {selectedCountryData?.region}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  backgroundColor: '#FEF2F2',
+                  borderRadius: '8px',
+                  padding: '16px',
+                  border: '1px solid #FECACA',
+                }}
+              >
+                <Typography sx={{ fontSize: '10px', color: '#7F1D1D', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '6px' }}>
+                  Contract Count
+                </Typography>
+                <Typography sx={{ fontSize: '16px', fontWeight: 700, color: '#DC2626' }}>
+                  {selectedCountryData?.count}
+                </Typography>
+              </Box>
+            </Box>
+          </>
+        )}
       </CardContent>
 
       {/* Tooltip */}
