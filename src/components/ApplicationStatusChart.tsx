@@ -2,6 +2,7 @@ import { Card, CardContent, Typography, Box, Dialog, DialogTitle, DialogContent,
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
+import './../App.css'
 
 interface ApplicationStatusChartProps {
   data: Array<{ name: string; [key: string]: any }>;
@@ -146,7 +147,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
               margin={{ top: 2, right: 8, left: 0, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-              <XAxis dataKey="name" stroke="#666" tick={{ fontSize: 10 }} />
+              <XAxis dataKey="name" stroke="none" tick={{ fontSize: 10 }} />
               <YAxis stroke="#666" tick={{ fontSize: 10 }} />
               <Tooltip
                 contentStyle={{
