@@ -143,6 +143,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
         >
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
+              tabIndex={0}
               data={data}
               margin={{ top: 2, right: 8, left: 0, bottom: 0 }}
             >
