@@ -1,6 +1,6 @@
-import { Card, CardContent, Typography, Box, Button } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { useState } from 'react';
+import { Card, CardContent, Typography, Box} from '@mui/material';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 import * as XLSX from 'xlsx';
 import './../App.css'
 
@@ -17,20 +17,14 @@ interface SignatureStatusData {
   value: number;
 }
 
-const SIGNATURE_COLORS = ['#22C55E', '#EF4444']; // Green for FIRMADO, Red for NO FIRMADO
+// Green for FIRMADO, Red for NO FIRMADO
 
 // Reusable formatter function for amounts in millions
-const formatAmountInMillions = (amount: number): string => {
-  return `$${(amount / 1000000).toFixed(2)}M`;
-};
+
 
 const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, title, onBarClick, onPieChartDataReady }) => {
   console.log('ApplicationStatusChart data:', data);
-  const [signatureStatusData, setSignatureStatusData] = useState<SignatureStatusData[]>([]);
-  const [contractStatusTotal, setContractStatusTotal] = useState(0);
-  const [firmadoAmount, setFirmadoAmount] = useState(0);
-  const [noFirmadoAmount, setNoFirmadoAmount] = useState(0);
-  const [showPieChart, setShowPieChart] = useState(false);
+ 
 
   // Fetch and process data when a bar is clicked
   const handleBarClick = async (data: any, barName: string) => {
@@ -83,11 +77,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
         pieData.push({ name: 'NO FIRMADO', value: noFirmadoRounded });
       }
 
-      setSignatureStatusData(pieData);
-      setContractStatusTotal(totalRounded);
-      setFirmadoAmount(firmadoRounded);
-      setNoFirmadoAmount(noFirmadoRounded);
-      setShowPieChart(true);
+     
       if (onPieChartDataReady) {
         onPieChartDataReady({
           signatureStatusData: pieData,
@@ -98,8 +88,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
       }
     } catch (error) {
       console.error('Error reading Excel file:', error);
-      setSignatureStatusData([]);
-      setContractStatusTotal(0);
+     
     }
   };
 
