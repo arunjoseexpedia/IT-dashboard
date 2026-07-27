@@ -27,10 +27,12 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
   const [noFirmadoAmount, setNoFirmadoAmount] = useState(0);
 
   // Fetch and process data when a bar is clicked
-  const handleBarClick = async (barName: string) => {
-    console.log('barName',barName);
-    // barName is Contract Status (Borrador, Publicado, Cerrado, Vencido)
-    setSelectedContractStatus(barName);
+  const handleBarClick = async (data: any, barName: string) => {
+    console.log('X-axis name:', data.name); // e.g., "Borrador"
+    console.log('Bar name:', barName); // e.g., "FIRMADO"
+    
+    // Set selected contract status from X-axis name
+    setSelectedContractStatus(data.name);
     
     try {
       const response = await fetch(`${import.meta.env.BASE_URL}sampleData.xlsx`);
@@ -43,15 +45,12 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
       const excelData = XLSX.utils.sheet_to_json(sheet);
-     console.log('Filtered Data:', excelData);  
-      // Filter by contract status
+      
+      // Filter by contract status (X-axis name)
       const filteredData = excelData.filter((row: any) => {
-        const status = row['Signatures Status'];
-        console.log('Contract Status:', status);  
-        console.log('barName', barName); 
-        return status === barName;
+        const contractStatus = row['Contract Status'];
+        return contractStatus === data.name;
       });
-      console.log('Filtered Data:', filteredData);  
 
       // Group by Signatures Status and sum Amount (USD)
       const firmadoSum = filteredData
@@ -61,24 +60,20 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
       const noFirmadoSum = filteredData
         .filter((row: any) => row['Signatures Status'] === 'NO FIRMADO')
         .reduce((sum: number, row: any) => sum + (parseFloat(row['Amount (USD)']) || 0), 0);
-      console.log('No Firmado Sum:', noFirmadoSum);
-      
 
       // Create pie chart data
       const pieData: SignatureStatusData[] = [];
-      console.log('Firmado Sum:', firmadoSum);
-      
-        pieData.push({ name: 'FIRMADO', value: 4673269 });
-      
-        console.log('Firmado Sum:', noFirmadoSum);
-      
-        pieData.push({ name: 'NO FIRMADO', value: 221652 });
-      
-      console.log('Pie Data:', pieData);
+      if (firmadoSum > 0) {
+        pieData.push({ name: 'FIRMADO', value: parseFloat(firmadoSum.toFixed(2)) });
+      }
+      if (noFirmadoSum > 0) {
+        pieData.push({ name: 'NO FIRMADO', value: parseFloat(noFirmadoSum.toFixed(2)) });
+      }
+
       setSignatureStatusData(pieData);
-      setContractStatusTotal(4673269 + 221652);
-      setFirmadoAmount(4673269);
-      setNoFirmadoAmount(221652);
+      setContractStatusTotal(firmadoSum + noFirmadoSum);
+      setFirmadoAmount(firmadoSum);
+      setNoFirmadoAmount(noFirmadoSum);
       setContractStatusDialogOpen(true);
     } catch (error) {
       console.error('Error reading Excel file:', error);
@@ -166,7 +161,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
                 stackId="a" 
                 fill="#003d99" 
                 radius={[4, 4, 0, 0]}
-                onClick={() => handleBarClick('FIRMADO')}
+                onClick={(data) => handleBarClick(data, 'FIRMADO')}
                 style={{ cursor: 'pointer' }}
               />
               <Bar 
@@ -174,7 +169,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
                 stackId="a" 
                 fill="#1976d2" 
                 radius={[4, 4, 0, 0]}
-                onClick={() => handleBarClick('NO FIRMADO')}
+                onClick={(data) => handleBarClick(data, 'NO FIRMADO')}
                 style={{ cursor: 'pointer' }}
               />
             </BarChart>
