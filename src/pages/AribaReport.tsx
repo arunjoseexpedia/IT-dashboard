@@ -273,9 +273,7 @@ const AribaReport = () => {
     setShowApplicationStatusDetails(false);
     setPieChartData(null);
   };
-const formatAmountInMillions = (amount: number) => {
-  return `$${(amount / 1000000).toFixed(2)}M`;
-};
+
 
 // Handle show pie chart from ApplicationStatusChart
 const handleShowPieChartData = (chartData: any) => {
@@ -523,7 +521,7 @@ const handleShowPieChartData = (chartData: any) => {
                     flex: 1,
                   }}
                 >
-                  {t('applicationStatus')}
+                  {t('applicationStatus')} Detail
                 </Typography>
                 
               </Box>
@@ -538,25 +536,67 @@ const handleShowPieChartData = (chartData: any) => {
                 {/* Summary Cards */}
                 <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '8px' }}>
                   {/* Total Amount Card */}
-                 
+                  <Box
+                    sx={{
+                      backgroundColor: '#F3F4F6',
+                      borderRadius: '8px',
+                      padding: '8px 12px',
+                      border: '1px solid #E5E7EB',
+                    }}
+                  >
+                    <Typography sx={{ fontSize: '9px', color: '#6B7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>
+                      Total Amount
+                    </Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 700, color: '#2563EB' }}>
+                      ${pieChartData.contractStatusTotal.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                    </Typography>
+                  </Box>
 
                   {/* FIRMADO Amount Card */}
-                  
+                  <Box
+                    sx={{
+                      backgroundColor: '#F0FDF4',
+                      borderRadius: '8px',
+                      padding: '8px 12px',
+                      border: '1px solid #DCFCE7',
+                    }}
+                  >
+                    <Typography sx={{ fontSize: '9px', color: '#166534', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>
+                      FIRMADO
+                    </Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 700, color: '#22C55E' }}>
+                      ${pieChartData.firmadoAmount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                    </Typography>
+                  </Box>
 
                   {/* NO FIRMADO Amount Card */}
-                  
+                  <Box
+                    sx={{
+                      backgroundColor: '#FEF2F2',
+                      borderRadius: '8px',
+                      padding: '8px 12px',
+                      border: '1px solid #FECACA',
+                    }}
+                  >
+                    <Typography sx={{ fontSize: '9px', color: '#7F1D1D', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>
+                      NO FIRMADO
+                    </Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 700, color: '#EF4444' }}>
+                      ${pieChartData.noFirmadoAmount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                    </Typography>
+                  </Box>
                 </Box>
 
                 {/* Pie Chart */}
                 <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 150 }}>
-                  <ResponsiveContainer width="140%" height={220}>
+                  <ResponsiveContainer width="100%" height={140}>
                     <PieChart>
                       <Pie
                         data={pieChartData.signatureStatusData}
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, value, percent = 0 }) => `${name}: $${value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} (${(percent * 100).toFixed(1)}%)`}
+                        
                         outerRadius={50}
                         fill="#8884d8"
                         dataKey="value"
