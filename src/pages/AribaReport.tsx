@@ -634,7 +634,7 @@ const handleShowPieChartData = (chartData: any) => {
                                     },
                                   }}
                                 >
-                                  Back
+                                  View Country Distribution
                                 </Button>
                               </Box>
               </Box>
