@@ -99,8 +99,8 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
         border: '1px solid #E5E7EB',
         borderRadius: '16px',
         boxShadow: '0 4px 16px rgba(15,23,42,.08)',
-        height: '100%',
-        minHeight: '240px',
+        height: '71%',
+        minHeight: '223px',
         display: 'flex',
         flexDirection: 'column',
       }}

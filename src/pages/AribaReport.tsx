@@ -33,7 +33,21 @@ const AribaReport = () => {
   const [allCountries, setAllCountries] = useState<string[]>(['All']);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [showApplicationStatusDetails, setShowApplicationStatusDetails] = useState(false);
-  const [pieChartData, setPieChartData] = useState<any>(null);
+  const [pieChartData, setPieChartData] = useState<any>({
+    "signatureStatusData": [
+        {
+            "name": "FIRMADO",
+            "value": 4640520.58
+        },
+        {
+            "name": "NO FIRMADO",
+            "value": 199472.87
+        }
+    ],
+    "contractStatusTotal": 4839993.45,
+    "firmadoAmount": 4640520.58,
+    "noFirmadoAmount": 199472.87
+});
   const { t } = useTranslation();
   const SIGNATURE_COLORS = ['#22C55E', '#EF4444'];
   useEffect(() => {
@@ -271,7 +285,7 @@ const AribaReport = () => {
   // Handle close Application Status details
   const handleCloseApplicationStatusDetails = () => {
     setShowApplicationStatusDetails(false);
-    setPieChartData(null);
+    setPieChartData('');
   };
 
 
@@ -282,7 +296,7 @@ const handleShowPieChartData = (chartData: any) => {
 };
 
   return (
-    <Box sx={{ padding: '16px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
+    <Box sx={{ padding: '16px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '80vh' }}>
      
         
         {/* Category Filter */}
@@ -292,13 +306,14 @@ const handleShowPieChartData = (chartData: any) => {
       <Box
         sx={{
           display: 'grid',
+          
     gridTemplateColumns: {
       xs: '1fr',
       sm: '1fr 1fr',
       md: '1fr 1fr 1fr',
     },
     gap: '12px',          // Reduced from 16px
-    marginBottom: '12px', // Reduced from 16px
+    marginBottom: '0px', // Reduced from 16px
     alignItems: 'stretch',
         }}
       >
@@ -329,7 +344,7 @@ const handleShowPieChartData = (chartData: any) => {
       </Box>
 
       {/* Application Status Chart and Country Distribution Row */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '16px', marginBottom: '20px' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '10px', marginBottom: '0px' }}>
         <ApplicationStatusChart 
           data={statusChartData} 
           title={t('applicationStatus')} 
@@ -337,17 +352,15 @@ const handleShowPieChartData = (chartData: any) => {
           onPieChartDataReady={handleShowPieChartData}
         />
         
-        {!showApplicationStatusDetails ? (
-          <CountryDistribution data={countryData} title={t('countryDistribution')} />
-        ) : pieChartData ? (
+        
           <Card
             sx={{
               backgroundColor: '#FFFFFF',
               border: '1px solid #E5E7EB',
               borderRadius: '16px',
               boxShadow: '0 4px 16px rgba(15,23,42,.08)',
-              height: '100%',
-              minHeight: '240px',
+              height: '70%',
+        minHeight: '220px',
               display: 'flex',
               flexDirection: 'column',
             }}
@@ -392,81 +405,32 @@ const handleShowPieChartData = (chartData: any) => {
               </Box>
 
               {/* Pie Chart Content */}
-              <Box sx={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '5px' }}>
                 {/* Subtitle */}
-                <Typography sx={{ fontSize: '12px', color: '#6B7280', fontWeight: 500, textAlign: 'center' }}>
-                  Based on Contract Amount (USD)
-                </Typography>
-
+               
                 {/* Summary Cards */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '8px' }}>
+             
                   {/* Total Amount Card */}
-                  <Box
-                    sx={{
-                      backgroundColor: '#F3F4F6',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                      border: '1px solid #E5E7EB',
-                    }}
-                  >
-                    <Typography sx={{ fontSize: '9px', color: '#6B7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>
-                      Total Amount
-                    </Typography>
-                    <Typography sx={{ fontSize: '13px', fontWeight: 700, color: '#2563EB' }}>
-                      ${pieChartData.contractStatusTotal.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-                    </Typography>
-                  </Box>
+                  
 
-                  {/* FIRMADO Amount Card */}
-                  <Box
-                    sx={{
-                      backgroundColor: '#F0FDF4',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                      border: '1px solid #DCFCE7',
-                    }}
-                  >
-                    <Typography sx={{ fontSize: '9px', color: '#166534', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>
-                      FIRMADO
-                    </Typography>
-                    <Typography sx={{ fontSize: '13px', fontWeight: 700, color: '#22C55E' }}>
-                      ${pieChartData.firmadoAmount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-                    </Typography>
-                  </Box>
-
-                  {/* NO FIRMADO Amount Card */}
-                  <Box
-                    sx={{
-                      backgroundColor: '#FEF2F2',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                      border: '1px solid #FECACA',
-                    }}
-                  >
-                    <Typography sx={{ fontSize: '9px', color: '#7F1D1D', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '4px' }}>
-                      NO FIRMADO
-                    </Typography>
-                    <Typography sx={{ fontSize: '13px', fontWeight: 700, color: '#EF4444' }}>
-                      ${pieChartData.noFirmadoAmount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-                    </Typography>
-                  </Box>
-                </Box>
 
                 {/* Pie Chart */}
                 <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 150 }}>
-                  <ResponsiveContainer width="100%" height={140}>
+                  <ResponsiveContainer width="100%" height={160}>
                     <PieChart>
                       <Pie
-                        data={pieChartData.signatureStatusData}
+                        data={pieChartData?.signatureStatusData}
                         cx="50%"
-                        cy="50%"
+                        cy="42%"
                         labelLine={false}
-                        
+                        label={({ value }) =>
+    `${Number(value).toLocaleString('en-US')}`
+  }
                         outerRadius={50}
                         fill="#8884d8"
                         dataKey="value"
                       >
-                       {pieChartData.signatureStatusData.map((_:any, index:any) => (
+                       {pieChartData?.signatureStatusData.map((_:any, index:any) => (
                                              <Cell key={`cell-${index}`} fill={SIGNATURE_COLORS[index % SIGNATURE_COLORS.length]} />
                                            ))}
                       </Pie>
@@ -483,35 +447,15 @@ const handleShowPieChartData = (chartData: any) => {
                     </PieChart>
                   </ResponsiveContainer>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: '8px' }}>
-                                <Button
-                                  onClick={handleCloseApplicationStatusDetails}
-                                  sx={{
-                                    backgroundColor: '#EC4899',
-                                    color: '#FFFFFF',
-                                    fontWeight: 600,
-                                    textTransform: 'none',
-                                    borderRadius: '6px',
-                                    padding: '6px 20px',
-                                    fontSize: '12px',
-                                    '&:hover': {
-                                      backgroundColor: '#DB2777',
-                                    },
-                                  }}
-                                >
-                                  View Country Distribution
-                                </Button>
-                              </Box>
+               
               </Box>
             </CardContent>
           </Card>
-        ) : (
-          <CountryDistribution data={countryData} title={t('countryDistribution')} />
-        )}
+        
       </Box>
 
       {/* Bottom Row: Pie Chart and Requesting Area */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '20px', marginTop: '30px' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '10px', marginTop: '0px' }}>
         {/* Pie Chart Card */}
         <Card
           sx={{
