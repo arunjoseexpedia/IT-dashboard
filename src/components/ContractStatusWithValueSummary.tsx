@@ -141,8 +141,8 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
             transform: 'translateY(-2px)',
             boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
           },
-          height: '100%',
-          minHeight: '220px',
+           height: '90%',
+          minHeight: '160px',
           display: 'flex',
           flexDirection: 'column',
         }}

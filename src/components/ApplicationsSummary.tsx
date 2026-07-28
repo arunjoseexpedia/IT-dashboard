@@ -125,8 +125,8 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             boxShadow: '0 8px 16px rgba(0, 0, 0, 0.12)',
             backgroundColor: '#F8FAFB',
           },
-          height: '100%',
-          minHeight: '220px',
+          height: '90%',
+          minHeight: '160px',
           display: 'flex',
           flexDirection: 'column'
           
