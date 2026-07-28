@@ -2,6 +2,7 @@ import { Card, CardContent, Typography, Box, Dialog, DialogTitle, DialogContent,
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
+import North from '@mui/icons-material/North';
 
 interface TrendData {
   releasePeriod: string;
@@ -155,43 +156,46 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
           position: 'relative',
         }}
       >
-        {/* Header */}
-        <Box sx={{ marginBottom: '12px' }}>
-          <Typography
-            variant="subtitle2"
-            sx={{
-              fontWeight: 600,
-              color: 'white',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              fontSize: '12px',
-            }}
-          >
-            {title}
-          </Typography>
-        </Box>
+        {/* Header */}<Box
+  sx={{
+    marginBottom: '12px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }}
+>
+  <Typography
+    variant="subtitle2"
+    sx={{
+      fontWeight: 600,
+      color: 'white',
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      fontSize: '12px',
+    }}
+  >
+    {title}
+  </Typography>
+
+  <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      color: '#13e664ff',
+      fontSize: '16px',
+      fontWeight: 600,
+    }}
+  >
+    <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>
+      47%
+    </Typography>
+    <North sx={{ fontSize: '18px', ml: 0.5 }} />
+  </Box>
+</Box>
+      
 
         {/* Icon Badge - Top Right */}
-        {icon && (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '-22px',
-              right: '20px',
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#e7b2ccff',
-              fontSize: '24px',
-              zIndex: 10,
-             }}
-          >
-            {icon}
-          </Box>
-        )}
+        
 
         {/* Total Value Section */}
         <Box sx={{ marginBottom: '16px' }}>

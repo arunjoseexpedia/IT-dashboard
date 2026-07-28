@@ -151,27 +151,8 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
         }}
       >
         {/* Icon Badge - Top Right, Floating Above Card Border */}
-        {icon && (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '-23px',
-              right: '20px',
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              background: 'transparent',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#A7F3D0',
-              fontSize: '24px',
-              zIndex: 10,
-            }}
-          >
-            {icon}
-          </Box>
-        )}
+       
+        
 
         {/* Header */}
         <Box sx={{ marginBottom: '12px' }}>

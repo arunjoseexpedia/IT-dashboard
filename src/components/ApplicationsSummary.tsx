@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
+import North from '@mui/icons-material/North';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import * as XLSX from 'xlsx';
 
@@ -147,43 +148,45 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
         }}
       >
         {/* Icon Badge - Top Right, Floating Above Card Border */}
-        {icon && (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '-23px',
-              right: '20px',
-              width: '48px',
-              height: '48px',
-              borderRadius: '12px',
-              background: 'transparent',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#90CAF9',
-              fontSize: '24px',
-              zIndex: 10,
-            }}
-          >
-            {icon}
-          </Box>
-        )}
+       
+        <Box
+  sx={{
+    marginBottom: '12px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }}
+>
+  <Typography
+    variant="subtitle2"
+    sx={{
+      fontWeight: 600,
+      color: 'white',
+      textTransform: 'uppercase',
+      letterSpacing: '0.05em',
+      fontSize: '12px',
+    }}
+  >
+    {title}
+  </Typography>
 
-        {/* Header */}
-        <Box sx={{ marginBottom: '12px' }}>
-          <Typography
-            variant="subtitle2"
-            sx={{
-              fontWeight: 600,
-              color: 'white',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              fontSize: '12px',
-            }}
-          >
-            {title}
-          </Typography>
-        </Box>
+  <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      color: '#f9c51cff',
+      fontSize: '16px',
+      fontWeight: 600,
+    }}
+  >
+    <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>
+      23%
+    </Typography>
+    <North sx={{ fontSize: '18px', ml: 0.5 }} />
+  </Box>
+</Box>
+
+    
 
         {/* Total count - Main prominent display */}
         <Box sx={{ marginBottom: '4px' }}>
