@@ -18,7 +18,7 @@ const ChatBot = ({ open, onClose }: ChatBotProps) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
-      text: 'Hey there 👋 How can we help you?',
+      text: "Hi! I'm Smart Contract Assistant. 👋\nI can help you check contract status, signature progress, SLA details, assigned lawyers, and answer questions about your contracts.",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -87,7 +87,7 @@ const ChatBot = ({ open, onClose }: ChatBotProps) => {
       >
         <Box display="flex" alignItems="center" gap={1}>
           <Typography sx={{ fontSize: '18px', fontWeight: 700 }}>
-            Virtual Assistant
+            Smart Contract Assistant
           </Typography>
         </Box>
         <IconButton
