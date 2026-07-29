@@ -145,12 +145,12 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 tabIndex={0}
-                barSize={11}
+                barSize={16}
                 data={data}
                 margin={{ top: 2, right: 8, left: 0, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                <XAxis dataKey="name" stroke="#02355a" tick={{ fontSize: 10 }} />
+                <XAxis dataKey="name" stroke="#4B5563" tick={{ fontSize: 10 }} />
                 <YAxis stroke="#666" tick={{ fontSize: 10 }} />
                 <Tooltip
                   contentStyle={{
@@ -165,7 +165,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
                 <Bar 
                   dataKey="FIRMADO" 
                   stackId="a" 
-                  fill="#003d99" 
+                  fill="#1D4ED8" 
                   radius={[4, 4, 0, 0]}
                   onClick={(data) => handleBarClick(data, 'FIRMADO')}
                   style={{ cursor: 'pointer' }}
@@ -173,7 +173,7 @@ const ApplicationStatusChart: React.FC<ApplicationStatusChartProps> = ({ data, t
                 <Bar 
                   dataKey="NO FIRMADO" 
                   stackId="a" 
-                  fill="#1976d2" 
+                  fill="#60A5FA" 
                   radius={[4, 4, 0, 0]}
                   onClick={(data) => handleBarClick(data, 'NO FIRMADO')}
                   style={{ cursor: 'pointer' }}
