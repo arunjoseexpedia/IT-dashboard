@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Card, CardContent, Typography, Box, TableCell, TableRow, TableBody, Table, TableContainer, TableHead, Paper, Chip, LinearProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 interface LawyerData {
@@ -24,7 +24,19 @@ const COLORS = [
   '#EF4444',
   '#6B7280',
 ];
+const formatAmount = (value:any) => {
+  const num = Number(value);
 
+  if (num >= 1_000_000) {
+    return `$${(num / 1_000_000).toFixed(2)}M`;
+  }
+
+  if (num >= 1_000) {
+    return `$${(num / 1_000).toFixed(2)}K`;
+  }
+
+  return `$${num.toFixed(2)}`;
+};
 const LawyerListCard = ({
   data,
   }: LawyerListCardProps) => {
@@ -62,210 +74,128 @@ const LawyerListCard = ({
         >
           {displayTitle}
         </Typography>
-
-        {/* Column Headers */}
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            padding: '12px',
-            marginBottom: '8px',
-            backgroundColor: '#F3F4F6',
-            borderRadius: '8px',
+       <TableContainer
+  component={Paper}
+  sx={{
+    borderRadius: 2,
+    boxShadow: 'none',
+    border: '1px solid #E5E7EB',
+    overflow: 'hidden',
+  }}
+>
+  <Table size="small">
+    <TableHead>
+      <TableRow
+        sx={{
+          backgroundColor: '#F8FAFC',
+          '& th': {
+            fontWeight: 700,
+            fontSize: 12,
+            color: 'white',
+            textTransform: 'uppercase',
+            letterSpacing: '.05em',
             borderBottom: '2px solid #E5E7EB',
-          }}
-        >
-          <Box sx={{ width: '12px', flexShrink: 0 }} />
-          <Typography
-            sx={{
-              fontSize: '11px',
-              color: '#6B7280',
-              fontWeight: 700,
-              minWidth: '140px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.03em',
-            }}
-          >
-            Lawyer
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '11px',
-              color: '#6B7280',
-              fontWeight: 700,
-              minWidth: '100px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.03em',
-            }}
-          >
-            Contract
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '11px',
-              color: '#6B7280',
-              fontWeight: 700,
-              minWidth: '120px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.03em',
-            }}
-          >
-            Amount (USD)
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '11px',
-              color: '#6B7280',
-              fontWeight: 700,
-              minWidth: '110px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.03em',
-            }}
-          >
-            BR Compliance
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '11px',
-              color: '#6B7280',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.03em',
-            }}
-          >
-            Percentage (%)
-          </Typography>
-        </Box>
+            py: 1.5,
+          },
+        }}
+      >
+        <TableCell>Lawyer</TableCell>
+        <TableCell align="right">Contracts</TableCell>
+        <TableCell align="right">Amount (USD)</TableCell>
+        <TableCell align="center">BR Compliance</TableCell>
+        <TableCell width={220}>Performance</TableCell>
+      </TableRow>
+    </TableHead>
 
-        {/* Lawyer List */}
-        <Box
+    <TableBody>
+      {data.map((item, index) => (
+        <TableRow
+          key={index}
+          hover
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '6px',
-            width: '100%',
+            '&:nth-of-type(even)': {
+              backgroundColor: '#FCFCFD',
+            },
+            '& td': {
+              borderBottom: '1px solid #F3F4F6',
+              py: 1.5,
+            },
           }}
         >
-          {data.map((item, index) => (
-            <Box
-              key={`lawyer-${index}`}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '12px',
-                backgroundColor: '#F9FAFB',
-                borderRadius: '8px',
-                '&:hover': {
-                  backgroundColor: '#F3F4F6',
-                  transition: 'background-color 0.2s ease',
-                },
-              }}
-            >
+          <TableCell>
+            <Box display="flex" alignItems="center" gap={1.5}>
               <Box
                 sx={{
-                  width: '12px',
-                  height: '12px',
-                  borderRadius: '2px',
+                  width: 10,
+                  height: 10,
+                  borderRadius: '50%',
                   backgroundColor: COLORS[index % COLORS.length],
-                  flexShrink: 0,
+                }}
+              />
+              <Typography fontWeight={600}>
+                {item.lawyer}
+              </Typography>
+            </Box>
+          </TableCell>
+
+          <TableCell align="right">
+            <Typography fontWeight={600}>
+              {item.count}
+            </Typography>
+          </TableCell>
+
+          <TableCell align="right">
+            <Typography
+              fontWeight={700}
+              color="#b4bccfff"
+            >
+              {formatAmount(item.usdAmount || 0)}
+            </Typography>
+          </TableCell>
+
+          <TableCell align="center">
+            <Chip
+              size="small"
+              label={item.brCompliance}
+              sx={{
+                fontWeight: 600,
+                background: '#ECFDF5',
+                color: '#15803D',
+              }}
+            />
+          </TableCell>
+
+          <TableCell>
+            <Box display="flex" alignItems="center" gap={1}>
+              <LinearProgress
+                variant="determinate"
+                value={item.percentage as any}
+                sx={{
+                  flex: 1,
+                  height: 8,
+                  borderRadius: 4,
+                  backgroundColor: '#e8f4ebff',
+  '& .MuiLinearProgress-bar': {
+    backgroundColor: COLORS[index % COLORS.length],
+  },
                 }}
               />
               <Typography
                 sx={{
-                  fontSize: '13px',
-                  color: '#374151',
-                  fontWeight: 500,
-                  minWidth: '140px',
+                  width: 45,
+                  fontWeight: 700,
+                  fontSize: 12,
                 }}
               >
-                {item.lawyer}
+                {item.percentage}%
               </Typography>
-              <Typography
-                sx={{
-                  fontSize: '13px',
-                  color: '#6B7280',
-                  fontWeight: 600,
-                  minWidth: '100px',
-                }}
-              >
-                {item.count}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: '13px',
-                  color: '#2563EB',
-                  fontWeight: 600,
-                  minWidth: '120px',
-                }}
-              >
-                ${(item.usdAmount || 0).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: '13px',
-                  color: '#374151',
-                  fontWeight: 600,
-                  minWidth: '110px',
-                }}
-              >
-                {item.brCompliance || 0}
-              </Typography>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  flex: 1,
-                }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minWidth: '50px',
-                    height: '28px',
-                    backgroundColor: COLORS[index % COLORS.length] + '15',
-                    borderRadius: '6px',
-                    border: `1.5px solid ${COLORS[index % COLORS.length]}`,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: '12px',
-                      color: COLORS[index % COLORS.length],
-                      fontWeight: 700,
-                    }}
-                  >
-                    {item.percentage}%
-                  </Typography>
-                </Box>
-                <Box sx={{ flex: 1, maxWidth: '150px' }}>
-                  <Box
-                    sx={{
-                      width: '100%',
-                      height: '8px',
-                      backgroundColor: '#E5E7EB',
-                      borderRadius: '4px',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        height: '100%',
-                        width: `${item.percentage}%`,
-                        backgroundColor: COLORS[index % COLORS.length],
-                        transition: 'width 0.3s ease',
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
             </Box>
-          ))}
-        </Box>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</TableContainer>
 
         {/* Summary Footer */}
        
