@@ -285,7 +285,19 @@ const AribaReport = () => {
     console.log('Show Application Status Details:', showApplicationStatusDetails);
     setShowApplicationStatusDetails(true);
   };
+const formatAmount = (value:any) => {
+  const num = Number(value);
 
+  if (num >= 1_000_000) {
+    return `$${(num / 1_000_000).toFixed(2)}M`;
+  }
+
+  if (num >= 1_000) {
+    return `$${(num / 1_000).toFixed(2)}K`;
+  }
+
+  return `$${num.toFixed(2)}`;
+};
   // Handle close Application Status details
  {/* const handleCloseApplicationStatusDetails = () => {
     setShowApplicationStatusDetails(false);
@@ -316,10 +328,7 @@ const AribaReport = () => {
         textAnchor={isRight ? 'start' : 'end'}
         dominantBaseline="central"
       >
-        {`${name}: ${Number(value).toLocaleString('en-US', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        })}`}
+        {`${name}: ${formatAmount(value)}`}
       </text>
     );
   };

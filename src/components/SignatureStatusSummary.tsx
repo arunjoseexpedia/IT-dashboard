@@ -102,20 +102,22 @@ const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoVa
   const total = firmadoCount + noFirmadoCount;
   const firmadoPercentage = total > 0 ? ((firmadoCount / total) * 100).toFixed(1) : '0.0';
   const noFirmadoPercentage = total > 0 ? ((noFirmadoCount / total) * 100).toFixed(1) : '0.0';
+const formatAmount = (value:any) => {
+  const num = Number(value);
 
-  const formattedFirmadoValue = firmadoValue.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  if (num >= 1_000_000) {
+    return `$${(num / 1_000_000).toFixed(2)}M`;
+  }
 
-  const formattedNoFirmadoValue = noFirmadoValue.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  if (num >= 1_000) {
+    return `$${(num / 1_000).toFixed(2)}K`;
+  }
+
+  return `$${num.toFixed(2)}`;
+};
+  const formattedFirmadoValue = formatAmount(firmadoValue);
+
+  const formattedNoFirmadoValue = formatAmount(noFirmadoValue);
 
   return (
     <>
