@@ -46,7 +46,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
   // Navigation menu items
   const navigationItems = [
     { id: 'dashboard', label: t('dashboard'), icon: <DashboardRounded sx={{ fontSize: 24 }} /> },
-    { id: 'ai-insights', label: t('aiInsights'), icon: <AutoAwesome sx={{ fontSize: 24 }} /> },
+    { id: 'ai-insights', label: t('aiInsights'), icon: <AutoAwesome sx={{ fontSize: 24 }} />, children: [
+      {
+        id: 'sla-forecast',
+        label: 'SLA Forecast',
+        icon: <AutoAwesome sx={{ fontSize: 20 }} />,
+      },
+      {
+        id: 'approval-forecast',
+        label: 'Approval Forecast',
+        icon: <Assessment sx={{ fontSize: 20 }} />,
+      }, ]},
     { id: 'reports', label: t('reports'), icon: <Assessment sx={{ fontSize: 24 }} /> },
   ];
 
