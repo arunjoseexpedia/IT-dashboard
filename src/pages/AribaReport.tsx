@@ -517,7 +517,7 @@ const handleShowPieChartData = (chartData: any) => {
       </Box>
 
       {/* Bottom Row: Pie Chart and Requesting Area */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '10px', marginTop: '0px' }}>
+      <Box sx={{ display: 'grid', height: 420, gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '10px', marginTop: '0px' }}>
         <CountryDistribution data={countryData} title={t('countryDistribution')} />
         
         {/* Pie Chart Card */}
@@ -611,7 +611,7 @@ const handleShowPieChartData = (chartData: any) => {
         >
               {t('requestingArea')}
             </Typography>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={350}>
               <BarChart data={requestingAreaData} layout="vertical" margin={{ top: 5, right: 10, left: 40, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke={isDarkTheme ? '#4B5563' : '#e0e0e0'} />
                 <XAxis type="number" stroke={isDarkTheme ? '#9CA3AF' : '#666'} tick={{ fill: isDarkTheme ? '#9CA3AF' : '#666', fontSize: 12 }} />

@@ -102,7 +102,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
         borderRadius: '16px',
         boxShadow: '0 4px 16px rgba(15,23,42,.08)',
         height: '100%',
-        minHeight: '240px',
+        minHeight: '210px',
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -225,7 +225,7 @@ const CountryDistribution = ({ data, title }: CountryDistributionProps) => {
                 sx={{
                   
                   flex: 1,
-                  overflow: 'auto',
+                  overflow: 'hidden',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
