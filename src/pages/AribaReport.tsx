@@ -345,12 +345,150 @@ const handleShowPieChartData = (chartData: any) => {
 
   return (
     <Box sx={{ padding: '16px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '80vh' }}>
-     
-        
-        {/* Category Filter */}
+      <Box sx={{ marginBottom: '14px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
+       <Box>
+          <Typography 
+            sx={{ 
+              fontSize: '12px', 
+              fontWeight: '700', 
+              color: '#6B7280', 
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <Box component="span" sx={{ fontSize: '14px' }}>🏷️</Box>
+            {t('actualCategory') || 'CATEGORÍA ACTUAL'}
+          </Typography>
+          <FormControl sx={{ minWidth: 220 }} size="small">
+            <Select
+              id="category-select"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              sx={{
+                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+                borderRadius: '8px',
+                border: '1px solid #D1D5DB',
+                fontSize: '14px',
+                fontWeight: '500',
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#2563EB',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2563EB',
+                    borderWidth: '2px',
+                  },
+                },
+                '& .MuiSvgIcon-root': {
+                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
+                },
+              }}
+            >
+              {allCategories.map((category) => (
+                <MenuItem key={category} value={category} sx={{ fontSize: '14px' }}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        {/* Country Filter */}
+        <Box>
+          <Typography 
+            sx={{ 
+              fontSize: '12px', 
+              fontWeight: '700', 
+              color: '#6B7280', 
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            <Box component="span" sx={{ fontSize: '14px' }}>🌍</Box>
+            {t('selectCountry') || 'SELECCIONAR PAÍS'}
+          </Typography>
+          <FormControl sx={{ minWidth: 220 }} size="small">
+            <Select
+              id="country-select"
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              sx={{
+                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+                borderRadius: '8px',
+                border: '1px solid #D1D5DB',
+                fontSize: '14px',
+                fontWeight: '500',
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#2563EB',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#2563EB',
+                    borderWidth: '2px',
+                  },
+                },
+                '& .MuiSvgIcon-root': {
+                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
+                },
+              }}
+            >
+              {allCountries.map((country) => (
+                <MenuItem key={country} value={country} sx={{ fontSize: '14px' }}>
+                  {country}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+      {/* Clear Button */}
+        <Button
+          variant="outlined"
+          startIcon={<CloseIcon sx={{ fontSize: '18px' }} />}
+          onClick={() => {
+            setSelectedCategory('All');
+            setSelectedCountry('All');
+          }}
+          sx={{
+            borderColor: '#D1D5DB',
+            color: isDarkTheme ? '#FFFFFF' : '#1F2937',
+            backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
+            textTransform: 'none',
+            fontSize: '13px',
+            fontWeight: '700',
+            padding: '8px 20px',
+            letterSpacing: '0.05em',
+            borderRadius: '20px',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
+              borderColor: '#EF4444',
+              color: '#EF4444',
+            },
+          }}
+        >
+          {t('clear') || 'LIMPIAR'}
+        </Button>
+      </Box> 
+       
           
 
-      {/* KPI Cards Row */}
       <Box
         sx={{
           display: 'grid',
