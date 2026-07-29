@@ -33,6 +33,7 @@ const AribaReport = () => {
   const [allCountries, setAllCountries] = useState<string[]>(['All']);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [showApplicationStatusDetails, setShowApplicationStatusDetails] = useState(false);
+  const [selectedContractStatus, setSelectedContractStatus] = useState<string | null>('Borrador');
   const [pieChartData, setPieChartData] = useState<any>({
     "signatureStatusData": [
         {
@@ -278,6 +279,7 @@ const AribaReport = () => {
 
   // Handle Application Status bar click
   const handleApplicationStatusBarClick = (data: any, barName: string) => {
+    setSelectedContractStatus(data.name);
     console.log('Application Status Bar Clicked:', data.name, barName);
     setShowApplicationStatusDetails(true);
   };
@@ -287,8 +289,54 @@ const AribaReport = () => {
     setShowApplicationStatusDetails(false);
     setPieChartData('');
   };
-
-
+ const renderCustomLabel = (props: any) => {
+    const { x, y, name, value, index } = props;
+    const cx = props.cx || 0;
+    const cy = props.cy || 0;
+ 
+    // Determine if label is on left or right side
+    const isRight = x > cx;
+    
+    // Add spacing from the pie edge
+    const labelOffset = 10;
+    const labelX = isRight ? x + labelOffset : x - labelOffset;
+    
+    // Get color based on index
+    const labelColor = SIGNATURE_COLORS[index % SIGNATURE_COLORS.length];
+ 
+    return (
+      <text
+        x={labelX}
+        y={y}
+        fill={labelColor}
+        fontSize="11"
+        fontWeight="500"
+        textAnchor={isRight ? 'start' : 'end'}
+        dominantBaseline="central"
+      >
+        {`${name}: ${Number(value).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })}`}
+      </text>
+    );
+  };
+const getContractStatusPercentage = (status: string): number => {
+  switch (status) {
+    case 'Vencido':
+      return 10;
+    case 'Borrador':
+      return 70;
+    case 'Publicado':
+      return 30;
+    case 'Cerrado':
+      return 32;
+    case 'Cancelado':
+      return 0;
+    default:
+      return 0;
+  }
+};
 // Handle show pie chart from ApplicationStatusChart
 const handleShowPieChartData = (chartData: any) => {
   console.log('Received pie chart data from ApplicationStatusChart:', chartData);
@@ -355,6 +403,7 @@ const handleShowPieChartData = (chartData: any) => {
         
           <Card
             sx={{
+              position: 'relative',
               backgroundColor: '#FFFFFF',
               border: '1px solid #E5E7EB',
               borderRadius: '16px',
@@ -364,7 +413,22 @@ const handleShowPieChartData = (chartData: any) => {
               display: 'flex',
               flexDirection: 'column',
             }}
-          >
+          > <Typography
+    sx={{
+      position: 'absolute',
+      top: 35,
+      right: 16,
+      fontSize: '12px',
+      fontWeight: 500,
+      color: '#5e5e5e',
+      px: 1,
+      py: 0.3,
+      borderRadius: '4px',
+      
+    }}
+  >
+   Contract Status: {selectedContractStatus} ( {getContractStatusPercentage(selectedContractStatus || '')}% )
+  </Typography>
             <CardContent
               sx={{
                 padding: '10px 16px',
@@ -422,10 +486,8 @@ const handleShowPieChartData = (chartData: any) => {
                         data={pieChartData?.signatureStatusData}
                         cx="50%"
                         cy="42%"
-                        labelLine={false}
-                        label={({ value }) =>
-    `${Number(value).toLocaleString('en-US')}`
-  }
+                        labelLine={true}
+                        label={renderCustomLabel}
                         outerRadius={50}
                         fill="#8884d8"
                         dataKey="value"
@@ -456,8 +518,10 @@ const handleShowPieChartData = (chartData: any) => {
 
       {/* Bottom Row: Pie Chart and Requesting Area */}
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '10px', marginTop: '0px' }}>
+        <CountryDistribution data={countryData} title={t('countryDistribution')} />
+        
         {/* Pie Chart Card */}
-        <Card
+        {/* <Card
           sx={{
             backgroundColor:'#FFFFFF',
             border: "1px solid #E5E7EB",
@@ -564,7 +628,7 @@ const handleShowPieChartData = (chartData: any) => {
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
-        </Card>
+        </Card> 
       </Box>
     </Box>
   );
