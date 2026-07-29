@@ -1,7 +1,7 @@
 import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { useTranslation } from 'react-i18next';
 import ApplicationStatusChart from '../components/ApplicationStatusChart';
 import SignatureStatusSummary from '../components/SignatureStatusSummary';
@@ -51,6 +51,7 @@ const AribaReport = () => {
 });
   const { t } = useTranslation();
   const SIGNATURE_COLORS = ['#22C55E', '#EF4444'];
+  console.log('Chart Data:', chartData);
   useEffect(() => {
     // Check initial theme
     const savedTheme = localStorage.getItem('theme');
@@ -194,7 +195,7 @@ const AribaReport = () => {
           { name: t('noTemplate'), value: noTemplate, percentage: noTemplatePercentage },
           { name: t('template'), value: template, percentage: templatePercentage }
         ];
-        
+        console.log('Chart Data:', chartData);
         setChartData(chartData);
         
         // Process Contract Status data for stacked bar chart
@@ -281,19 +282,20 @@ const AribaReport = () => {
   const handleApplicationStatusBarClick = (data: any, barName: string) => {
     setSelectedContractStatus(data.name);
     console.log('Application Status Bar Clicked:', data.name, barName);
+    console.log('Show Application Status Details:', showApplicationStatusDetails);
     setShowApplicationStatusDetails(true);
   };
 
   // Handle close Application Status details
-  const handleCloseApplicationStatusDetails = () => {
+ {/* const handleCloseApplicationStatusDetails = () => {
     setShowApplicationStatusDetails(false);
     setPieChartData('');
-  };
+  }; */}
  const renderCustomLabel = (props: any) => {
     const { x, y, name, value, index } = props;
     const cx = props.cx || 0;
     const cy = props.cy || 0;
- 
+   console.log(cy);
     // Determine if label is on left or right side
     const isRight = x > cx;
     

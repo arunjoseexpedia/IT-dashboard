@@ -25,8 +25,8 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
   borradorCount,
   publicadoCount,
   cerradoCount,
-  canceladoCount = 0,
-  icon,
+  canceladoCount = 0
+ 
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [trendData, setTrendData] = useState<TrendData[]>([]);

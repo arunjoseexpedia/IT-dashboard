@@ -17,7 +17,7 @@ interface TrendData {
   count: number;
 }
 
-const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoValue = 0, noFirmadoValue = 0, icon }: SignatureStatusSummaryProps) => {
+const SignatureStatusSummary = ({ title, firmadoCount, noFirmadoCount, firmadoValue = 0, noFirmadoValue = 0 }: SignatureStatusSummaryProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [trendData, setTrendData] = useState<TrendData[]>([]);
   const [totalCompleted, setTotalCompleted] = useState(0);

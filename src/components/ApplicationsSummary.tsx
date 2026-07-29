@@ -17,7 +17,7 @@ interface TrendData {
   count: number;
 }
 
-const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount, icon }: ApplicationsSummaryProps) => {
+const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount }: ApplicationsSummaryProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [trendData, setTrendData] = useState<TrendData[]>([]);
   
