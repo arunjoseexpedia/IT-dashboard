@@ -1,4 +1,7 @@
-import { Box, Typography, FormControl, Select, MenuItem, Button } from '@mui/material';
+import { Box, Typography, FormControl, Select, MenuItem, Button,Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +24,7 @@ const SLAEventReport = () => {
   
   const [selectedSignatureStatus, setSelectedSignatureStatus] = useState('All');
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [openForecast, setOpenForecast] = useState(false);
    const { t } = useTranslation();
   
 
@@ -235,10 +239,10 @@ const SLAEventReport = () => {
         <Button
     variant="contained"
     onClick={() => {
-      // open forecast modal/page
-    }}
+              setOpenForecast(true);
+            }}
     sx={{
-      backgroundColor: '#2563EB',
+      backgroundColor: '#0052CC',
       color: '#FFFFFF',
       textTransform: 'none',
       fontSize: '13px',
@@ -248,13 +252,55 @@ const SLAEventReport = () => {
       letterSpacing: '0.05em',
       boxShadow: 'none',
       '&:hover': {
-        backgroundColor: '#1D4ED8',
+        backgroundColor: '#0052CC',
         boxShadow: 'none',
       },
     }}
   >
     Forecast
   </Button>
+   <Dialog
+    open={openForecast}
+    onClose={() => setOpenForecast(false)}
+    maxWidth="sm"
+    fullWidth
+  >
+    <DialogTitle
+      sx={{
+        fontWeight: 700,
+        color: '#1E3A8A',
+      }}
+    >
+      AI Smart Insights
+    </DialogTitle>
+  
+    <DialogContent dividers>
+      <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+        📈 <strong>Forecast Summary</strong>
+        <br /><br />
+  
+        Most delays are occurring after Compliance approval, indicating that the signing process is the biggest bottleneck rather than document creation.
+        <br /><br />
+  
+        AI predicts:
+        <ul>
+          <li> Waiting 96 days for signature.</li>
+          <li>Increase in Standard Template contracts.</li>
+          <li>AI Recommendation: Review approval bottleneck.</li>
+          <li>AI Recommendation: Escalate to contract owner and send reminder</li>
+        </ul>
+      </Typography>
+    </DialogContent>
+  
+    <DialogActions>
+      <Button
+        onClick={() => setOpenForecast(false)}
+        variant="contained"
+      >
+        Close
+      </Button>
+    </DialogActions>
+  </Dialog>
       </Box>
 
       <AssignedLawyerDashboard data={lawyerData} />

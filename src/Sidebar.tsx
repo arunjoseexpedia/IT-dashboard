@@ -243,10 +243,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                       backgroundColor: activeMenuItem === item.id ? '#2563EB' : '#F3F4F6',
                     },
                     '&.Mui-selected': {
-                      backgroundColor: '#2563EB',
+                      backgroundColor: '#0052CC',
                       color: 'white',
                       '&:hover': {
-                        backgroundColor: '#2563EB',
+                        backgroundColor: '#0052CC',
                       },
                     },
                     justifyContent: isCollapsed ? 'center' : 'flex-start',
@@ -336,8 +336,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isDarkTheme, onThemeToggle }) => {
                           width: '32px',
                           height: '32px',
                           borderRadius: '6px',
-                          backgroundColor: item.isActive ?  '#2563EB' : isDarkTheme ? 'white' : '#E5E7EB',
-                          color: item.isActive ? isDarkTheme ? 'black' : 'white' : isDarkTheme ? 'black' : textColor,
+                          backgroundColor: item.isActive ?  '#0052CC' : isDarkTheme ? 'white' : '#E5E7EB',
+                          color: item.isActive ? isDarkTheme ? 'white' : '#fff' : isDarkTheme ? 'black' : textColor,
                           fontWeight: 600,
                           fontSize: '12px',
                           flexShrink: 0,

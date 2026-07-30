@@ -1,4 +1,7 @@
-import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button } from '@mui/material';
+import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button,Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -9,6 +12,7 @@ import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
 import { Work, Description, Folder, Close as CloseIcon } from '@mui/icons-material';
+import './../App.css';
 
 const AribaReport = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -51,7 +55,8 @@ const AribaReport = () => {
 });
   const { t } = useTranslation();
   const SIGNATURE_COLORS = ['#22C55E', '#EF4444'];
-  console.log('Chart Data:', chartData);
+  const [openForecast, setOpenForecast] = useState(false);
+  
   useEffect(() => {
     // Check initial theme
     const savedTheme = localStorage.getItem('theme');
@@ -496,6 +501,29 @@ const handleShowPieChartData = (chartData: any) => {
         >
           {t('clear') || 'LIMPIAR'}
         </Button>
+              <Button
+            variant="contained"
+            onClick={() => {
+              setOpenForecast(true);
+            }}
+            sx={{
+              backgroundColor: '#0052CC',
+              color: '#FFFFFF',
+              textTransform: 'none',
+              fontSize: '13px',
+              fontWeight: '700',
+              padding: '8px 22px',
+              borderRadius: '20px',
+              letterSpacing: '0.05em',
+              boxShadow: 'none',
+              '&:hover': {
+                backgroundColor: '#0052CC',
+                boxShadow: 'none',
+              },
+            }}
+          >
+            Forecast
+          </Button>
       </Box> 
        
           
@@ -664,7 +692,50 @@ const handleShowPieChartData = (chartData: any) => {
           </Card>
         
       </Box>
+     <Dialog
+  open={openForecast}
+  onClose={() => setOpenForecast(false)}
+  maxWidth="sm"
+  fullWidth
+>
+  <DialogTitle
+    sx={{
+      fontWeight: 700,
+      color: '#1E3A8A',
+    }}
+  >
+    AI Smart Insights
+  </DialogTitle>
 
+  <DialogContent dividers>
+    <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+      📈 <strong>Forecast Summary</strong>
+      <br /><br />
+
+      Based on the current contract trends and historical data, the expected
+      contract volume is projected to increase by <strong>12%</strong> over the
+      next quarter.
+      <br /><br />
+
+      AI predicts:
+      <ul>
+        <li> Contract requests increased by 18% compared to last month..</li>
+        <li>Increase in Standard Template contracts.</li>
+        <li>Average approval time improved from 6.2 days to 4.9 days.</li>
+        <li>Start renewal discussions for top 10 high-value contracts.</li>
+      </ul>
+    </Typography>
+  </DialogContent>
+
+  <DialogActions>
+    <Button
+      onClick={() => setOpenForecast(false)}
+      variant="contained"
+    >
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
       {/* Bottom Row: Pie Chart and Requesting Area */}
       <Box sx={{ display: 'grid', height: 420, gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: '10px', marginTop: '0px' }}>
         <CountryDistribution data={countryData} title={t('countryDistribution')} />
