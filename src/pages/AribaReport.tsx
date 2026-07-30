@@ -27,7 +27,7 @@ const AribaReport = () => {
   const [totalContractValue, setTotalContractValue] = useState(0);
   const [firmadoValue, setFirmadoValue] = useState(0);
   const [noFirmadoValue, setNoFirmadoValue] = useState(0);
-  const [chartData, setChartData] = useState<Array<{ name: string; value: number; percentage: string }>>([]);
+  
   const [statusChartData, setStatusChartData] = useState<Array<{ name: string; [key: string]: any }>>([]);
   const [requestingAreaData, setRequestingAreaData] = useState<Array<{ name: string; count: number }>>([]);
   const [countryData, setCountryData] = useState<Array<{ country: string; count: number }>>([]);
@@ -200,8 +200,9 @@ const AribaReport = () => {
           { name: t('noTemplate'), value: noTemplate, percentage: noTemplatePercentage },
           { name: t('template'), value: template, percentage: templatePercentage }
         ];
-        console.log('Chart Data:', chartData);
-        setChartData(chartData);
+        console.log(chartData);
+      
+        
         
         // Process Contract Status data for stacked bar chart
         const statusMap: { [key: string]: { [key: string]: number } } = {};
