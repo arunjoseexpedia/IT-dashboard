@@ -53,7 +53,9 @@ const AssignedLawyerDashboard = ({
 
   // Custom label for donut chart showing percentage
   const renderCustomLabel = (entry: any) => {
+    if(entry && entry > 2){
     return `${entry}%`;
+    }return '';
   };
 
   // Custom tooltip for donut chart
@@ -137,7 +139,7 @@ const AssignedLawyerDashboard = ({
     >
       <CardContent
         sx={{
-          padding: '10px',
+          padding: '15px',
           '&:last-child': {
             paddingBottom: '8px',
           },
@@ -202,6 +204,7 @@ const AssignedLawyerDashboard = ({
                     data={donutData}
                     cx="50%"
                     cy="50%"
+                    
                     labelLine={false}
                     label={{ 
                       formatter: renderCustomLabel,
