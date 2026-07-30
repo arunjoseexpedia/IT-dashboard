@@ -22,6 +22,20 @@ interface AmountVsE2EDurationChartProps {
   title?: string;
 }
 
+const formatAmount = (value:any) => {
+  const num = Number(value);
+
+  if (num >= 1_000_000) {
+    return `$${(num / 1_000_000).toFixed(2)}M`;
+  }
+
+  if (num >= 1_000) {
+    return `$${(num / 1_000).toFixed(2)}K`;
+  }
+
+  return `$${num.toFixed(2)}`;
+};
+
 const COLORS = [
   '#2563EB',
   '#06B6D4',
@@ -121,7 +135,7 @@ const AmountVsE2EDurationChart = ({
             fontSize: '13px',
             fontWeight: 600,
             color: '#374151',
-            marginBottom: '20px',
+            marginBottom: '12px',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}
@@ -137,7 +151,7 @@ const AmountVsE2EDurationChart = ({
           }}
         >
           {data.length > 0 ? (
-            <ResponsiveContainer width="100%" height={350}>
+            <ResponsiveContainer width="100%" height={260}>
               <ScatterChart
                 margin={{ top: 20, right: 30, bottom: 60, left: 80 }}
               >
@@ -163,9 +177,11 @@ const AmountVsE2EDurationChart = ({
                   type="number"
                   stroke="#6B7280"
                   tick={{ fontSize: 12 }}
+                  tickFormatter={(value) => `${formatAmount(value)}`}
                   label={{
                     value: 'Amount (USD)',
                     angle: -90,
+                    dx: -15,
                     position: 'insideLeft',
                     fontSize: 12,
                     fontWeight: 600,

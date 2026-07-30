@@ -126,7 +126,7 @@ const E2EProcessingTimeChart = ({
             fontSize: '11px',
             fontWeight: 600,
             color: '#374151',
-            marginBottom: '24px',
+            marginBottom: '12px',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}
@@ -142,7 +142,7 @@ const E2EProcessingTimeChart = ({
           }}
         >
           {data.length > 0 ? (
-            <ResponsiveContainer width="100%" height={350}>
+            <ResponsiveContainer width="100%" height={260}>
               <BarChart
                width="100%"
                 data={data}
@@ -153,7 +153,7 @@ const E2EProcessingTimeChart = ({
                   dataKey="contractType"
                   stroke="#6B7280"
                   tick={{ fontSize: 12 }}
-                  angle={-45}
+                  angle={-37}
                   textAnchor="end"
                   height={100}
                 />

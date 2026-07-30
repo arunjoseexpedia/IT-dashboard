@@ -156,7 +156,7 @@ const ICertisReport = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
+    <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd' }}>
       {/* Top Row - Two-column layout for charts */}
       
 
@@ -170,8 +170,8 @@ const ICertisReport = () => {
             alignItems: 'start',
 
     '& > *': {
-      height: 420, // Reduce from default (adjust as needed)
-      minHeight: 420,
+      height: 333, // Reduce from default (adjust as needed)
+      minHeight: 333,
     },
 
     '@media (max-width: 1024px)': {
