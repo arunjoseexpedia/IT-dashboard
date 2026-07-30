@@ -302,6 +302,15 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
             borderRadius: '16px',
           }
         }}
+        slotProps={{
+  backdrop: {
+    timeout: 300,
+    sx: {
+      backdropFilter: "blur(4px)",
+      backgroundColor: "rgba(0,0,0,0.35)",
+    },
+  },
+}}
         sx={{
           '& .MuiDialog-paper': {
             borderRadius: '16px',
