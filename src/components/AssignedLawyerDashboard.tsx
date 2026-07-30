@@ -132,14 +132,14 @@ const AssignedLawyerDashboard = ({
         borderRadius: '12px',
         boxShadow: '0 2px 8px rgba(15,23,42,0.08)',
         padding: '0',
-        marginBottom: '24px',
+        marginBottom: '12px',
       }}
     >
       <CardContent
         sx={{
-          padding: '20px',
+          padding: '10px',
           '&:last-child': {
-            paddingBottom: '10px',
+            paddingBottom: '8px',
           },
         }}
       >
@@ -149,10 +149,10 @@ const AssignedLawyerDashboard = ({
             fontSize: '15px',
             fontWeight: 600,
             color: '#374151',
-            marginBottom: '24px',
+            marginBottom: '12px',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
-            height: '21px', // Fixed height for consistency
+            height: '18px', // Fixed height for consistency
           }}
         >
           {displayTitle}
@@ -163,7 +163,7 @@ const AssignedLawyerDashboard = ({
           sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', md: 'auto auto 1fr' },
-            gap: '24px',
+            gap: '12px',
             alignItems: 'flex-start',
             '@media (max-width: 1024px)': {
               gridTemplateColumns: '1fr',
@@ -179,8 +179,8 @@ const AssignedLawyerDashboard = ({
               backgroundColor: '#FFFFFF',
               borderRadius: '12px',
               padding: '12px',
-              width: '220px',
-              height: '220px',
+              width: '205px',
+              height: '170px',
               flexShrink: 0,
               overflow: 'visible',
             }}
@@ -210,8 +210,8 @@ const AssignedLawyerDashboard = ({
                       fontSize: 11,
                       fontWeight: 500,
                     }}
-                    innerRadius={45}
-                    outerRadius={72}
+                    innerRadius={35}
+                    outerRadius={55}
                     fill="#8884d8"
                     dataKey="value"
                     animationBegin={0}
@@ -486,11 +486,11 @@ const AssignedLawyerDashboard = ({
               flex: 1,
             }}
           >
-            <ResponsiveContainer width="100%" height={260}>
+            <ResponsiveContainer width="100%" height={180}>
               <BarChart
                 data={data}
                 layout="vertical"
-                margin={{ top: 10, right: 20, left: 8, bottom: 10 }}
+                margin={{ top: 5, right: 10, left: 5, bottom: 5 }}
               >
                 <CartesianGrid
                   strokeDasharray="3 3"

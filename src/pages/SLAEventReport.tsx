@@ -149,14 +149,14 @@ const SLAEventReport = () => {
   return (
     <Box sx={{ padding: '20px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '100vh' }}>
       {/* Signatures Status Filter Section */}
-      <Box sx={{ marginBottom: '30px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
+      <Box sx={{ marginBottom: '10px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
         {/* Signature Status Filter */}
         <Box>
           <Typography 
             sx={{ 
               fontSize: '12px', 
               fontWeight: '700', 
-              color: '#6B7280', 
+              color: '#6B7280',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               marginBottom: '8px',
@@ -232,6 +232,29 @@ const SLAEventReport = () => {
         >
           {t('clear')}
         </Button>
+        <Button
+    variant="contained"
+    onClick={() => {
+      // open forecast modal/page
+    }}
+    sx={{
+      backgroundColor: '#2563EB',
+      color: '#FFFFFF',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '700',
+      padding: '8px 22px',
+      borderRadius: '20px',
+      letterSpacing: '0.05em',
+      boxShadow: 'none',
+      '&:hover': {
+        backgroundColor: '#1D4ED8',
+        boxShadow: 'none',
+      },
+    }}
+  >
+    Forecast
+  </Button>
       </Box>
 
       <AssignedLawyerDashboard data={lawyerData} />
