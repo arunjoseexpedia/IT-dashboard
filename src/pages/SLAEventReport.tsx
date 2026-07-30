@@ -1,7 +1,7 @@
 import { Box, Typography, FormControl, Select, MenuItem, Button,Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions } from '@mui/material';
+  DialogActions, Zoom } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { useTranslation } from 'react-i18next';
@@ -260,6 +260,17 @@ const SLAEventReport = () => {
     Forecast
   </Button>
    <Dialog
+  
+   TransitionComponent={Zoom}
+   slotProps={{
+  backdrop: {
+    timeout: 300,
+    sx: {
+      backdropFilter: "blur(4px)",
+      backgroundColor: "rgba(0,0,0,0.35)",
+    },
+  },
+}}
     open={openForecast}
     onClose={() => setOpenForecast(false)}
     maxWidth="sm"

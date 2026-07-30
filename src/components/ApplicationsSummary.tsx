@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import { Box, Card, CardContent, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button,Zoom } from '@mui/material';
 import { useState, useEffect } from 'react';
 import North from '@mui/icons-material/North';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -290,6 +290,7 @@ const ApplicationsSummary = ({ title, totalCount, templateCount, noTemplateCount
       {/* Application Trend Dialog */}
       <Dialog
         open={dialogOpen}
+        TransitionComponent={Zoom}
         onClose={() => setDialogOpen(false)}
         maxWidth="lg"
         fullWidth

@@ -1,7 +1,7 @@
 import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button,Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions } from '@mui/material';
+  DialogActions,Zoom } from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -695,6 +695,8 @@ const handleShowPieChartData = (chartData: any) => {
       </Box>
      <Dialog
   open={openForecast}
+  TransitionComponent={Zoom}
+  transitionDuration={300}
   onClose={() => setOpenForecast(false)}
   maxWidth="sm"
   fullWidth

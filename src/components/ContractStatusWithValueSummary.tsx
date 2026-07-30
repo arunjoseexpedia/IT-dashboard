@@ -353,6 +353,16 @@ const ContractStatusWithValueSummary: React.FC<ContractStatusWithValueSummaryPro
         sx: {
           borderRadius: '16px',
           boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+          "@keyframes floatIn": {
+              "0%": {
+                opacity: 0,
+                transform: "translateY(20px) scale(0.95)",
+              },
+              "100%": {
+                opacity: 1,
+                transform: "translateY(0) scale(1)",
+              },
+            },
         },
       }}
     >

@@ -303,7 +303,7 @@ const formatAmount = (value:any) => {
       {/* Signature Completion Trend Dialog */}
       <Dialog
         open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
+          onClose={() => setDialogOpen(false)}
         maxWidth="lg"
         fullWidth
         PaperProps={{
@@ -312,6 +312,18 @@ const formatAmount = (value:any) => {
             maxWidth: '95vw',
             overflow: 'hidden',
             borderRadius: '16px',
+            animation: "floatIn 350ms ease-out",
+        
+            "@keyframes floatIn": {
+              "0%": {
+                opacity: 0,
+                transform: "translateY(20px) scale(0.95)",
+              },
+              "100%": {
+                opacity: 1,
+                transform: "translateY(0) scale(1)",
+              },
+            },
           }
         }}
         sx={{
