@@ -1,7 +1,8 @@
 import { Box, Typography, Card, CardContent, FormControl, Select, MenuItem, Button,Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,Zoom } from '@mui/material';
+  DialogActions,Zoom,Autocomplete,TextField, 
+  InputAdornment} from '@mui/material';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -11,7 +12,7 @@ import SignatureStatusSummary from '../components/SignatureStatusSummary';
 import ApplicationsSummary from '../components/ApplicationsSummary';
 import ContractStatusWithValueSummary from '../components/ContractStatusWithValueSummary';
 import CountryDistribution from '../components/CountryDistribution';
-import { Work, Description, Folder, Close as CloseIcon } from '@mui/icons-material';
+import { Work, Description, Folder, Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 import './../App.css';
 
 const AribaReport = () => {
@@ -363,135 +364,200 @@ const handleShowPieChartData = (chartData: any) => {
   return (
     <Box sx={{ padding: '16px', backgroundColor: isDarkTheme ? '#1a1f2e' : '#f4fafd', minHeight: '80vh' }}>
       <Box sx={{ marginBottom: '14px', display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', gap: '20px', flexWrap: 'wrap' }}>
-       <Box>
-          <Typography 
-            sx={{ 
-              fontSize: '12px', 
-              fontWeight: '700', 
-              color: '#6B7280', 
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px'
-            }}
-          >
-            <Box component="span" sx={{ fontSize: '14px' }}>🏷️</Box>
-            {t('actualCategory') || 'CATEGORÍA ACTUAL'}
-          </Typography>
-          <FormControl sx={{ minWidth: 220 }} size="small">
-            <Select
-              id="category-select"
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              sx={{
-                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
-                borderRadius: '8px',
-                border: '1px solid #D1D5DB',
-                fontSize: '14px',
-                fontWeight: '500',
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#2563EB',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: '#2563EB',
-                    borderWidth: '2px',
-                  },
-                },
-                '& .MuiSvgIcon-root': {
-                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
-                },
-              }}
-            >
-              {allCategories.map((category) => (
-                <MenuItem key={category} value={category} sx={{ fontSize: '14px' }}>
-                  {category}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
+       
+        
+         <Autocomplete
+  size="small"
+  options={allCategories}
+  value={selectedCategory}
+  onChange={(_, newValue) => {
+    setSelectedCategory(newValue || "All");
+  }}
+  slotProps={{
+    paper: {
+      sx: {
+        "& .MuiAutocomplete-option": {
+          fontSize: "13px",
+          minHeight: 30,
+          py: 0.5,
+          px: 1.5,
+        },
+      },
+    },
+  }}
+   sx={{
+    width: 220, // Reduce width
+    "& .MuiOutlinedInput-root.Mui-focused": {
+    boxShadow: "none",
+  },
+  
+    "& .MuiOutlinedInput-root": {
+      height: 32, // Reduce height
+      minHeight: 32,
+      fontSize: "13px", // Selected value font size
+      borderRadius: "10px",
+      color: isDarkTheme ? "#E5E7EB" : "#666",
+      backgroundColor: isDarkTheme ? "#2d3748" : "#fff",
 
-        {/* Country Filter */}
-        <Box>
-          <Typography 
-            sx={{ 
-              fontSize: '12px', 
-              fontWeight: '700', 
-              color: '#6B7280', 
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px'
-            }}
-          >
-            <Box component="span" sx={{ fontSize: '14px' }}>🌍</Box>
-            {t('selectCountry') || 'SELECCIONAR PAÍS'}
-          </Typography>
-          <FormControl sx={{ minWidth: 220 }} size="small">
-            <Select
-              id="country-select"
-              value={selectedCountry}
-              onChange={(e) => setSelectedCountry(e.target.value)}
-              sx={{
-                backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
-                color: isDarkTheme ? '#FFFFFF' : '#1F2937',
-                borderRadius: '8px',
-                border: '1px solid #D1D5DB',
-                fontSize: '14px',
-                fontWeight: '500',
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: isDarkTheme ? '#4B5563' : '#D1D5DB',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#2563EB',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: '#2563EB',
-                    borderWidth: '2px',
-                  },
-                },
-                '& .MuiSvgIcon-root': {
-                  color: isDarkTheme ? '#9CA3AF' : '#6B7280',
-                },
-              }}
-            >
-              {allCountries.map((country) => (
-                <MenuItem key={country} value={country} sx={{ fontSize: '14px' }}>
-                  {country}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
+      "& input": {
+        padding: "4px 0", // Reduce input padding
+        fontSize: "13px",
+      },
+
+      "& fieldset": {
+        borderColor: "#D1D5DB",
+      },
+
+     
+
+    
+    },
+
+    // Floating label
+    "& .MuiInputLabel-root": {
+      fontSize: "15px",
+      color: isDarkTheme ? "#E5E7EB" : "#ccc",
+    },
+
+    "& .MuiInputLabel-shrink": {
+      fontSize: "14px",
+      color: isDarkTheme ? "#E5E7EB" : "#666",
+    },
+
+    // Search, clear & dropdown icons
+    "& .MuiSvgIcon-root": {
+      fontSize: 18,
+       color: isDarkTheme ? "#E5E7EB" : "#ccc",
+    },
+  }}
+  
+  
+    renderInput={(params) => (
+  <TextField
+    {...params}
+    label={t('actualCategory') || 'CATEGORÍA ACTUAL'}
+    placeholder="Search Category"
+    InputProps={{
+      ...params.InputProps,
+      startAdornment: (
+        <>
+          <InputAdornment position="start">
+            <SearchIcon sx={{ fontSize: 18 }} />
+          </InputAdornment>
+          {params.InputProps.startAdornment}
+        </>
+      ),
+    }}
+  />
+)}
+ 
+/>
+        
+
+  <Autocomplete
+  size="small"
+  options={allCountries}
+  value={selectedCountry}
+  onChange={(_, newValue) => {
+    setSelectedCountry(newValue || "All");
+  }}
+  slotProps={{
+    paper: {
+      sx: {
+        "& .MuiAutocomplete-option": {
+          fontSize: "13px",
+          minHeight: 30,
+          py: 0.5,
+          px: 1.5,
+        },
+      },
+    },
+  }}
+  sx={{
+    width: 220, // Reduce width
+
+    "& .MuiOutlinedInput-root": {
+      height: 32, // Reduce height
+      minHeight: 32,
+      color: isDarkTheme ? "#E5E7EB" : "#666",
+      fontSize: "13px", // Selected value font size
+      borderRadius: "10px",
+      backgroundColor: isDarkTheme ? "#2d3748" : "#fff",
+
+      "& input": {
+        padding: "4px 0", // Reduce input padding
+        fontSize: "13px",
+      },
+
+      "& fieldset": {
+        borderColor: "#D1D5DB",
+      },
+
+
+     
+    },
+
+   "& .MuiInputLabel-root": {
+      fontSize: "15px",
+      color: isDarkTheme ? "#E5E7EB" : "#ccc",
+    },
+
+    "& .MuiInputLabel-shrink": {
+      fontSize: "14px",
+      color: isDarkTheme ? "#E5E7EB" : "#666",
+    },
+
+    // Search, clear & dropdown icons
+    "& .MuiSvgIcon-root": {
+      fontSize: 18,
+       color: isDarkTheme ? "#E5E7EB" : "#ccc",
+    },
+  }}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      label={t("selectCountry") || "Country"}
+      placeholder="Search Country"
+      InputProps={{
+        ...params.InputProps,
+        startAdornment: (
+          <>
+            <InputAdornment position="start">
+              <SearchIcon sx={{ fontSize: 16, color: "#9CA3AF" }} />
+            </InputAdornment>
+            {params.InputProps.startAdornment}
+          </>
+        ),
+      }}
+    />
+  )}
+/>    
+          
+         
+          
+       
 
       {/* Clear Button */}
         <Button
           variant="outlined"
-          startIcon={<CloseIcon sx={{ fontSize: '18px' }} />}
+          startIcon={<CloseIcon sx={{ fontSize: '15px' }} />}
           onClick={() => {
             setSelectedCategory('All');
             setSelectedCountry('All');
           }}
           sx={{
-            borderColor: '#D1D5DB',
+            borderColor: '#D0D5DD',
             color: isDarkTheme ? '#FFFFFF' : '#1F2937',
             backgroundColor: isDarkTheme ? '#2d3748' : '#FFFFFF',
             textTransform: 'none',
             fontSize: '13px',
             fontWeight: '700',
-            padding: '8px 20px',
-            letterSpacing: '0.05em',
+            height: '32px',              // reduce button height
+            minHeight: '32px',
+            padding: '4px 18px',         // smaller vertical padding
             borderRadius: '20px',
+            letterSpacing: '0.05em',
+           
             transition: 'all 0.2s ease',
             '&:hover': {
               backgroundColor: isDarkTheme ? '#374151' : '#F3F4F6',
@@ -513,7 +579,9 @@ const handleShowPieChartData = (chartData: any) => {
               textTransform: 'none',
               fontSize: '13px',
               fontWeight: '700',
-              padding: '8px 22px',
+              height: '32px',              // reduce button height
+              minHeight: '32px',
+              padding: '4px 18px',         // smaller vertical padding
               borderRadius: '20px',
               letterSpacing: '0.05em',
               boxShadow: 'none',
